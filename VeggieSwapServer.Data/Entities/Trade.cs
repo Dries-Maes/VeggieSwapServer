@@ -2,9 +2,8 @@
 
 namespace VeggieSwapServer.Data.Entities
 {
-    public class Trade
+    public class Trade : EntityBase
     {
-        public int Id { get; set; }
-        public List<TradeItem> TradeItems { get; set; }
+        public IEnumerable<TradeItem> TradeItems { get; set; }
     }
 }

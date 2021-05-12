@@ -2,9 +2,8 @@
 
 namespace VeggieSwapServer.Data.Entities
 {
-    public class Purchase
+    public class Purchase : EntityBase
     {
-        public int Id { get; set; }
         public DateTime DateTime { get; set; }
         public decimal VAmount { get; set; }
         public decimal EuroAmount { get; set; }

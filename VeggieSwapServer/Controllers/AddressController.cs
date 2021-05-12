@@ -20,13 +20,13 @@ namespace VeggieSwapServer.Controllers
         [HttpGet]
         public async Task<IEnumerable<Address>> GetAddresssAsync()
         {
-            return await _AddressService.GetAllItemsAsync();
+            return await _AddressService.GetAllEntitiesAsync();
         }
 
         [HttpPost]
         public async Task AddAddress(Address Address)
         {
-            await _AddressService.AddItemAsync(Address);
+            await _AddressService.AddEntityAsync(Address);
         }
     }
 }
