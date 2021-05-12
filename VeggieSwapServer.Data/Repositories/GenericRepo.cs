@@ -13,44 +13,44 @@ namespace VeggieSwapServer.Data.Repositories
             _context = context;
         }
 
-        public virtual async Task<bool> AddItemAsync(T item)
+        public virtual async Task<bool> AddEntityAsync(T entity)
         {
-            _context.Update(item);
+            _context.Update(entity);
             await _context.SaveChangesAsync();
 
             return true;
         }
 
-        public virtual async Task<bool> AddItemsAsync(IEnumerable<T> items)
+        public virtual async Task<bool> AddEntitiesAsync(IEnumerable<T> entities)
         {
-            await _context.AddRangeAsync(items);
+            await _context.AddRangeAsync(entities);
             await _context.SaveChangesAsync();
 
             return true;
         }
 
-        public virtual async Task<bool> UpdateItemsAsync(IEnumerable<T> items)
+        public virtual async Task<bool> UpdateEntitiesAsync(IEnumerable<T> entities)
         {
-            _context.UpdateRange(items);
+            _context.UpdateRange(entities);
             await _context.SaveChangesAsync();
 
             return true;
         }
 
-        public virtual async Task<bool> DeleteItemAsync(int id)
+        public virtual async Task<bool> DeleteEntityAsync(int id)
         {
-            var item = await GetItemAsync(id);
-            _context.Remove(item);
+            var entity = await GetEntityAsync(id);
+            _context.Remove(entity);
 
             return true;
         }
 
-        public virtual async Task<List<T>> GetAllItemsAsync()
+        public virtual async Task<IEnumerable<T>> GetAllEntitiesAsync()
         {
             return await _context.Set<T>().ToListAsync();
         }
 
-        public virtual async Task<T> GetItemAsync(int id)
+        public virtual async Task<T> GetEntityAsync(int id)
         {
             return await _context.FindAsync<T>(id);
         }

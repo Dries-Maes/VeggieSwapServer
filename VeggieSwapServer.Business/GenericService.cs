@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using VeggieSwapServer.Data.Entities;
 using VeggieSwapServer.Data.Repositories;
 
 namespace VeggieSwapServer.Business
@@ -13,34 +14,34 @@ namespace VeggieSwapServer.Business
             _genericRepo = genericRepo;
         }
 
-        public virtual async Task<bool> AddItemAsync(T item)
+        public virtual async Task<bool> AddEntityAsync(T entity)
         {
-            return await _genericRepo.AddItemAsync(item);
+            return await _genericRepo.AddEntityAsync(entity);
         }
 
-        public virtual async Task<bool> AddItemsAsync(IEnumerable<T> items)
+        public virtual async Task<bool> AddEntitiesAsync(IEnumerable<T> entities)
         {
-            return await _genericRepo.AddItemsAsync(items);
+            return await _genericRepo.AddEntitiesAsync(entities);
         }
 
-        public virtual async Task<bool> UpdateItemsAsync(IEnumerable<T> items)
+        public virtual async Task<bool> UpdateEntitiesAsync(IEnumerable<T> entities)
         {
-            return await _genericRepo.UpdateItemsAsync(items);
+            return await _genericRepo.UpdateEntitiesAsync(entities);
         }
 
-        public virtual async Task<bool> DeleteItemAsync(int id)
+        public virtual async Task<bool> DeleteEntityAsync(int id)
         {
-            return await _genericRepo.DeleteItemAsync(id);
+            return await _genericRepo.DeleteEntityAsync(id);
         }
 
-        public virtual async Task<List<T>> GetAllItemsAsync()
+        public virtual async Task<IEnumerable<T>> GetAllEntitiesAsync()
         {
-            return await _genericRepo.GetAllItemsAsync();
+            return await _genericRepo.GetAllEntitiesAsync();
         }
 
-        public virtual async Task<T> GetItemAsync(int id)
+        public virtual async Task<T> GetEntityAsync(int id)
         {
-            return await _genericRepo.GetItemAsync(id);
+            return await _genericRepo.GetEntityAsync(id);
         }
     }
 }

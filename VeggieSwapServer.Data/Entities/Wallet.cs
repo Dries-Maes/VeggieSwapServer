@@ -2,12 +2,11 @@
 
 namespace VeggieSwapServer.Data.Entities
 {
-    public class Wallet
+    public class Wallet : EntityBase
     {
-        public int Id { get; set; }
         public int UserId { get; set; }
-        public List<Purchase> Purchases { get; set; }
-        public List<Trade> Trades { get; set; }
+        public IEnumerable<Purchase> Purchases { get; set; }
+        public IEnumerable<Trade> Trades { get; set; }
         public decimal VAmount { get; set; }
     }
 }

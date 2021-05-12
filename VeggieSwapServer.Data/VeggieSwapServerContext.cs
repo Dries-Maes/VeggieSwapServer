@@ -23,12 +23,5 @@ namespace VeggieSwapServer.Data
             : base(options)
         {
         }
-
-        //private const string CONNECTION = @"Server=.\SQLEXPRESS;Database=VeggieSwapDB;Trusted_Connection=True;";
-
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    optionsBuilder.UseSqlServer(CONNECTION);
-        //}
     }
 }

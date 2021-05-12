@@ -5,16 +5,16 @@ namespace VeggieSwapServer.Data.Repositories
 {
     public interface IGenericRepo<T>
     {
-        Task<bool> AddItemAsync(T item);
+        Task<bool> AddEntitiesAsync(IEnumerable<T> entities);
 
-        Task<bool> AddItemsAsync(IEnumerable<T> items);
+        Task<bool> AddEntityAsync(T entity);
 
-        Task<bool> DeleteItemAsync(int id);
+        Task<bool> DeleteEntityAsync(int id);
 
-        Task<List<T>> GetAllItemsAsync();
+        Task<IEnumerable<T>> GetAllEntitiesAsync();
 
-        Task<T> GetItemAsync(int id);
+        Task<T> GetEntityAsync(int id);
 
-        Task<bool> UpdateItemsAsync(IEnumerable<T> items);
+        Task<bool> UpdateEntitiesAsync(IEnumerable<T> entities);
     }
 }

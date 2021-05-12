@@ -20,15 +20,13 @@ namespace VeggieSwapServer.Controllers
         [HttpGet]
         public async Task<IEnumerable<User>> GetUserAsync()
         {
-            return await _userService.GetAllItemsAsync();
+            return await _userService.GetAllEntitiesAsync();
         }
 
         [HttpPost]
         public async Task AddUser(User user)
         {
-            await _userService.AddItemAsync(user);
+            await _userService.AddEntityAsync(user);
         }
-        
-        // nicks comment
     }
 }
