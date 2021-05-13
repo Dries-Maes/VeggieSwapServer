@@ -18,12 +18,12 @@ namespace VeggieSwapServer.Business.Services
            
         }
 
-        public async Task<AddressModel> MapAddress(int id)
-        {
-            Address addressModel = await GetEntityAsync(id);
-            AddressModel mappedModel = _mapper.Map<AddressModel>(addressModel);
-            return mappedModel;
-        }
+        //public async Task<AddressModel> MapAddress(int id)
+        //{
+        //    Address addressModel = await GetEntityAsync(id);
+        //    AddressModel mappedModel = _mapper.Map<AddressModel>(addressModel);
+        //    return mappedModel;
+        //}
 
        
     }

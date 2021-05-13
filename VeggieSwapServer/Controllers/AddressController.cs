@@ -22,11 +22,12 @@ namespace VeggieSwapServer.Controllers
             _mapper = mapper;
         }
 
-        //[HttpGet]
-        //public async Task<IEnumerable<AddressModel>> GetAddresssAsync()
-        //{
-        //    return await _AddressService.GetAllEntitiesAsync();
-        //}
+        [HttpGet]
+        public async Task<IEnumerable<object>> GetAddresssAsync()
+        {
+            var test = await _addressService.GetAllEntitiesAsync();
+            return test;
+        }
 
         //[HttpPost]
         //public async Task AddAddress(Address Address)
@@ -43,7 +44,9 @@ namespace VeggieSwapServer.Controllers
             //AddressModel mappedModel = _mapper.Map<AddressModel>(addressModel);
             //
 
-            return  Ok(await _addressService.MapAddress(id));
+            //return  Ok(await _addressService.MapAddress(id));
+            var test = await _addressService.GetEntityAsync(id);
+            return Ok(test);
         }
     }
 }
