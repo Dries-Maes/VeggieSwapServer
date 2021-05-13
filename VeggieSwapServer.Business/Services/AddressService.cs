@@ -1,5 +1,4 @@
-﻿
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
@@ -11,11 +10,9 @@ namespace VeggieSwapServer.Business.Services
 {
     public class AddressService : GenericService<Address>
     {
-
         public AddressService(IGenericRepo<Address> _genericRepo, IMapper mapper)
             : base(_genericRepo, mapper)
         {
-           
         }
 
         //public async Task<AddressModel> MapAddress(int id)
@@ -25,6 +22,11 @@ namespace VeggieSwapServer.Business.Services
         //    return mappedModel;
         //}
 
-       
+        public override object Map(Address entity)
+        {
+            var test = _mapper.Map<AddressModel>(entity);
+            var test2 = test;
+            return test2;
+        }
     }
 }

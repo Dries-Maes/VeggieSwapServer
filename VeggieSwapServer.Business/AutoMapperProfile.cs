@@ -13,7 +13,7 @@ namespace VeggieSwapServer.Business
     {
         public AutoMapperProfile()
         {
-            CreateMap<AddressModel, Address>();
+            CreateMap<Address, AddressModel>().ReverseMap();
         }
     }
 }
