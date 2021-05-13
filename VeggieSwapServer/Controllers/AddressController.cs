@@ -1,8 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using VeggieSwapServer.Business;
-using VeggieSwapServer.Data.Entities;
+using VeggieSwapServer.Business.Models;
+using VeggieSwapServer.Business.Services;
+
 
 namespace VeggieSwapServer.Controllers
 {
@@ -10,23 +13,40 @@ namespace VeggieSwapServer.Controllers
     [Route("api/[controller]")]
     public class AddressController : ControllerBase
     {
-        private IGenericService<Address> _AddressService;
+        private AddressService _addressService;
+        private IMapper _mapper;
 
-        public AddressController(IGenericService<Address> genericService)
+        public AddressController(AddressService addressService, IMapper mapper)
         {
-            _AddressService = genericService;
+            _addressService = addressService;
+            _mapper = mapper;
         }
 
         [HttpGet]
-        public async Task<IEnumerable<Address>> GetAddresssAsync()
+        public async Task<IEnumerable<object>> GetAddresssAsync()
         {
-            return await _AddressService.GetAllEntitiesAsync();
+            var test = await _addressService.GetAllEntitiesAsync();
+            return test;
         }
 
-        [HttpPost]
-        public async Task AddAddress(Address Address)
+        //[HttpPost]
+        //public async Task AddAddress(Address Address)
+        //{
+        //    await _AddressService.AddEntityAsync(Address);
+        //}
+
+        [HttpGet("/{id}")]
+        public async Task<ActionResult<AddressModel>> GetMemberAsync(int id)
         {
-            await _AddressService.AddEntityAsync(Address);
+
+            //Address addressModel = await _addressService.GetEntityAsync(id);
+            //return Ok(member);
+            //AddressModel mappedModel = _mapper.Map<AddressModel>(addressModel);
+            //
+
+            //return  Ok(await _addressService.MapAddress(id));
+            var test = await _addressService.GetEntityAsync(id);
+            return Ok(test);
         }
     }
 }

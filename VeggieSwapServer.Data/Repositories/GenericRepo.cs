@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using VeggieSwapServer.Data.Entities;
 
 namespace VeggieSwapServer.Data.Repositories
 {
@@ -52,7 +53,9 @@ namespace VeggieSwapServer.Data.Repositories
 
         public virtual async Task<T> GetEntityAsync(int id)
         {
-            return await _context.FindAsync<T>(id);
+            var test = await _context.FindAsync<T>(id);
+            int wtf = 0;
+            return test;
         }
     }
 }

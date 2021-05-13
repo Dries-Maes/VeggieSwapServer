@@ -6,6 +6,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using VeggieSwapServer.Business;
+using VeggieSwapServer.Business.Models;
+using VeggieSwapServer.Business.Services;
 using VeggieSwapServer.Data;
 using VeggieSwapServer.Data.Entities;
 using VeggieSwapServer.Data.Repositories;
@@ -35,6 +37,9 @@ namespace VeggieSwapServer
                 x.UseSqlServer(Configuration.GetConnectionString("DefaultConnectionString"));
             });
             services.AddCors();
+
+            services.AddAutoMapper(typeof(AutoMapperProfile).Assembly);
+
             services.AddScoped<IGenericRepo<Address>, GenericRepo<Address>>();
             services.AddScoped<IGenericRepo<Purchase>, GenericRepo<Purchase>>();
             services.AddScoped<IGenericRepo<Resource>, GenericRepo<Resource>>();
@@ -42,6 +47,7 @@ namespace VeggieSwapServer
             services.AddScoped<IGenericRepo<TradeItem>, GenericRepo<TradeItem>>();
             services.AddScoped<IGenericRepo<User>, GenericRepo<User>>();
             services.AddScoped<IGenericRepo<Wallet>, GenericRepo<Wallet>>();
+            services.AddScoped<IGenericRepo<AddressModel>, GenericRepo<AddressModel>>();
 
             services.AddScoped<IGenericService<Address>, GenericService<Address>>();
             services.AddScoped<IGenericService<Purchase>, GenericService<Purchase>>();
@@ -50,6 +56,9 @@ namespace VeggieSwapServer
             services.AddScoped<IGenericService<TradeItem>, GenericService<TradeItem>>();
             services.AddScoped<IGenericService<User>, GenericService<User>>();
             services.AddScoped<IGenericService<Wallet>, GenericService<Wallet>>();
+            services.AddScoped<IGenericService< AddressModel>, GenericService<AddressModel>>();
+           
+            services.AddScoped<AddressService, AddressService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
