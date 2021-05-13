@@ -41,20 +41,20 @@ namespace VeggieSwapServer.Business
         public virtual async Task<IEnumerable<object>> GetAllEntitiesAsync()
         {
             var entities = await _genericRepo.GetAllEntitiesAsync();
-            var mappedEnities = Map(entities);
+            var mappedEntities = Map(entities);
             //var mappedEntities = _mapper.Map<IEnumerable<AddressModel>>(entities);
             //return (IEnumerable<T>)mappedEntities;
-            return mappedEnities;
+            return mappedEntities;
         }
 
         public virtual async Task<object> GetEntityAsync(int id)
         {
             var entity = await _genericRepo.GetEntityAsync(id);
-            var mappedEnitiy = Map(entity);
+            var mappedEntity = Map(entity);
 
             //var mappedEntity = _mapper.Map<T>(entity);
 
-            return mappedEnitiy;
+            return mappedEntity;
         }
 
         public virtual object Map(T entity)

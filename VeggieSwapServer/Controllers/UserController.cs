@@ -1,8 +1,8 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
-using VeggieSwapServer.Business;
 using VeggieSwapServer.Business.Models;
 using VeggieSwapServer.Business.Services;
 
@@ -12,38 +12,23 @@ namespace VeggieSwapServer.Controllers
     [Route("api/[controller]")]
     public class UserController : ControllerBase
     {
-        private UserService _UserService;
-        private IMapper _mapper;
+        private UserService _userService;
 
-        public UserController(UserService UserService, IMapper mapper)
+        public UserController(UserService userService)
         {
-            _UserService = UserService;
-            _mapper = mapper;
+            _userService = userService;
         }
 
         [HttpGet]
         public async Task<IEnumerable<object>> GetUsersAsync()
         {
-            var test = await _UserService.GetAllEntitiesAsync();
-            return test;
+            return await _userService.GetAllEntitiesAsync();
         }
 
-        //[HttpPost]
-        //public async Task AddUser(User User)
-        //{
-        //    await _UserService.AddEntityAsync(User);
-        //}
-
         [HttpGet("/{id}")]
-        public async Task<ActionResult<UserModel>> GetMemberAsync(int id)
+        public async Task<ActionResult<object>> GetUserAsync(int id)
         {
-            //User UserModel = await _UserService.GetEntityAsync(id);
-            //return Ok(member);
-            //UserModel mappedModel = _mapper.Map<UserModel>(UserModel);
-            //
-
-            //return  Ok(await _UserService.MapUser(id));
-            var test = await _UserService.GetEntityAsync(id);
+            var test = await _userService.GetEntityAsync(id);
             return Ok(test);
         }
     }

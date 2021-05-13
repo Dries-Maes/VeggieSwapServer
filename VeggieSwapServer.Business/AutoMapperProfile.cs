@@ -14,6 +14,8 @@ namespace VeggieSwapServer.Business
         public AutoMapperProfile()
         {
             CreateMap<Address, AddressModel>().ReverseMap();
+            CreateMap<User, UserModel>().ReverseMap();
+            CreateMap<Resource, ResourceModel>().ReverseMap();
         }
     }
 }

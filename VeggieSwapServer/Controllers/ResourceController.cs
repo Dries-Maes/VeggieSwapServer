@@ -1,8 +1,8 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
-using VeggieSwapServer.Business;
 using VeggieSwapServer.Business.Models;
 using VeggieSwapServer.Business.Services;
 
@@ -12,19 +12,17 @@ namespace VeggieSwapServer.Controllers
     [Route("api/[controller]")]
     public class ResourceController : ControllerBase
     {
-        private ResourceService _ResourceService;
-        private IMapper _mapper;
+        private ResourceService _addressService;
 
-        public ResourceController(ResourceService ResourceService, IMapper mapper)
+        public ResourceController(ResourceService addressService)
         {
-            _ResourceService = ResourceService;
-            _mapper = mapper;
+            _addressService = addressService;
         }
 
         [HttpGet]
-        public async Task<IEnumerable<object>> GetResourcesAsync()
+        public async Task<IEnumerable<object>> GetResourceesAsync()
         {
-            var test = await _ResourceService.GetAllEntitiesAsync();
+            var test = await _addressService.GetAllEntitiesAsync();
             return test;
         }
 
@@ -34,17 +32,17 @@ namespace VeggieSwapServer.Controllers
         //    await _ResourceService.AddEntityAsync(Resource);
         //}
 
-        [HttpGet("/{id}")]
-        public async Task<ActionResult<ResourceModel>> GetMemberAsync(int id)
-        {
-            //Resource ResourceModel = await _ResourceService.GetEntityAsync(id);
-            //return Ok(member);
-            //ResourceModel mappedModel = _mapper.Map<ResourceModel>(ResourceModel);
-            //
+        //[HttpGet("/{id}")]
+        //public async Task<ActionResult<ResourceModel>> GetMemberAsync(int id)
+        //{
+        //    //Resource addressModel = await _addressService.GetEntityAsync(id);
+        //    //return Ok(member);
+        //    //ResourceModel mappedModel = _mapper.Map<ResourceModel>(addressModel);
+        //    //
 
-            //return  Ok(await _ResourceService.MapResource(id));
-            var test = await _ResourceService.GetEntityAsync(id);
-            return Ok(test);
-        }
+        //    //return  Ok(await _addressService.MapResource(id));
+        //    var test = await _addressService.GetEntityAsync(id);
+        //    return Ok(test);
+        //}
     }
 }
