@@ -7,6 +7,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using VeggieSwapServer.Business;
 using VeggieSwapServer.Business.Models;
+using VeggieSwapServer.Business.Services;
 using VeggieSwapServer.Data;
 using VeggieSwapServer.Data.Entities;
 using VeggieSwapServer.Data.Repositories;
@@ -56,6 +57,8 @@ namespace VeggieSwapServer
             services.AddScoped<IGenericService<User>, GenericService<User>>();
             services.AddScoped<IGenericService<Wallet>, GenericService<Wallet>>();
             services.AddScoped<IGenericService< AddressModel>, GenericService<AddressModel>>();
+           
+            services.AddScoped<AddressService, AddressService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

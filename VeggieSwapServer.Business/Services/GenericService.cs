@@ -9,12 +9,14 @@ namespace VeggieSwapServer.Business
 {
     public class GenericService<T> : IGenericService<T>
     {
-        private IGenericRepo<T> _genericRepo;        
+        private IGenericRepo<T> _genericRepo;
+        protected IMapper _mapper;
 
-        public GenericService(IGenericRepo<T> genericRepo)
+        public GenericService(IGenericRepo<T> genericRepo, IMapper mapper)            
         {
             _genericRepo = genericRepo;
-            
+            _mapper = mapper;
+
         }
 
         public virtual async Task<bool> AddEntityAsync(T entity)
@@ -53,6 +55,11 @@ namespace VeggieSwapServer.Business
             //var mappedEntity = _mapper.Map<T>(entity);
 
             return entity;
+        }
+
+        public virtual object Map(T entity)
+        {
+            return _mapper.Map<object>(entity);
         }
     }
 }
