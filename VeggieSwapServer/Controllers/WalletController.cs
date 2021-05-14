@@ -1,9 +1,7 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using VeggieSwapServer.Business;
 using VeggieSwapServer.Business.Models;
 using VeggieSwapServer.Business.Services;
 
