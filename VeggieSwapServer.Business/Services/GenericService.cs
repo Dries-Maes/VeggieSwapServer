@@ -7,30 +7,35 @@ using VeggieSwapServer.Data.Repositories;
 
 namespace VeggieSwapServer.Business
 {
-    public class GenericService<T> : IGenericService<T>
+    public class GenericService<Entity, Model>
     {
-        private IGenericRepo<T> _genericRepo;
+        private IGenericRepo<Entity> _genericRepo;
         protected IMapper _mapper;
 
-        public GenericService(IGenericRepo<T> genericRepo, IMapper mapper)
+        public GenericService(IGenericRepo<Entity> genericRepo, IMapper mapper)
         {
             _genericRepo = genericRepo;
             _mapper = mapper;
         }
 
-        public virtual async Task<bool> AddEntityAsync(T entity)
+        public virtual async Task<bool> AddEntityAsync(Model model)
         {
-            return await _genericRepo.AddEntityAsync(entity);
+            return await _genericRepo.AddEntityAsync(_mapper.Map<Entity>(model));
         }
 
-        public virtual async Task<bool> AddEntitiesAsync(IEnumerable<T> entities)
+        public virtual async Task<bool> AddEntitiesAsync(IEnumerable<Model> models)
         {
-            return await _genericRepo.AddEntitiesAsync(entities);
+            return await _genericRepo.AddEntitiesAsync(_mapper.Map<IEnumerable<Entity>>(models));
         }
 
-        public virtual async Task<bool> UpdateEntitiesAsync(IEnumerable<T> entities)
+        public virtual async Task<bool> UpdateEntitiesAsync(IEnumerable<Model> models)
         {
-            return await _genericRepo.UpdateEntitiesAsync(entities);
+            return await _genericRepo.UpdateEntitiesAsync(_mapper.Map<IEnumerable<Entity>>(models));
+        }
+
+        public virtual async Task<bool> UpdateEntityAsync(Model model)
+        {
+            return await _genericRepo.UpdateEntityAsync(_mapper.Map<Entity>(model));
         }
 
         public virtual async Task<bool> DeleteEntityAsync(int id)
@@ -38,33 +43,14 @@ namespace VeggieSwapServer.Business
             return await _genericRepo.DeleteEntityAsync(id);
         }
 
-        public virtual async Task<IEnumerable<object>> GetAllEntitiesAsync()
+        public virtual async Task<IEnumerable<Model>> GetAllEntitiesAsync()
         {
-            var entities = await _genericRepo.GetAllEntitiesAsync();
-            var mappedEntities = Map(entities);
-            //var mappedEntities = _mapper.Map<IEnumerable<AddressModel>>(entities);
-            //return (IEnumerable<T>)mappedEntities;
-            return mappedEntities;
+            return _mapper.Map<IEnumerable<Model>>(await _genericRepo.GetAllEntitiesAsync());
         }
 
-        public virtual async Task<object> GetEntityAsync(int id)
+        public virtual async Task<Model> GetEntityAsync(int id)
         {
-            var entity = await _genericRepo.GetEntityAsync(id);
-            var mappedEntity = Map(entity);
-
-            //var mappedEntity = _mapper.Map<T>(entity);
-
-            return mappedEntity;
-        }
-
-        public virtual object Map(T entity)
-        {
-            return _mapper.Map<object>(entity);
-        }
-
-        public virtual IEnumerable<object> Map(IEnumerable<T> entities)
-        {
-            return _mapper.Map<IEnumerable<object>>(entities);
+            return _mapper.Map<Model>(await _genericRepo.GetEntityAsync(id));
         }
     }
 }

@@ -16,5 +16,7 @@ namespace VeggieSwapServer.Data.Repositories
         Task<T> GetEntityAsync(int id);
 
         Task<bool> UpdateEntitiesAsync(IEnumerable<T> entities);
+
+        Task<bool> UpdateEntityAsync(T entity);
     }
 }

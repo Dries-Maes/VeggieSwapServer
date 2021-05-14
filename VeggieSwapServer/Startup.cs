@@ -47,38 +47,7 @@ namespace VeggieSwapServer
             services.AddScoped<IGenericRepo<TradeItem>, GenericRepo<TradeItem>>();
             services.AddScoped<IGenericRepo<User>, GenericRepo<User>>();
             services.AddScoped<IGenericRepo<Wallet>, GenericRepo<Wallet>>();
-
-            //services.AddScoped<IGenericRepo<AddressModel>, GenericRepo<AddressModel>>();
-            //services.AddScoped<IGenericRepo<PurchaseModel>, GenericRepo<PurchaseModel>>();
-            //services.AddScoped<IGenericRepo<ResourceModel>, GenericRepo<ResourceModel>>();
-            //services.AddScoped<IGenericRepo<TradeModel>, GenericRepo<TradeModel>>();
-            //services.AddScoped<IGenericRepo<TradeItemModel>, GenericRepo<TradeItemModel>>();
-            //services.AddScoped<IGenericRepo<UserModel>, GenericRepo<UserModel>>();
-            //services.AddScoped<IGenericRepo<WalletModel>, GenericRepo<WalletModel>>();
-
-            services.AddScoped<IGenericService<Address>, GenericService<Address>>();
-            services.AddScoped<IGenericService<Purchase>, GenericService<Purchase>>();
-            services.AddScoped<IGenericService<Resource>, GenericService<Resource>>();
-            services.AddScoped<IGenericService<Trade>, GenericService<Trade>>();
-            services.AddScoped<IGenericService<TradeItem>, GenericService<TradeItem>>();
-            services.AddScoped<IGenericService<User>, GenericService<User>>();
-            services.AddScoped<IGenericService<Wallet>, GenericService<Wallet>>();
-
-            //services.AddScoped<IGenericService<AddressModel>, GenericService<AddressModel>>();
-            //services.AddScoped<IGenericService<PurchaseModel>, GenericService<PurchaseModel>>();
-            //services.AddScoped<IGenericService<ResourceModel>, GenericService<ResourceModel>>();
-            //services.AddScoped<IGenericService<TradeModel>, GenericService<TradeModel>>();
-            //services.AddScoped<IGenericService<TradeItemModel>, GenericService<TradeItemModel>>();
-            //services.AddScoped<IGenericService<UserModel>, GenericService<UserModel>>();
-            //services.AddScoped<IGenericService<WalletModel>, GenericService<WalletModel>>();
-
-            services.AddScoped<AddressService, AddressService>();
-            services.AddScoped<PurchaseService, PurchaseService>();
-            services.AddScoped<ResourceService, ResourceService>();
-            services.AddScoped<TradeService, TradeService>();
-            services.AddScoped<TradeItemService, TradeItemService>();
             services.AddScoped<UserService, UserService>();
-            services.AddScoped<WalletService, WalletService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

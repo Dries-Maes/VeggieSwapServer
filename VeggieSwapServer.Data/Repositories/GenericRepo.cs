@@ -5,7 +5,7 @@ using VeggieSwapServer.Data.Entities;
 
 namespace VeggieSwapServer.Data.Repositories
 {
-    public class GenericRepo<T> : IGenericRepo<T> where T : class
+    public class GenericRepo<T> : IGenericRepo<T> where T : EntityBase
     {
         private VeggieSwapServerContext _context;
 
@@ -16,9 +16,8 @@ namespace VeggieSwapServer.Data.Repositories
 
         public virtual async Task<bool> AddEntityAsync(T entity)
         {
-            _context.Update(entity);
+            _context.Add(entity);
             await _context.SaveChangesAsync();
-
             return true;
         }
 
@@ -26,7 +25,6 @@ namespace VeggieSwapServer.Data.Repositories
         {
             await _context.AddRangeAsync(entities);
             await _context.SaveChangesAsync();
-
             return true;
         }
 
@@ -38,11 +36,17 @@ namespace VeggieSwapServer.Data.Repositories
             return true;
         }
 
+        public virtual async Task<bool> UpdateEntityAsync(T entity)
+        {
+            _context.Update(entity);
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
         public virtual async Task<bool> DeleteEntityAsync(int id)
         {
-            var entity = await GetEntityAsync(id);
-            _context.Remove(entity);
-
+            _context.Remove(await _context.FindAsync<T>(id));
+            await _context.SaveChangesAsync();
             return true;
         }
 
@@ -53,8 +57,7 @@ namespace VeggieSwapServer.Data.Repositories
 
         public virtual async Task<T> GetEntityAsync(int id)
         {
-            var test = await _context.FindAsync<T>(id);
-            return test;
+            return await _context.FindAsync<T>(id);
         }
     }
 }
