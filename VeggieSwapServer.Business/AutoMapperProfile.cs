@@ -11,6 +11,10 @@ namespace VeggieSwapServer.Business
             CreateMap<Address, AddressModel>().ReverseMap();
             CreateMap<User, UserModel>().ReverseMap();
             CreateMap<Resource, ResourceModel>().ReverseMap();
+            CreateMap<Purchase, PurchaseModel>().ReverseMap();
+            CreateMap<Trade, TradeModel>().ReverseMap();
+            CreateMap<TradeItem, TradeItemModel>().ReverseMap();
+            CreateMap<Wallet, WalletModel>().ReverseMap();
         }
     }
 }
