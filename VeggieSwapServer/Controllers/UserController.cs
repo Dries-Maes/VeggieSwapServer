@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using VeggieSwapServer.Business.Models;
 using VeggieSwapServer.Business.Services;
@@ -20,16 +19,36 @@ namespace VeggieSwapServer.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<object>> GetUsersAsync()
+        public async Task<IEnumerable<object>> GetMembersAsync()
         {
             return await _userService.GetAllEntitiesAsync();
         }
 
-        [HttpGet("/{id}")]
-        public async Task<ActionResult<object>> GetUserAsync(int id)
+        [HttpGet("{id}")]
+        public async Task<ActionResult<UserModel>> GetMemberAsync(int id)
         {
-            var test = await _userService.GetEntityAsync(id);
-            return Ok(test);
+            return Ok(await _userService.GetEntityAsync(id));
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<UserModel>> DeleteMemberAsync(int id)
+        {
+            return Ok(await _userService.DeleteEntityAsync(id));
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> PostMemberAsync(UserModel model)
+        {
+            await _userService.AddEntityAsync(model);
+            return Ok();
+        }
+
+        [HttpPut]
+        public async Task<ActionResult> PutMemberAsync(UserModel model)
+        {
+            model.ModifiedAt = DateTime.Now;
+            await _userService.UpdateEntityAsync(model);
+            return Ok();
         }
     }
 }

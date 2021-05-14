@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using VeggieSwapServer.Business.Models;
 using VeggieSwapServer.Business.Services;
@@ -12,37 +11,44 @@ namespace VeggieSwapServer.Controllers
     [Route("api/[controller]")]
     public class ResourceController : ControllerBase
     {
-        private ResourceService _addressService;
+        private ResourceService _resourceService;
 
-        public ResourceController(ResourceService addressService)
+        public ResourceController(ResourceService resourceService)
         {
-            _addressService = addressService;
+            _resourceService = resourceService;
         }
 
         [HttpGet]
-        public async Task<IEnumerable<object>> GetResourceesAsync()
+        public async Task<IEnumerable<object>> GetMembersAsync()
         {
-            var test = await _addressService.GetAllEntitiesAsync();
-            return test;
+            return await _resourceService.GetAllEntitiesAsync();
         }
 
-        //[HttpPost]
-        //public async Task AddResource(Resource Resource)
-        //{
-        //    await _ResourceService.AddEntityAsync(Resource);
-        //}
+        [HttpGet("{id}")]
+        public async Task<ActionResult<ResourceModel>> GetMemberAsync(int id)
+        {
+            return Ok(await _resourceService.GetEntityAsync(id));
+        }
 
-        //[HttpGet("/{id}")]
-        //public async Task<ActionResult<ResourceModel>> GetMemberAsync(int id)
-        //{
-        //    //Resource addressModel = await _addressService.GetEntityAsync(id);
-        //    //return Ok(member);
-        //    //ResourceModel mappedModel = _mapper.Map<ResourceModel>(addressModel);
-        //    //
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<ResourceModel>> DeleteMemberAsync(int id)
+        {
+            return Ok(await _resourceService.DeleteEntityAsync(id));
+        }
 
-        //    //return  Ok(await _addressService.MapResource(id));
-        //    var test = await _addressService.GetEntityAsync(id);
-        //    return Ok(test);
-        //}
+        [HttpPost]
+        public async Task<ActionResult> PostMemberAsync(ResourceModel model)
+        {
+            await _resourceService.AddEntityAsync(model);
+            return Ok();
+        }
+
+        [HttpPut]
+        public async Task<ActionResult> PutMemberAsync(ResourceModel model)
+        {
+            model.ModifiedAt = DateTime.Now;
+            await _resourceService.UpdateEntityAsync(model);
+            return Ok();
+        }
     }
 }

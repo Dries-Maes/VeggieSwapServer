@@ -6,7 +6,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using VeggieSwapServer.Business;
-using VeggieSwapServer.Business.Models;
 using VeggieSwapServer.Business.Services;
 using VeggieSwapServer.Data;
 using VeggieSwapServer.Data.Entities;
@@ -47,31 +46,6 @@ namespace VeggieSwapServer
             services.AddScoped<IGenericRepo<TradeItem>, GenericRepo<TradeItem>>();
             services.AddScoped<IGenericRepo<User>, GenericRepo<User>>();
             services.AddScoped<IGenericRepo<Wallet>, GenericRepo<Wallet>>();
-
-            //services.AddScoped<IGenericRepo<AddressModel>, GenericRepo<AddressModel>>();
-            //services.AddScoped<IGenericRepo<PurchaseModel>, GenericRepo<PurchaseModel>>();
-            //services.AddScoped<IGenericRepo<ResourceModel>, GenericRepo<ResourceModel>>();
-            //services.AddScoped<IGenericRepo<TradeModel>, GenericRepo<TradeModel>>();
-            //services.AddScoped<IGenericRepo<TradeItemModel>, GenericRepo<TradeItemModel>>();
-            //services.AddScoped<IGenericRepo<UserModel>, GenericRepo<UserModel>>();
-            //services.AddScoped<IGenericRepo<WalletModel>, GenericRepo<WalletModel>>();
-
-            services.AddScoped<IGenericService<Address>, GenericService<Address>>();
-            services.AddScoped<IGenericService<Purchase>, GenericService<Purchase>>();
-            services.AddScoped<IGenericService<Resource>, GenericService<Resource>>();
-            services.AddScoped<IGenericService<Trade>, GenericService<Trade>>();
-            services.AddScoped<IGenericService<TradeItem>, GenericService<TradeItem>>();
-            services.AddScoped<IGenericService<User>, GenericService<User>>();
-            services.AddScoped<IGenericService<Wallet>, GenericService<Wallet>>();
-
-            //services.AddScoped<IGenericService<AddressModel>, GenericService<AddressModel>>();
-            //services.AddScoped<IGenericService<PurchaseModel>, GenericService<PurchaseModel>>();
-            //services.AddScoped<IGenericService<ResourceModel>, GenericService<ResourceModel>>();
-            //services.AddScoped<IGenericService<TradeModel>, GenericService<TradeModel>>();
-            //services.AddScoped<IGenericService<TradeItemModel>, GenericService<TradeItemModel>>();
-            //services.AddScoped<IGenericService<UserModel>, GenericService<UserModel>>();
-            //services.AddScoped<IGenericService<WalletModel>, GenericService<WalletModel>>();
-
             services.AddScoped<AddressService, AddressService>();
             services.AddScoped<PurchaseService, PurchaseService>();
             services.AddScoped<ResourceService, ResourceService>();

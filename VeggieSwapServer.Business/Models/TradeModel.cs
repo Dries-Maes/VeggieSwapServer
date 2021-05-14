@@ -1,5 +1,4 @@
-﻿
-namespace VeggieSwapServer.Business.Models
+﻿namespace VeggieSwapServer.Business.Models
 {
     public class TradeModel : ModelBase
     {

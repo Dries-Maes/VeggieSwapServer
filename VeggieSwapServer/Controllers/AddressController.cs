@@ -1,8 +1,7 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using VeggieSwapServer.Business;
 using VeggieSwapServer.Business.Models;
 using VeggieSwapServer.Business.Services;
 
@@ -20,15 +19,36 @@ namespace VeggieSwapServer.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<object>> GetAddressesAsync()
+        public async Task<IEnumerable<object>> GetMembersAsync()
         {
             return await _addressService.GetAllEntitiesAsync();
         }
 
-        [HttpGet("/{id}")]
+        [HttpGet("{id}")]
         public async Task<ActionResult<AddressModel>> GetMemberAsync(int id)
         {
             return Ok(await _addressService.GetEntityAsync(id));
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<AddressModel>> DeleteMemberAsync(int id)
+        {
+            return Ok(await _addressService.DeleteEntityAsync(id));
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> PostMemberAsync(AddressModel model)
+        {
+            await _addressService.AddEntityAsync(model);
+            return Ok();
+        }
+
+        [HttpPut]
+        public async Task<ActionResult> PutMemberAsync(AddressModel model)
+        {
+            model.ModifiedAt = DateTime.Now;
+            await _addressService.UpdateEntityAsync(model);
+            return Ok();
         }
     }
 }
