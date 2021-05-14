@@ -39,16 +39,13 @@ namespace VeggieSwapServer.Controllers
         [HttpPost]
         public async Task<ActionResult> PostMemberAsync(ResourceModel model)
         {
-            await _resourceService.AddEntityAsync(model);
-            return Ok();
+            return Ok(await _resourceService.AddEntityAsync(model));
         }
 
         [HttpPut]
         public async Task<ActionResult> PutMemberAsync(ResourceModel model)
         {
-            model.ModifiedAt = DateTime.Now;
-            await _resourceService.UpdateEntityAsync(model);
-            return Ok();
+            return Ok(await _resourceService.UpdateEntityAsync(model));
         }
     }
 }

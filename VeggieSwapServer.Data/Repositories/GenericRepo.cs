@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using VeggieSwapServer.Data.Entities;
@@ -38,6 +39,7 @@ namespace VeggieSwapServer.Data.Repositories
 
         public virtual async Task<bool> UpdateEntityAsync(T entity)
         {
+            entity.ModifiedAt = DateTime.Now;
             _context.Update(entity);
             await _context.SaveChangesAsync();
             return true;
