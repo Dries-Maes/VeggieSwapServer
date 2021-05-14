@@ -24,13 +24,13 @@ namespace VeggieSwapServer.Controllers
             return await _addressService.GetAllEntitiesAsync();
         }
 
-        [HttpGet("/{id}")]
+        [HttpGet("{id}")]
         public async Task<ActionResult<AddressModel>> GetMemberAsync(int id)
         {
             return Ok(await _addressService.GetEntityAsync(id));
         }
 
-        [HttpDelete("/{id}")]
+        [HttpDelete("{id}")]
         public async Task<ActionResult<AddressModel>> DeleteMemberAsync(int id)
         {
             return Ok(await _addressService.DeleteEntityAsync(id));
