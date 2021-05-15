@@ -1,5 +1,5 @@
-﻿
-using System;
+﻿using System;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,11 +11,13 @@ namespace VeggieSwapServer.Business.Services
 {
     public class AccountService : IAccountService
     {
-        private IAccountRepo _accountRepo;
-        private ITokenService _tokenService;
+        private readonly IAccountRepo _accountRepo;
+        private readonly ITokenService _tokenService;
+        private readonly IGenericRepo<User> _userRepo;
 
-        public AccountService(IAccountRepo accountRepo, ITokenService tokenService)
+        public AccountService(IAccountRepo accountRepo, ITokenService tokenService, IGenericRepo<User> userRepo)
         {
+            _userRepo = userRepo;
             _accountRepo = accountRepo;
             _tokenService = tokenService;
         }
@@ -32,50 +34,50 @@ namespace VeggieSwapServer.Business.Services
             using var hmac = new HMACSHA512(user.PasswordSalt);
             var hash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
 
-            for (int i = 0; i < hash.Length; i++)
-            {                
-                if (hash[i] != user.PasswordHash[i])
-                {                   
-                    throw new UnauthorizedAccessException("Invalid password");
-                }
+            if (!hash.SequenceEqual(user.PasswordHash))
+            {
+                throw new UnauthorizedAccessException("Invalid password Haha");
             }
 
-            return new UserDto
-            {   
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                Email = user.Email,
-                Token = _tokenService.CreateToken(user),
-            };
+            return CreateUserDTO(user);
         }
 
-        public async Task<UserDto> RegisterAsync(string eMail, string password, string firstName, string lastName)
+        public async Task<UserDto> RegisterAsync(RegisterDTO dto)
         {
+            if (await UserExists(dto.Email))
+            {
+                throw new UnauthorizedAccessException("Email already exists, please try again or login");
+            }
             using var hmac = new HMACSHA512();
 
             var user = new User
             {
-                FirstName = firstName,
-                LastName = lastName,
-                Email = eMail.ToLower(),
-                PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password)),
+                FirstName = dto.FirstName,
+                LastName = dto.LastName,
+                Email = dto.Email.ToLower(),
+                PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(dto.Password)),
                 PasswordSalt = hmac.Key,
             };
 
-            await _accountRepo.AddUserAsync(user);
+            await _userRepo.AddEntityAsync(user);
 
-            return new UserDto
-            {   
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                Email = user.Email,
-                Token = _tokenService.CreateToken(user),
-            };
+            return CreateUserDTO(user);
         }
 
         public async Task<bool> UserExists(string eMail)
         {
             return await _accountRepo.UserExistsAsync(eMail);
+        }
+
+        private UserDto CreateUserDTO(User user)
+        {
+            return new UserDto
+            {
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Email = user.Email,
+                Token = _tokenService.CreateToken(user),
+            };
         }
     }
 }
