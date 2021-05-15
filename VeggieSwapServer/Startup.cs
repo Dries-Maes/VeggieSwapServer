@@ -1,10 +1,13 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using System.Text;
 using VeggieSwapServer.Business;
 using VeggieSwapServer.Business.Services;
 using VeggieSwapServer.Data;
@@ -26,6 +29,20 @@ namespace VeggieSwapServer
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddCors();
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuerSigningKey = true,
+                        ValidateIssuer = false,
+                        ValidateAudience = false,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["TokenKey"])),
+                    };
+                });
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "VeggieSwapServer", Version = "v1" });
@@ -35,7 +52,6 @@ namespace VeggieSwapServer
             {
                 x.UseSqlServer(Configuration.GetConnectionString("DefaultConnectionString"));
             });
-            services.AddCors();
 
             services.AddAutoMapper(typeof(AutoMapperProfile).Assembly);
 
@@ -46,6 +62,10 @@ namespace VeggieSwapServer
             services.AddScoped<IGenericRepo<TradeItem>, GenericRepo<TradeItem>>();
             services.AddScoped<IGenericRepo<User>, GenericRepo<User>>();
             services.AddScoped<IGenericRepo<Wallet>, GenericRepo<Wallet>>();
+
+            services.AddScoped<IAccountRepo, AccountRepo>();
+            services.AddScoped<IAccountService, AccountService>();
+
             services.AddScoped<AddressService, AddressService>();
             services.AddScoped<PurchaseService, PurchaseService>();
             services.AddScoped<ResourceService, ResourceService>();
@@ -53,6 +73,8 @@ namespace VeggieSwapServer
             services.AddScoped<TradeItemService, TradeItemService>();
             services.AddScoped<UserService, UserService>();
             services.AddScoped<WalletService, WalletService>();
+
+            services.AddScoped<ITokenService, TokenService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -60,6 +60,6 @@ namespace VeggieSwapServer.Data.Repositories
         public virtual async Task<T> GetEntityAsync(int id)
         {
             return await _context.FindAsync<T>(id);
-        }
+        }        
     }
 }
