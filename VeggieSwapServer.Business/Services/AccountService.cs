@@ -20,13 +20,13 @@ namespace VeggieSwapServer.Business.Services
             _tokenService = tokenService;
         }
 
-        public async Task<UserDto> LoginAsync(string name, string password)
+        public async Task<UserDto> LoginAsync(string eMail, string password)
         {
-            User user = await _accountRepo.GetUserByNameAsync(name);
+            User user = await _accountRepo.GetUserByEmailAsync(eMail);
 
             if (user == null)
             {
-                throw new UnauthorizedAccessException("Invalid username");
+                throw new UnauthorizedAccessException("Invalid Email");
             }
 
             using var hmac = new HMACSHA512(user.PasswordSalt);
@@ -41,19 +41,23 @@ namespace VeggieSwapServer.Business.Services
             }
 
             return new UserDto
-            {
-                UserName = user.FirstName,
+            {   
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Email = user.Email,
                 Token = _tokenService.CreateToken(user),
             };
         }
 
-        public async Task<UserDto> RegisterAsync(string userName, string password)
+        public async Task<UserDto> RegisterAsync(string eMail, string password, string firstName, string lastName)
         {
             using var hmac = new HMACSHA512();
 
             var user = new User
             {
-                FirstName = userName.ToLower(),
+                FirstName = firstName,
+                LastName = lastName,
+                Email = eMail.ToLower(),
                 PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password)),
                 PasswordSalt = hmac.Key,
             };
@@ -61,15 +65,17 @@ namespace VeggieSwapServer.Business.Services
             await _accountRepo.AddUserAsync(user);
 
             return new UserDto
-            {
-                UserName = user.FirstName,
+            {   
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Email = user.Email,
                 Token = _tokenService.CreateToken(user),
             };
         }
 
-        public async Task<bool> UserExists(string userName)
+        public async Task<bool> UserExists(string eMail)
         {
-            return await _accountRepo.UserExistsAsync(userName);
+            return await _accountRepo.UserExistsAsync(eMail);
         }
     }
 }

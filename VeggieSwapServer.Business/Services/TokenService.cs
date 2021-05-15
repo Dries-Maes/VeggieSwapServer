@@ -24,7 +24,7 @@ namespace VeggieSwapServer.Business.Services
         {            
             var claims = new List<Claim>
             {
-                new Claim(JwtRegisteredClaimNames.NameId, user.FirstName)
+                new Claim(JwtRegisteredClaimNames.NameId, user.Email)
             };
            
             var creds = new SigningCredentials(

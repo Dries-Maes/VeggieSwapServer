@@ -1,5 +1,6 @@
 ﻿
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Threading.Tasks;
 using VeggieSwapServer.Data.Entities;
 
@@ -14,21 +15,24 @@ namespace VeggieSwapServer.Data.Repositories
             _context = context;
         }
 
-        public async Task<User> GetUserByNameAsync(string name)
+        public async Task<User> GetUserByEmailAsync(string eMail)
         {
-            return await _context.Users.SingleOrDefaultAsync(x => x.FirstName == name);
+            return await _context.Users.SingleOrDefaultAsync(x => x.Email == eMail);
         }
 
         public async Task<bool> AddUserAsync(User user)
         {
+            user.CreatedAt = DateTime.Now;
+            user.ModifiedAt = DateTime.Now;
+
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
             return true;
         }
 
-        public async Task<bool> UserExistsAsync(string userName)
+        public async Task<bool> UserExistsAsync(string eMail)
         {
-            return await _context.Users.AnyAsync(x => x.FirstName == userName.ToLower());
+            return await _context.Users.AnyAsync(x => x.Email == eMail.ToLower());
         }
     }
 }

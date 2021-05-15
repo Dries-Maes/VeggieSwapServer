@@ -20,12 +20,12 @@ namespace VeggieSwapServer.Controllers
         [HttpPost("Register")]
         public async Task<ActionResult<UserDto>> RegisterAsync(RegisterDTO dto)
         {
-            if (await _service.UserExists(dto.Name))
+            if (await _service.UserExists(dto.Email))
             {
-                return BadRequest("Username already exists");
+                return BadRequest("Email already exists");
             }
 
-            var user = await _service.RegisterAsync(dto.Name, dto.Password);
+            var user = await _service.RegisterAsync(dto.Email, dto.Password, dto.FirstName, dto.LastName);
             
             return Created("", user);
         }
@@ -35,7 +35,7 @@ namespace VeggieSwapServer.Controllers
         {
             try
             {
-                UserDto user = await _service.LoginAsync(dto.Name, dto.Password);
+                UserDto user = await _service.LoginAsync(dto.Email, dto.Password);
                 return Ok(user);
             }
             catch (UnauthorizedAccessException e)

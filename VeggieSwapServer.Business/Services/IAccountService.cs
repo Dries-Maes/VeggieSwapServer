@@ -5,8 +5,8 @@ namespace VeggieSwapServer.Business.Services
 {
     public interface IAccountService
     {
-        Task<UserDto> LoginAsync(string name, string password);
-        Task<UserDto> RegisterAsync(string userName, string password);
-        Task<bool> UserExists(string userName);
+        Task<UserDto> LoginAsync(string eMail, string password);
+        Task<UserDto> RegisterAsync(string eMail, string password, string firstName, string lastName);
+        Task<bool> UserExists(string eMail);
     }
 }
