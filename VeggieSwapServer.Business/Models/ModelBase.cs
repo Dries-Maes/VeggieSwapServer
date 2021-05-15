@@ -7,11 +7,5 @@ namespace VeggieSwapServer.Business.Models
         public int Id { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime ModifiedAt { get; set; }
-
-        public ModelBase()
-        {
-            CreatedAt = DateTime.Now;
-            ModifiedAt = CreatedAt;
-        }
     }
 }
