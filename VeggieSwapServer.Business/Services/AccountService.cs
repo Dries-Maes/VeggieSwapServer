@@ -21,7 +21,7 @@ namespace VeggieSwapServer.Business.Services
             _tokenService = tokenService;
         }
 
-        public async Task<UserDto> LoginAsync(string eMail, string password)
+        public async Task<UserTokenDTO> LoginAsync(string eMail, string password)
         {
             User user = await _userRepo.GetEntityAsync(eMail);
 
@@ -41,7 +41,7 @@ namespace VeggieSwapServer.Business.Services
             return CreateUserDTO(user);
         }
 
-        public async Task<UserDto> RegisterAsync(RegisterDTO dto)
+        public async Task<UserTokenDTO> RegisterAsync(RegisterDTO dto)
         {
             if (await _userRepo.UserExistsAsync(dto.Email))
             {
@@ -63,13 +63,11 @@ namespace VeggieSwapServer.Business.Services
             return CreateUserDTO(user);
         }
 
-        private UserDto CreateUserDTO(User user)
+        private UserTokenDTO CreateUserDTO(User user)
         {
-            return new UserDto
+            return new UserTokenDTO
             {
                 FirstName = user.FirstName,
-                LastName = user.LastName,
-                Email = user.Email,
                 Token = _tokenService.CreateToken(user),
             };
         }

@@ -31,25 +31,25 @@ namespace VeggieSwapServer.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<UserModel>> GetMemberAsync(int id)
+        public async Task<ActionResult<UserDTO>> GetMemberAsync(int id)
         {
             return Ok(await _userService.GetEntityAsync(id));
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<UserModel>> DeleteMemberAsync(int id)
+        public async Task<ActionResult<UserDTO>> DeleteMemberAsync(int id)
         {
             return Ok(await _userService.DeleteEntityAsync(id));
         }
 
         [HttpPost]
-        public async Task<ActionResult> PostMemberAsync(UserModel model)
+        public async Task<ActionResult> PostMemberAsync(UserDTO model)
         {
             return Ok(await _userService.AddEntityAsync(model));
         }
 
         [HttpPut]
-        public async Task<ActionResult> PutMemberAsync(UserModel model)
+        public async Task<ActionResult> PutMemberAsync(UserDTO model)
         {
             return Ok(await _userService.UpdateEntityAsync(model));
         }

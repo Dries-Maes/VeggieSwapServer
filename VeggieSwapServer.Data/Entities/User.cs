@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace VeggieSwapServer.Data.Entities
 {
@@ -22,6 +23,9 @@ namespace VeggieSwapServer.Data.Entities
         public Address Address { get; set; }
 
         public Wallet Wallet { get; set; }
+        public List<Resource> AcceptedResources { get; set; }
+
+        public List<TradeItem> TradeItems { get; set; }
 
         public string ImageUrl { get; set; }
 
