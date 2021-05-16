@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using VeggieSwapServer.Business.DTO;
 using VeggieSwapServer.Data.Entities;
@@ -20,11 +21,11 @@ namespace VeggieSwapServer.Business.Services
         public async override Task<IEnumerable<TradeItemDTO>> GetAllEntitiesAsync()
         {
             IEnumerable<TradeItem> tradeItems = await _genericRepo.GetAllEntitiesAsync();
-
+            IEnumerable<User> Users = await _userRepo.GetAllEntitiesAsync();
             var result = new List<TradeItemDTO>();
             foreach (var tradeItem in tradeItems)
             {
-                User user = await _userRepo.GetEntityAsync(tradeItem.UserId);
+                User user = Users.FirstOrDefault(x => x.Id == tradeItem.Id);
                 result.Add(_mapper.Map<TradeItemDTO>((tradeItem, user)));
             }
             return result;
