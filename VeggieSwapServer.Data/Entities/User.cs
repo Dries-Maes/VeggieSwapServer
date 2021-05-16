@@ -1,11 +1,18 @@
-﻿namespace VeggieSwapServer.Data.Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace VeggieSwapServer.Data.Entities
 {
     public class User : EntityBase
     {
+        [Required]
+        [StringLength(20)]
         public string FirstName { get; set; }
 
+        [Required]
+        [StringLength(20)]
         public string LastName { get; set; }
 
+        [StringLength(50)]
         public string Email { get; set; }
 
         public byte[] PasswordHash { get; set; }
