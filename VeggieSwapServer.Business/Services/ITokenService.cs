@@ -1,5 +1,4 @@
-﻿
-using VeggieSwapServer.Data.Entities;
+﻿using VeggieSwapServer.Data.Entities;
 
 namespace VeggieSwapServer.Business.Services
 {

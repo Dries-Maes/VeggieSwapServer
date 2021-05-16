@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using VeggieSwapServer.Business.Models;
 using VeggieSwapServer.Data.Entities;
 
 namespace VeggieSwapServer.Business.Services
@@ -21,15 +20,15 @@ namespace VeggieSwapServer.Business.Services
         }
 
         public string CreateToken(User user)
-        {            
+        {
             var claims = new List<Claim>
             {
                 new Claim(JwtRegisteredClaimNames.NameId, user.Email)
             };
-           
+
             var creds = new SigningCredentials(
                 _key, SecurityAlgorithms.HmacSha512);
-            
+
             var tokenDescription = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(claims),

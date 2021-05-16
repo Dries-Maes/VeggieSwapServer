@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using VeggieSwapServer.Business.DTO;
-using VeggieSwapServer.Business.Models;
 using VeggieSwapServer.Data.Entities;
 using VeggieSwapServer.Data.Repositories;
 
