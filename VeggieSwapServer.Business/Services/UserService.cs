@@ -8,7 +8,7 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace VeggieSwapServer.Business.Services
 {
-    public class UserService : GenericService<User, UserModel>
+    public class UserService : GenericService<User, UserDTO>
     {
         internal IUserRepo _userRepo;
 
@@ -18,11 +18,11 @@ namespace VeggieSwapServer.Business.Services
             _userRepo = userRepo;
         }
 
-        public virtual async Task<IEnumerable<UserModel>> GetAllEntitiesAsync(bool includeAddress)
+        public virtual async Task<IEnumerable<UserDTO>> GetAllEntitiesAsync(bool includeAddress)
         {
             if (includeAddress)
             {
-                return _mapper.Map<IEnumerable<UserModel>>(await _userRepo.GetAllEntitiesAsync(true));
+                return _mapper.Map<IEnumerable<UserDTO>>(await _userRepo.GetAllEntitiesAsync(true));
             }
             else
             {

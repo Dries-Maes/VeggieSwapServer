@@ -1,4 +1,6 @@
-﻿namespace VeggieSwapServer.Data.Entities
+﻿using System.Collections.Generic;
+
+namespace VeggieSwapServer.Data.Entities
 {
     public class User : EntityBase
     {
@@ -15,6 +17,9 @@
         public Address Address { get; set; }
 
         public Wallet Wallet { get; set; }
+        public List<Resource> AcceptedResources { get; set; }
+
+        public List<TradeItem> TradeItems { get; set; }
 
         public string ImageUrl { get; set; }
 

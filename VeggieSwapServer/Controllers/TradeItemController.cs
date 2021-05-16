@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using VeggieSwapServer.Business.DTO;
 using VeggieSwapServer.Business.Models;
 using VeggieSwapServer.Business.Services;
 
@@ -25,25 +26,25 @@ namespace VeggieSwapServer.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<TradeItemModel>> GetMemberAsync(int id)
+        public async Task<ActionResult<TradeItemDTO>> GetMemberAsync(int id)
         {
             return Ok(await _tradeItemService.GetEntityAsync(id));
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<TradeItemModel>> DeleteMemberAsync(int id)
+        public async Task<ActionResult<TradeItemDTO>> DeleteMemberAsync(int id)
         {
             return Ok(await _tradeItemService.DeleteEntityAsync(id));
         }
 
         [HttpPost]
-        public async Task<ActionResult> PostMemberAsync(TradeItemModel model)
+        public async Task<ActionResult> PostMemberAsync(TradeItemDTO model)
         {
             return Ok(await _tradeItemService.AddEntityAsync(model));
         }
 
         [HttpPut]
-        public async Task<ActionResult> PutMemberAsync(TradeItemModel model)
+        public async Task<ActionResult> PutMemberAsync(TradeItemDTO model)
         {
             return Ok(await _tradeItemService.UpdateEntityAsync(model));
         }
