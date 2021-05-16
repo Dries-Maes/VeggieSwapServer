@@ -11,20 +11,19 @@ namespace VeggieSwapServer.Business.Services
 {
     public class AccountService : IAccountService
     {
-        private readonly IAccountRepo _accountRepo;
+        private readonly IUserRepo _userRepo;
         private readonly ITokenService _tokenService;
-        private readonly IGenericRepo<User> _userRepo;
 
-        public AccountService(IAccountRepo accountRepo, ITokenService tokenService, IGenericRepo<User> userRepo)
+        public AccountService(IUserRepo userRepo, ITokenService tokenService)
         {
             _userRepo = userRepo;
-            _accountRepo = accountRepo;
+
             _tokenService = tokenService;
         }
 
         public async Task<UserDto> LoginAsync(string eMail, string password)
         {
-            User user = await _accountRepo.GetUserByEmailAsync(eMail);
+            User user = await _userRepo.GetEntityAsync(eMail);
 
             if (user == null)
             {
@@ -36,7 +35,7 @@ namespace VeggieSwapServer.Business.Services
 
             if (!hash.SequenceEqual(user.PasswordHash))
             {
-                throw new UnauthorizedAccessException("Invalid password Haha");
+                throw new UnauthorizedAccessException("Invalid password");
             }
 
             return CreateUserDTO(user);
@@ -44,7 +43,7 @@ namespace VeggieSwapServer.Business.Services
 
         public async Task<UserDto> RegisterAsync(RegisterDTO dto)
         {
-            if (await UserExists(dto.Email))
+            if (await _userRepo.UserExistsAsync(dto.Email))
             {
                 throw new UnauthorizedAccessException("Email already exists, please try again or login");
             }
@@ -62,11 +61,6 @@ namespace VeggieSwapServer.Business.Services
             await _userRepo.AddEntityAsync(user);
 
             return CreateUserDTO(user);
-        }
-
-        public async Task<bool> UserExists(string eMail)
-        {
-            return await _accountRepo.UserExistsAsync(eMail);
         }
 
         private UserDto CreateUserDTO(User user)

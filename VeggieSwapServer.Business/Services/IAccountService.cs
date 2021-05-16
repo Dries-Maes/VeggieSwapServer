@@ -8,7 +8,5 @@ namespace VeggieSwapServer.Business.Services
         Task<UserDto> LoginAsync(string eMail, string password);
 
         Task<UserDto> RegisterAsync(RegisterDTO dto);
-
-        Task<bool> UserExists(string eMail);
     }
 }

@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Threading.Tasks;
 using VeggieSwapServer.Business.DTO;
 using VeggieSwapServer.Business.Services;
@@ -20,7 +19,7 @@ namespace VeggieSwapServer.Controllers
         [HttpPost("Register")]
         public async Task<ActionResult<UserDto>> RegisterAsync(RegisterDTO dto)
         {
-            return Created("Hello world", await _service.RegisterAsync(dto));
+            return Created("/api/user/{dto.Id}", await _service.RegisterAsync(dto));
         }
 
         [HttpPost("Login")]

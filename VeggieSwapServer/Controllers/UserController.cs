@@ -18,10 +18,16 @@ namespace VeggieSwapServer.Controllers
             _userService = userService;
         }
 
+        //[HttpGet]
+        //public async Task<IEnumerable<object>> GetMembersAsync()
+        //{
+        //    return await _userService.GetAllEntitiesAsync();
+        //}
+
         [HttpGet]
-        public async Task<IEnumerable<object>> GetMembersAsync()
+        public async Task<IEnumerable<object>> GetMembersAsyncIncludeAddress(bool includeAddress)
         {
-            return await _userService.GetAllEntitiesAsync();
+            return await _userService.GetAllEntitiesAsync(includeAddress);
         }
 
         [HttpGet("{id}")]

@@ -8,7 +8,7 @@ namespace VeggieSwapServer.Data.Repositories
 {
     public class GenericRepo<T> : IGenericRepo<T> where T : EntityBase
     {
-        private VeggieSwapServerContext _context;
+        internal VeggieSwapServerContext _context;
 
         public GenericRepo(VeggieSwapServerContext context)
         {
@@ -60,6 +60,6 @@ namespace VeggieSwapServer.Data.Repositories
         public virtual async Task<T> GetEntityAsync(int id)
         {
             return await _context.FindAsync<T>(id);
-        }        
+        }
     }
 }
