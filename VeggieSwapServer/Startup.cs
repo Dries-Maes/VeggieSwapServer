@@ -65,14 +65,9 @@ namespace VeggieSwapServer
 
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IUserRepo, UserRepo>();
-
-            services.AddScoped<AddressService, AddressService>();
-            services.AddScoped<PurchaseService, PurchaseService>();
-            services.AddScoped<ResourceService, ResourceService>();
-            services.AddScoped<TradeService, TradeService>();
+            services.AddScoped<UserRepo, UserRepo>();
             services.AddScoped<TradeItemService, TradeItemService>();
             services.AddScoped<UserService, UserService>();
-            services.AddScoped<WalletService, WalletService>();
             services.AddScoped<ITokenService, TokenService>();
         }
 

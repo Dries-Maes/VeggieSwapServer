@@ -1,8 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-
 namespace VeggieSwapServer.Data.Entities
-    {
+{
     public class Address : EntityBase
     {
         [Required]

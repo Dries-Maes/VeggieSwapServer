@@ -24,29 +24,5 @@ namespace VeggieSwapServer.Controllers
         {
             return await _tradeItemService.GetAllEntitiesAsync();
         }
-
-        [HttpGet("{id}")]
-        public async Task<ActionResult<TradeItemDTO>> GetMemberAsync(int id)
-        {
-            return Ok(await _tradeItemService.GetEntityAsync(id));
-        }
-
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<TradeItemDTO>> DeleteMemberAsync(int id)
-        {
-            return Ok(await _tradeItemService.DeleteEntityAsync(id));
-        }
-
-        [HttpPost]
-        public async Task<ActionResult> PostMemberAsync(TradeItemDTO model)
-        {
-            return Ok(await _tradeItemService.AddEntityAsync(model));
-        }
-
-        [HttpPut]
-        public async Task<ActionResult> PutMemberAsync(TradeItemDTO model)
-        {
-            return Ok(await _tradeItemService.UpdateEntityAsync(model));
-        }
     }
 }
