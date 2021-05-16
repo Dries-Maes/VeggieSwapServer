@@ -1,16 +1,14 @@
-﻿
-using System.ComponentModel.DataAnnotations;
-
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace VeggieSwapServer.Business.DTO
 {
     public class RegisterDTO
     {
         [Required]
-        public string  FirstName { get; set; }
+        public string FirstName { get; set; }
 
         [Required]
-        public string  LastName { get; set; }
+        public string LastName { get; set; }
 
         [Required]
         public string Email { get; set; }

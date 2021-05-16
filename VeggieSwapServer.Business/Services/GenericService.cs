@@ -7,7 +7,7 @@ namespace VeggieSwapServer.Business
 {
     public class GenericService<Entity, Model>
     {
-        private IGenericRepo<Entity> _genericRepo;
+        internal IGenericRepo<Entity> _genericRepo;
         protected IMapper _mapper;
 
         public GenericService(IGenericRepo<Entity> genericRepo, IMapper mapper)
