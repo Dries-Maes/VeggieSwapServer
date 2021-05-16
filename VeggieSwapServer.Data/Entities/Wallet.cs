@@ -7,6 +7,7 @@ namespace VeggieSwapServer.Data.Entities
     {
         [Required]
         public int UserId { get; set; }
+
         public IEnumerable<Purchase> Purchases { get; set; }
         public IEnumerable<Trade> Trades { get; set; }
         public decimal VAmount { get; set; }

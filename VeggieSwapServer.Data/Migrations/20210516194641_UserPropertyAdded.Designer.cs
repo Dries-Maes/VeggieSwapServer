@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VeggieSwapServer.Data;
 
 namespace VeggieSwapServer.Data.Migrations
 {
     [DbContext(typeof(VeggieSwapServerContext))]
-    partial class VeggieSwapServerContextModelSnapshot : ModelSnapshot
+    [Migration("20210516194641_UserPropertyAdded")]
+    partial class UserPropertyAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -250,11 +252,13 @@ namespace VeggieSwapServer.Data.Migrations
 
             modelBuilder.Entity("VeggieSwapServer.Data.Entities.Address", b =>
                 {
-                    b.HasOne("VeggieSwapServer.Data.Entities.User", null)
+                    b.HasOne("VeggieSwapServer.Data.Entities.User", "User")
                         .WithOne("Address")
                         .HasForeignKey("VeggieSwapServer.Data.Entities.Address", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("VeggieSwapServer.Data.Entities.Purchase", b =>
@@ -288,22 +292,26 @@ namespace VeggieSwapServer.Data.Migrations
                         .WithMany("TradeItems")
                         .HasForeignKey("TradeId");
 
-                    b.HasOne("VeggieSwapServer.Data.Entities.User", null)
+                    b.HasOne("VeggieSwapServer.Data.Entities.User", "User")
                         .WithMany("TradeItems")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Resource");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("VeggieSwapServer.Data.Entities.Wallet", b =>
                 {
-                    b.HasOne("VeggieSwapServer.Data.Entities.User", null)
+                    b.HasOne("VeggieSwapServer.Data.Entities.User", "User")
                         .WithOne("Wallet")
                         .HasForeignKey("VeggieSwapServer.Data.Entities.Wallet", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("VeggieSwapServer.Data.Entities.Trade", b =>
