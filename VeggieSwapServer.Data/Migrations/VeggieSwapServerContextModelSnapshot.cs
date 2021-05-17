@@ -19,6 +19,36 @@ namespace VeggieSwapServer.Data.Migrations
                 .HasAnnotation("ProductVersion", "5.0.6")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("ResourceUser", b =>
+                {
+                    b.Property<int>("AcceptedResourcesId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UsersId")
+                        .HasColumnType("int");
+
+                    b.HasKey("AcceptedResourcesId", "UsersId");
+
+                    b.HasIndex("UsersId");
+
+                    b.ToTable("ResourceUser");
+                });
+
+            modelBuilder.Entity("TradeWallet", b =>
+                {
+                    b.Property<int>("TradesId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("WalletsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("TradesId", "WalletsId");
+
+                    b.HasIndex("WalletsId");
+
+                    b.ToTable("TradeWallet");
+                });
+
             modelBuilder.Entity("VeggieSwapServer.Data.Entities.Address", b =>
                 {
                     b.Property<int>("Id")
@@ -108,12 +138,7 @@ namespace VeggieSwapServer.Data.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<int?>("UserId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Resources");
                 });
@@ -131,12 +156,7 @@ namespace VeggieSwapServer.Data.Migrations
                     b.Property<DateTime>("ModifiedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("WalletId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("WalletId");
 
                     b.ToTable("Trades");
                 });
@@ -248,6 +268,36 @@ namespace VeggieSwapServer.Data.Migrations
                     b.ToTable("Wallets");
                 });
 
+            modelBuilder.Entity("ResourceUser", b =>
+                {
+                    b.HasOne("VeggieSwapServer.Data.Entities.Resource", null)
+                        .WithMany()
+                        .HasForeignKey("AcceptedResourcesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("VeggieSwapServer.Data.Entities.User", null)
+                        .WithMany()
+                        .HasForeignKey("UsersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("TradeWallet", b =>
+                {
+                    b.HasOne("VeggieSwapServer.Data.Entities.Trade", null)
+                        .WithMany()
+                        .HasForeignKey("TradesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("VeggieSwapServer.Data.Entities.Wallet", null)
+                        .WithMany()
+                        .HasForeignKey("WalletsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("VeggieSwapServer.Data.Entities.Address", b =>
                 {
                     b.HasOne("VeggieSwapServer.Data.Entities.User", null)
@@ -264,20 +314,6 @@ namespace VeggieSwapServer.Data.Migrations
                         .HasForeignKey("WalletId");
                 });
 
-            modelBuilder.Entity("VeggieSwapServer.Data.Entities.Resource", b =>
-                {
-                    b.HasOne("VeggieSwapServer.Data.Entities.User", null)
-                        .WithMany("AcceptedResources")
-                        .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("VeggieSwapServer.Data.Entities.Trade", b =>
-                {
-                    b.HasOne("VeggieSwapServer.Data.Entities.Wallet", null)
-                        .WithMany("Trades")
-                        .HasForeignKey("WalletId");
-                });
-
             modelBuilder.Entity("VeggieSwapServer.Data.Entities.TradeItem", b =>
                 {
                     b.HasOne("VeggieSwapServer.Data.Entities.Resource", "Resource")
@@ -288,15 +324,13 @@ namespace VeggieSwapServer.Data.Migrations
                         .WithMany("TradeItems")
                         .HasForeignKey("TradeId");
 
-                    b.HasOne("VeggieSwapServer.Data.Entities.User", "User")
+                    b.HasOne("VeggieSwapServer.Data.Entities.User", null)
                         .WithMany("TradeItems")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Resource");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("VeggieSwapServer.Data.Entities.Wallet", b =>
@@ -315,8 +349,6 @@ namespace VeggieSwapServer.Data.Migrations
 
             modelBuilder.Entity("VeggieSwapServer.Data.Entities.User", b =>
                 {
-                    b.Navigation("AcceptedResources");
-
                     b.Navigation("Address");
 
                     b.Navigation("TradeItems");
@@ -327,8 +359,6 @@ namespace VeggieSwapServer.Data.Migrations
             modelBuilder.Entity("VeggieSwapServer.Data.Entities.Wallet", b =>
                 {
                     b.Navigation("Purchases");
-
-                    b.Navigation("Trades");
                 });
 #pragma warning restore 612, 618
         }
