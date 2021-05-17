@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using VeggieSwapServer.Data.Entities;
 
 namespace VeggieSwapServer.Business.Models
@@ -16,6 +17,7 @@ namespace VeggieSwapServer.Business.Models
         public Address Address { get; set; }
 
         public Wallet Wallet { get; set; }
+        public List<TradeItem> TradeItems { get; set; }
 
         public string ImageUrl { get; set; }
         public bool IsAdmin { get; set; }

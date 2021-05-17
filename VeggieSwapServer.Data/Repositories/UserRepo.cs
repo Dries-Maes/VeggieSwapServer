@@ -26,7 +26,11 @@ namespace VeggieSwapServer.Data.Repositories
         {
             if (includeAddress)
             {
-                return await _context.Set<User>().Include(x => x.Address).ToListAsync();
+                return await _context.Set<User>()
+                    .Include(x => x.Address)
+                    .Include(x => x.TradeItems)
+                    .ThenInclude(x => x.Resource)
+                    .ToListAsync();
             }
             else
             {
