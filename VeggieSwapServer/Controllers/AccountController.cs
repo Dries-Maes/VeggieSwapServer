@@ -17,13 +17,13 @@ namespace VeggieSwapServer.Controllers
         }
 
         [HttpPost("Register")]
-        public async Task<ActionResult<UserTokenDTO>> RegisterAsync(RegisterDTO dto)
+        public async Task<ActionResult<UserTokenDto>> RegisterAsync(RegisterDto dto)
         {
             return Created("/api/user/{dto.Id}", await _service.RegisterAsync(dto));
         }
 
         [HttpPost("Login")]
-        public async Task<ActionResult<UserTokenDTO>> LoginAsync(LoginDTO dto)
+        public async Task<ActionResult<UserTokenDto>> LoginAsync(LoginDto dto)
         {
             return Ok(await _service.LoginAsync(dto.Email, dto.Password));
         }

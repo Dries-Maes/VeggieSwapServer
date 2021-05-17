@@ -1,15 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace VeggieSwapServer.Data.Entities
 {
     public class Wallet : EntityBase
     {
-        [Required]
+        [ForeignKey("User")]
         public int UserId { get; set; }
 
-        public IEnumerable<Purchase> Purchases { get; set; }
-        public List<Trade> Trades { get; set; }
+        public User User { get; set; }
+        public virtual ICollection<Purchase> Purchases { get; set; }
+        public virtual ICollection<Trade> Trades { get; set; }
         public decimal VAmount { get; set; }
     }
 }

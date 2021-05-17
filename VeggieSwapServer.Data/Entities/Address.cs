@@ -1,11 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace VeggieSwapServer.Data.Entities
 {
     public class Address : EntityBase
     {
-        [Required]
+        [ForeignKey("User")]
         public int UserId { get; set; }
+
+        public User User { get; set; }
 
         [Required]
         [StringLength(50)]

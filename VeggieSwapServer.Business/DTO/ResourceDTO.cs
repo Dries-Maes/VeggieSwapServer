@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VeggieSwapServer.Business.DTO
 {
-    public class ResourceDTO
+    public class ResourceDto
     {
         public int Id { get; set; }
         public string Name { get; set; }

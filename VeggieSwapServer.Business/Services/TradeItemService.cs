@@ -22,23 +22,24 @@ namespace VeggieSwapServer.Business.Services
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<TradeItemDTO>> GetAllEntitiesAsync()
+        public async Task<IEnumerable<TradeItemDto>> GetAllEntitiesAsync()
         {
             //To Do: replace this method with a automapper function
             IEnumerable<TradeItem> tradeItems = await _genericRepo.GetAllEntitiesAsync();
             IEnumerable<User> Users = await _userRepo.GetAllEntitiesAsync();
-            var result = new List<TradeItemDTO>();
+            var result = new List<TradeItemDto>();
             foreach (var tradeItem in tradeItems)
             {
                 User user = Users.FirstOrDefault(x => x.Id == tradeItem.Id);
-                var item = new TradeItemDTO
+                var item = new TradeItemDto
                 {
-                    UserAcceptedResources = _mapper.Map<List<ResourceDTO>>(user.AcceptedResources),
                     UserFirstName = user.FirstName,
                     UserLastName = user.LastName,
                     Id = tradeItem.Id,
                     Amount = tradeItem.Amount,
-                    Resource = _mapper.Map<ResourceDTO>(tradeItem.Resource),
+                    ResourceId = tradeItem.Resource.Id,
+                    ResourceName = tradeItem.Resource.Name,
+                    ResourceImageUrl = tradeItem.Resource.ImageUrl,
                     UserId = tradeItem.UserId
                 };
                 result.Add(item);

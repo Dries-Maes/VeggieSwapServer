@@ -1,10 +1,14 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace VeggieSwapServer.Data.Entities
 {
     public class Purchase : EntityBase
     {
-        public DateTime DateTime { get; set; }
+        [ForeignKey("Wallet")]
+        public int WalletId { get; set; }
+
+        public Wallet Wallet { get; set; }
         public decimal VAmount { get; set; }
         public decimal EuroAmount { get; set; }
     }

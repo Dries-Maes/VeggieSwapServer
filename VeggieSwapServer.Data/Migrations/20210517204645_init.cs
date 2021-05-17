@@ -83,37 +83,13 @@ namespace VeggieSwapServer.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ResourceUser",
-                columns: table => new
-                {
-                    AcceptedResourcesId = table.Column<int>(type: "int", nullable: false),
-                    UsersId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ResourceUser", x => new { x.AcceptedResourcesId, x.UsersId });
-                    table.ForeignKey(
-                        name: "FK_ResourceUser_Resources_AcceptedResourcesId",
-                        column: x => x.AcceptedResourcesId,
-                        principalTable: "Resources",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ResourceUser_Users_UsersId",
-                        column: x => x.UsersId,
-                        principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "TradeItems",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<int>(type: "int", nullable: false),
-                    ResourceId = table.Column<int>(type: "int", nullable: true),
+                    ResourceId = table.Column<int>(type: "int", nullable: false),
                     Amount = table.Column<int>(type: "int", nullable: false),
                     TradeId = table.Column<int>(type: "int", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -127,7 +103,7 @@ namespace VeggieSwapServer.Data.Migrations
                         column: x => x.ResourceId,
                         principalTable: "Resources",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_TradeItems_Trades_TradeId",
                         column: x => x.TradeId,
@@ -170,10 +146,9 @@ namespace VeggieSwapServer.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    DateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    WalletId = table.Column<int>(type: "int", nullable: false),
                     VAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     EuroAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    WalletId = table.Column<int>(type: "int", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
@@ -185,7 +160,7 @@ namespace VeggieSwapServer.Data.Migrations
                         column: x => x.WalletId,
                         principalTable: "Wallets",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -224,11 +199,6 @@ namespace VeggieSwapServer.Data.Migrations
                 column: "WalletId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ResourceUser_UsersId",
-                table: "ResourceUser",
-                column: "UsersId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_TradeItems_ResourceId",
                 table: "TradeItems",
                 column: "ResourceId");
@@ -262,9 +232,6 @@ namespace VeggieSwapServer.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Purchases");
-
-            migrationBuilder.DropTable(
-                name: "ResourceUser");
 
             migrationBuilder.DropTable(
                 name: "TradeItems");

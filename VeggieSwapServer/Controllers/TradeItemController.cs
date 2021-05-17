@@ -18,7 +18,7 @@ namespace VeggieSwapServer.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<TradeItemDTO>> GetMembersAsync()
+        public async Task<IEnumerable<TradeItemDto>> GetMembersAsync()
         {
             return await _tradeItemService.GetAllEntitiesAsync();
         }

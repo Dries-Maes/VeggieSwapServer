@@ -12,6 +12,6 @@ namespace VeggieSwapServer.Data.Entities
         [Required]
         public string ImageUrl { get; set; }
 
-        public List<User> Users { get; set; }
+        public virtual ICollection<TradeItem> TradeItems { get; set; }
     }
 }

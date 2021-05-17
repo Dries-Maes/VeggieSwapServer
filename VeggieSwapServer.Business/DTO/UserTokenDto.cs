@@ -1,6 +1,6 @@
 ﻿namespace VeggieSwapServer.Business.DTO
 {
-    public class UserTokenDTO
+    public class UserTokenDto
     {
         public int Id { get; set; }
         public string FirstName { get; set; }

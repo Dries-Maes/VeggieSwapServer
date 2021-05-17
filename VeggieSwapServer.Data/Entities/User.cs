@@ -20,12 +20,11 @@ namespace VeggieSwapServer.Data.Entities
 
         public byte[] PasswordSalt { get; set; }
 
-        public Address Address { get; set; }
+        public virtual Address Address { get; set; }
 
-        public Wallet Wallet { get; set; }
-        public List<Resource> AcceptedResources { get; set; }
+        public virtual Wallet Wallet { get; set; }
 
-        public List<TradeItem> TradeItems { get; set; }
+        public virtual ICollection<TradeItem> TradeItems { get; set; }
 
         public string ImageUrl { get; set; }
 

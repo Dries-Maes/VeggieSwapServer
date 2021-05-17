@@ -2,7 +2,7 @@
 
 namespace VeggieSwapServer.Business.DTO
 {
-    public class RegisterDTO
+    public class RegisterDto
     {
         [Required]
         public string FirstName { get; set; }

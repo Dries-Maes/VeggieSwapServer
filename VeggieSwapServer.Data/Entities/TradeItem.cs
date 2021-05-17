@@ -1,14 +1,19 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace VeggieSwapServer.Data.Entities
 {
     public class TradeItem : EntityBase
     {
-        [Required]
+        [ForeignKey("User")]
         public int UserId { get; set; }
 
-        [Required]
+        public User User { get; set; }
+
+        [ForeignKey("Resource")]
+        public int ResourceId { get; set; }
+
         public Resource Resource { get; set; }
 
         [Required]
