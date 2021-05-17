@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace VeggieSwapServer.Data.Entities
 {
@@ -10,5 +11,7 @@ namespace VeggieSwapServer.Data.Entities
 
         [Required]
         public string ImageUrl { get; set; }
+
+        public IEnumerable<User> Users { get; set; }
     }
 }
