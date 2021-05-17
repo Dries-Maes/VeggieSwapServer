@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using VeggieSwapServer.Business.DTO;
 using VeggieSwapServer.Business.Services;
 
 namespace VeggieSwapServer.Controllers
@@ -17,7 +18,7 @@ namespace VeggieSwapServer.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<object>> GetMembersAsync()
+        public async Task<IEnumerable<TradeItemDTO>> GetMembersAsync()
         {
             return await _tradeItemService.GetAllEntitiesAsync();
         }

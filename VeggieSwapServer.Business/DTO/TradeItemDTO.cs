@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using VeggieSwapServer.Data.Entities;
 
 namespace VeggieSwapServer.Business.DTO
@@ -9,8 +10,8 @@ namespace VeggieSwapServer.Business.DTO
         public int UserId { get; set; }
         public string UserFirstName { get; set; }
         public string UserLastName { get; set; }
-        public Resource Resource { get; set; }
-        public List<Resource> UserAcceptedResources { get; set; }
+        public ResourceDTO Resource { get; set; }
+        public List<ResourceDTO> UserAcceptedResources { get; set; }
         public int Amount { get; set; }
     }
 }

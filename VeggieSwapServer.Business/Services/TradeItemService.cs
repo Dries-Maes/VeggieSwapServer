@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using AutoMapper;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using VeggieSwapServer.Business.DTO;
@@ -11,12 +12,14 @@ namespace VeggieSwapServer.Business.Services
     {
         private UserRepo _userRepo;
         private IGenericRepo<TradeItem> _genericRepo;
+        private IMapper _mapper;
 
-        public TradeItemService(IGenericRepo<TradeItem> genericRepo, UserRepo userRepo)
+        public TradeItemService(IGenericRepo<TradeItem> genericRepo, UserRepo userRepo, IMapper mapper)
 
         {
             _userRepo = userRepo;
             _genericRepo = genericRepo;
+            _mapper = mapper;
         }
 
         public async Task<IEnumerable<TradeItemDTO>> GetAllEntitiesAsync()
@@ -30,12 +33,12 @@ namespace VeggieSwapServer.Business.Services
                 User user = Users.FirstOrDefault(x => x.Id == tradeItem.Id);
                 var item = new TradeItemDTO
                 {
-                    UserAcceptedResources = user.AcceptedResources,
+                    UserAcceptedResources = _mapper.Map<List<ResourceDTO>>(user.AcceptedResources),
                     UserFirstName = user.FirstName,
                     UserLastName = user.LastName,
                     Id = tradeItem.Id,
                     Amount = tradeItem.Amount,
-                    Resource = tradeItem.Resource,
+                    Resource = _mapper.Map<ResourceDTO>(tradeItem.Resource),
                     UserId = tradeItem.UserId
                 };
                 result.Add(item);

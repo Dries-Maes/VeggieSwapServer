@@ -10,6 +10,7 @@ namespace VeggieSwapServer.Business.Configuration
         public AutoMapperProfile()
         {
             CreateMap<User, UserDTO>().ReverseMap();
+            CreateMap<Resource, ResourceDTO>().ReverseMap();
         }
     }
 }
