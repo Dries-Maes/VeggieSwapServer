@@ -23,9 +23,9 @@ namespace VeggieSwapServer.Data.Entities
         public Address Address { get; set; }
 
         public Wallet Wallet { get; set; }
-        public IEnumerable<Resource> AcceptedResources { get; set; }
+        public List<Resource> AcceptedResources { get; set; }
 
-        public IEnumerable<TradeItem> TradeItems { get; set; }
+        public List<TradeItem> TradeItems { get; set; }
 
         public string ImageUrl { get; set; }
 
