@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using VeggieSwapServer.Business.Models;
@@ -8,6 +9,7 @@ namespace VeggieSwapServer.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class UserController : ControllerBase
     {
         private UserService _userService;
@@ -23,9 +25,11 @@ namespace VeggieSwapServer.Controllers
         //    return await _userService.GetAllEntitiesAsync();
         //}
 
-        [HttpGet] //To include in frontend URL => https://localhost:44360/api/User?includeAddress=true
+        [HttpGet]
+        [AllowAnonymous]
         public async Task<IEnumerable<object>> GetMembersAsyncIncludeAddress(bool includeAddress)
         {
+            //include adress in frontend / set bool to true => URL : https://localhost:44360/api/User?includeAddress=true
             return await _userService.GetAllEntitiesAsync(includeAddress);
         }
 

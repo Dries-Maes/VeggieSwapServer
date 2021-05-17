@@ -87,6 +87,7 @@ namespace VeggieSwapServer
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿
 using VeggieSwapServer.Data.Entities;
 
 namespace VeggieSwapServer.Business.DTO
