@@ -1,8 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using VeggieSwapServer.Data.Entities;
 
@@ -17,7 +14,10 @@ namespace VeggieSwapServer.Data.Repositories
 
         public async override Task<IEnumerable<TradeItem>> GetAllEntitiesAsync()
         {
-            return await _context.Set<TradeItem>().Include(x => x.Resource).ToListAsync();
+            return await _context.Set<TradeItem>()
+                .Include(x => x.Resource)
+                .Include(y => y.User)
+                .ToListAsync();
         }
     }
 }

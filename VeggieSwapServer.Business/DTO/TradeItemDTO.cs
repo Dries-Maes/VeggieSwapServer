@@ -7,9 +7,8 @@ namespace VeggieSwapServer.Business.DTO
     {
         public int Id { get; set; }
         public int UserId { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public List<Resource> AcceptedResources { get; set; }
+        public string UserFirstName { get; set; }
+        public string UserLastName { get; set; }        
         public Resource Resource { get; set; }
         public int Amount { get; set; }
     }

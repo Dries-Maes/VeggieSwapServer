@@ -7,6 +7,8 @@ namespace VeggieSwapServer.Data.Entities
         [Required]
         public int UserId { get; set; }
 
+        public User User { get; set; }
+
         [Required]
         public Resource Resource { get; set; }
 
