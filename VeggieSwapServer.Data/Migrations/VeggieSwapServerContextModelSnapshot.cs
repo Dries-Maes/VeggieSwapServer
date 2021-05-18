@@ -57,8 +57,8 @@ namespace VeggieSwapServer.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2021, 5, 18, 12, 32, 49, 700, DateTimeKind.Local).AddTicks(3455),
-                            ModifiedAt = new DateTime(2021, 5, 18, 12, 32, 49, 700, DateTimeKind.Local).AddTicks(3455),
+                            CreatedAt = new DateTime(2021, 5, 18, 13, 28, 10, 888, DateTimeKind.Local).AddTicks(3975),
+                            ModifiedAt = new DateTime(2021, 5, 18, 13, 28, 10, 888, DateTimeKind.Local).AddTicks(3975),
                             PostalCode = 9000,
                             StreetName = "Anti-Veggiestraat",
                             StreetNumber = 89,
@@ -98,9 +98,9 @@ namespace VeggieSwapServer.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2021, 5, 18, 12, 32, 49, 704, DateTimeKind.Local).AddTicks(987),
+                            CreatedAt = new DateTime(2021, 5, 18, 13, 28, 10, 890, DateTimeKind.Local).AddTicks(4769),
                             EuroAmount = 6.9m,
-                            ModifiedAt = new DateTime(2021, 5, 18, 12, 32, 49, 704, DateTimeKind.Local).AddTicks(987),
+                            ModifiedAt = new DateTime(2021, 5, 18, 13, 28, 10, 890, DateTimeKind.Local).AddTicks(4769),
                             VAmount = 69m,
                             WalletId = 1
                         });
@@ -137,9 +137,9 @@ namespace VeggieSwapServer.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2021, 5, 18, 12, 32, 49, 702, DateTimeKind.Local).AddTicks(864),
+                            CreatedAt = new DateTime(2021, 5, 18, 13, 28, 10, 889, DateTimeKind.Local).AddTicks(3041),
                             ImageUrl = "artichokes.svg",
-                            ModifiedAt = new DateTime(2021, 5, 18, 12, 32, 49, 702, DateTimeKind.Local).AddTicks(864),
+                            ModifiedAt = new DateTime(2021, 5, 18, 13, 28, 10, 889, DateTimeKind.Local).AddTicks(3041),
                             Name = "Artichokes"
                         });
                 });
@@ -165,8 +165,8 @@ namespace VeggieSwapServer.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2021, 5, 18, 12, 32, 49, 702, DateTimeKind.Local).AddTicks(6314),
-                            ModifiedAt = new DateTime(2021, 5, 18, 12, 32, 49, 702, DateTimeKind.Local).AddTicks(6314)
+                            CreatedAt = new DateTime(2021, 5, 18, 13, 28, 10, 889, DateTimeKind.Local).AddTicks(6687),
+                            ModifiedAt = new DateTime(2021, 5, 18, 13, 28, 10, 889, DateTimeKind.Local).AddTicks(6687)
                         });
                 });
 
@@ -210,8 +210,8 @@ namespace VeggieSwapServer.Data.Migrations
                         {
                             Id = 1,
                             Amount = 25,
-                            CreatedAt = new DateTime(2021, 5, 18, 12, 32, 49, 702, DateTimeKind.Local).AddTicks(9914),
-                            ModifiedAt = new DateTime(2021, 5, 18, 12, 32, 49, 702, DateTimeKind.Local).AddTicks(9914),
+                            CreatedAt = new DateTime(2021, 5, 18, 13, 28, 10, 889, DateTimeKind.Local).AddTicks(9687),
+                            ModifiedAt = new DateTime(2021, 5, 18, 13, 28, 10, 889, DateTimeKind.Local).AddTicks(9687),
                             ResourceId = 1,
                             TradeId = 1,
                             UserId = 1
@@ -266,12 +266,15 @@ namespace VeggieSwapServer.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2021, 5, 18, 12, 32, 49, 694, DateTimeKind.Local).AddTicks(9785),
+                            CreatedAt = new DateTime(2021, 5, 18, 13, 28, 10, 882, DateTimeKind.Local).AddTicks(6137),
+                            Email = "kobe@mail.com",
                             FirstName = "Kobe",
                             ImageUrl = "https://robohash.org/Kobe",
                             IsAdmin = true,
                             LastName = "Delo",
-                            ModifiedAt = new DateTime(2021, 5, 18, 12, 32, 49, 694, DateTimeKind.Local).AddTicks(9785)
+                            ModifiedAt = new DateTime(2021, 5, 18, 13, 28, 10, 882, DateTimeKind.Local).AddTicks(6137),
+                            PasswordHash = new byte[] { 10, 133, 53, 120, 120, 216, 41, 232, 174, 152, 236, 213, 22, 73, 242, 123, 168, 218, 228, 237, 43, 140, 129, 142, 162, 247, 97, 150, 120, 142, 205, 72, 30, 219, 167, 80, 235, 196, 153, 236, 159, 43, 113, 34, 96, 192, 173, 153, 209, 91, 122, 218, 205, 213, 114, 35, 82, 58, 87, 61, 73, 192, 63, 179 },
+                            PasswordSalt = new byte[] { 46, 27, 175, 50, 250, 135, 27, 29, 226, 26, 174, 219, 42, 124, 113, 46, 0, 51, 234, 102, 6, 97, 17, 72, 99, 142, 109, 56, 246, 171, 76, 2, 100, 171, 115, 190, 139, 106, 60, 130, 151, 188, 9, 244, 176, 176, 175, 172, 20, 98, 73, 249, 26, 52, 180, 215, 247, 90, 104, 116, 215, 110, 126, 245, 107, 62, 135, 121, 237, 227, 133, 172, 89, 149, 80, 24, 43, 132, 137, 156, 155, 38, 112, 213, 90, 59, 190, 48, 144, 58, 158, 84, 109, 63, 38, 254, 42, 172, 65, 157, 204, 251, 37, 110, 166, 27, 215, 6, 191, 60, 252, 203, 241, 168, 77, 127, 229, 251, 17, 30, 46, 54, 250, 1, 159, 71, 84, 11 }
                         });
                 });
 
@@ -305,8 +308,8 @@ namespace VeggieSwapServer.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2021, 5, 18, 12, 32, 49, 701, DateTimeKind.Local).AddTicks(5949),
-                            ModifiedAt = new DateTime(2021, 5, 18, 12, 32, 49, 701, DateTimeKind.Local).AddTicks(5949),
+                            CreatedAt = new DateTime(2021, 5, 18, 13, 28, 10, 888, DateTimeKind.Local).AddTicks(9106),
+                            ModifiedAt = new DateTime(2021, 5, 18, 13, 28, 10, 888, DateTimeKind.Local).AddTicks(9106),
                             UserId = 1,
                             VAmount = 200m
                         });
