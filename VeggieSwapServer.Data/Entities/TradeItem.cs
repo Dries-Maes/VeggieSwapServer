@@ -20,9 +20,7 @@ namespace VeggieSwapServer.Data.Entities
         public int Amount { get; set; }
 
         [ForeignKey("Trade")]
-        public int? TradeId { get; set; }
-
-        public virtual Trade Trade { get; set; }
+        public virtual ICollection<TradeItemProposal> TradeItemProposals { get; set; }
 
         public bool Sold { get; set; }
     }

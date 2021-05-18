@@ -5,7 +5,7 @@ namespace VeggieSwapServer.Data.Entities
 {
     public class Trade : EntityBase
     {
-        public virtual ICollection<TradeItem> TradeItems { get; set; }
+        public virtual ICollection<TradeItemProposal> TradeItemProposals { get; set; }
 
         [ForeignKey("User")]
         public int ProposerId { get; set; }
