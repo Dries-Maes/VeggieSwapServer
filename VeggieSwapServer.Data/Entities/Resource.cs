@@ -10,6 +10,7 @@ namespace VeggieSwapServer.Data.Entities
         public string Name { get; set; }
 
         [Required]
+        [StringLength(255)]
         public string ImageUrl { get; set; }
 
         public virtual ICollection<TradeItem> TradeItems { get; set; }

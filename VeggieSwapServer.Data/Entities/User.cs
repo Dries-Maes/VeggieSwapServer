@@ -26,6 +26,7 @@ namespace VeggieSwapServer.Data.Entities
 
         public virtual ICollection<TradeItem> TradeItems { get; set; }
 
+        [StringLength(255)]
         public string ImageUrl { get; set; }
 
         public bool IsAdmin { get; set; }
