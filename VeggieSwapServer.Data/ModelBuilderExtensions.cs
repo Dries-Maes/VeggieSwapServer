@@ -314,26 +314,12 @@ namespace VeggieSwapServer.Data
             modelBuilder.Entity<Trade>(x =>
             {
                 x.HasData(
-                new Trade { Id = 1 },
-                new Trade { Id = 2 },
-                new Trade { Id = 3 },
-                new Trade { Id = 4 },
-                new Trade { Id = 5 },
-                new Trade { Id = 6 },
-                new Trade { Id = 7 },
-                new Trade { Id = 8 },
-                new Trade { Id = 9 },
-                new Trade { Id = 10 },
-                new Trade { Id = 11 },
-                new Trade { Id = 12 },
-                new Trade { Id = 13 },
-                new Trade { Id = 14 },
-                new Trade { Id = 15 },
-                new Trade { Id = 16 },
-                new Trade { Id = 17 },
-                new Trade { Id = 18 },
-                new Trade { Id = 19 }
-
+                new Trade { Id = 1, ReceiverId = 1, ProposerId = 2, Completed = true },
+                new Trade { Id = 2, ReceiverId = 1, ProposerId = 3, Completed = false },
+                new Trade { Id = 3, ReceiverId = 2, ProposerId = 4, Completed = false },
+                new Trade { Id = 4, ReceiverId = 2, ProposerId = 5, Completed = false },
+                new Trade { Id = 5, ReceiverId = 5, ProposerId = 1, Completed = false },
+                new Trade { Id = 6, ReceiverId = 1, ProposerId = 3, Completed = false }
                 );
             }
             );
@@ -344,32 +330,32 @@ namespace VeggieSwapServer.Data
             modelBuilder.Entity<TradeItem>(x =>
             {
                 x.HasData(
-                new TradeItem { Id = 1, UserId = 10, ResourceId = 51, Amount = 2, Sold = false }
-                //new TradeItem { Id = 2, UserId = 8, ResourceId = 11, TradeId = 2, Amount = 10, Sold = false },
-                //new TradeItem { Id = 3, UserId = 13, ResourceId = 32, TradeId = 3, Amount = 50, Sold = false },
-                //new TradeItem { Id = 4, UserId = 4, ResourceId = 24, TradeId = 4, Amount = 69, Sold = false },
-                //new TradeItem { Id = 5, UserId = 5, ResourceId = 45, TradeId = 5, Amount = 45, Sold = false },
-                //new TradeItem { Id = 6, UserId = 6, ResourceId = 6, TradeId = 6, Amount = 30, Sold = true },
-                //new TradeItem { Id = 7, UserId = 7, ResourceId = 17, TradeId = 7, Amount = 42, Sold = false },
-                //new TradeItem { Id = 8, UserId = 8, ResourceId = 8, TradeId = 8, Amount = 75, Sold = true },
-                //new TradeItem { Id = 9, UserId = 9, ResourceId = 9, TradeId = 9, Amount = 201, Sold = true },
-                //new TradeItem { Id = 10, UserId = 9, ResourceId = 10, TradeId = 10, Amount = 634, Sold = false },
-                //new TradeItem { Id = 11, UserId = 11, ResourceId = 17, TradeId = 11, Amount = 20, Sold = true },
-                //new TradeItem { Id = 12, UserId = 13, ResourceId = 26, TradeId = 12, Amount = 75, Sold = false },
-                //new TradeItem { Id = 13, UserId = 10, ResourceId = 19, TradeId = 1, Amount = 69, Sold = false },
-                //new TradeItem { Id = 14, UserId = 3, ResourceId = 49, TradeId = 4, Amount = 25, Sold = true },
-                //new TradeItem { Id = 15, UserId = 4, ResourceId = 50, TradeId = 1, Amount = 35, Sold = false },
-                //new TradeItem { Id = 16, UserId = 5, ResourceId = 7, TradeId = 8, Amount = 75, Sold = true },
-                //new TradeItem { Id = 17, UserId = 3, ResourceId = 1, TradeId = 1, Amount = 10, Sold = false },
-                //new TradeItem { Id = 18, UserId = 1, ResourceId = 6, TradeId = 9, Amount = 9, Sold = false },
-                //new TradeItem { Id = 19, UserId = 12, ResourceId = 7, TradeId = 5, Amount = 17, Sold = true },
-                //new TradeItem { Id = 20, UserId = 7, ResourceId = 36, TradeId = 1, Amount = 30, Sold = false },
-                //new TradeItem { Id = 21, UserId = 6, ResourceId = 23, TradeId = 7, Amount = 78, Sold = true },
-                //new TradeItem { Id = 22, UserId = 9, ResourceId = 27, TradeId = 9, Amount = 69, Sold = false },
-                //new TradeItem { Id = 23, UserId = 1, ResourceId = 37, TradeId = 13, Amount = 180, Sold = false },
-                //new TradeItem { Id = 24, UserId = 2, ResourceId = 47, TradeId = 7, Amount = 47, Sold = false },
-                //new TradeItem { Id = 25, UserId = 6, ResourceId = 48, TradeId = 18, Amount = 20, Sold = true },
-                //new TradeItem { Id = 26, UserId = 7, ResourceId = 39, TradeId = 13, Amount = 10, Sold = false }
+                new TradeItem { Id = 1, UserId = 10, ResourceId = 51, Amount = 2, Sold = false },
+                new TradeItem { Id = 2, UserId = 8, ResourceId = 11, Amount = 10, Sold = false },
+                new TradeItem { Id = 3, UserId = 13, ResourceId = 32, Amount = 50, Sold = false },
+                new TradeItem { Id = 4, TradeId = 3, UserId = 4, ResourceId = 24, Amount = 69, Sold = false },
+                new TradeItem { Id = 5, TradeId = 5, UserId = 5, ResourceId = 45, Amount = 45, Sold = false },
+                new TradeItem { Id = 6, UserId = 6, ResourceId = 6, Amount = 30, Sold = false },
+                new TradeItem { Id = 7, UserId = 7, ResourceId = 17, Amount = 42, Sold = false },
+                new TradeItem { Id = 8, UserId = 8, ResourceId = 8, Amount = 75, Sold = false },
+                new TradeItem { Id = 9, UserId = 9, ResourceId = 9, Amount = 201, Sold = false },
+                new TradeItem { Id = 10, UserId = 9, ResourceId = 10, Amount = 634, Sold = false },
+                new TradeItem { Id = 11, UserId = 11, ResourceId = 17, Amount = 20, Sold = false },
+                new TradeItem { Id = 12, UserId = 13, ResourceId = 26, Amount = 75, Sold = false },
+                new TradeItem { Id = 13, UserId = 10, ResourceId = 19, Amount = 69, Sold = false },
+                new TradeItem { Id = 14, TradeId = 2, UserId = 3, ResourceId = 49, Amount = 25, Sold = true },
+                new TradeItem { Id = 15, TradeId = 3, UserId = 4, ResourceId = 50, Amount = 35, Sold = false },
+                new TradeItem { Id = 16, TradeId = 4, UserId = 5, ResourceId = 7, Amount = 75, Sold = false },
+                new TradeItem { Id = 17, TradeId = 6, UserId = 3, ResourceId = 1, Amount = 10, Sold = false },
+                new TradeItem { Id = 18, TradeId = 2, UserId = 1, ResourceId = 6, Amount = 9, Sold = true },
+                new TradeItem { Id = 19, UserId = 12, ResourceId = 7, Amount = 17, Sold = false },
+                new TradeItem { Id = 20, UserId = 7, ResourceId = 36, Amount = 30, Sold = false },
+                new TradeItem { Id = 21, UserId = 6, ResourceId = 23, Amount = 78, Sold = false },
+                new TradeItem { Id = 22, UserId = 9, ResourceId = 27, Amount = 69, Sold = false },
+                new TradeItem { Id = 23, TradeId = 1, UserId = 1, ResourceId = 37, Amount = 180, Sold = true },
+                new TradeItem { Id = 24, TradeId = 1, UserId = 2, ResourceId = 47, Amount = 47, Sold = true },
+                new TradeItem { Id = 25, UserId = 6, ResourceId = 48, Amount = 20, Sold = false },
+                new TradeItem { Id = 26, UserId = 7, ResourceId = 39, Amount = 10, Sold = false }
                 );
             }
             );
