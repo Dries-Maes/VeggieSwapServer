@@ -15,11 +15,6 @@ namespace VeggieSwapServer.Data.Repositories
         {
         }
 
-        public async Task<IEnumerable<TradeItem>> GetTradeItemsAsync(bool sold)
-        {
-            return await _context.Set<TradeItem>().Include(x => x.Resource).Where(x => x.Sold == sold).ToListAsync();
-        }
-
         public override async Task<IEnumerable<TradeItem>> GetAllEntitiesAsync()
         {
             return await _context.Set<TradeItem>().Include(x => x.Resource).ToListAsync();

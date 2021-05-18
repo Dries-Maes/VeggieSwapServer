@@ -46,6 +46,5 @@ namespace VeggieSwapServer.Data
 
             modelBuilder.Seed();
         }
-
     }
 }

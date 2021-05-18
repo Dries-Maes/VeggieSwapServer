@@ -26,12 +26,6 @@ namespace VeggieSwapServer.Business.Services
             return await MapTradeItems(tradeItems);
         }
 
-        public async Task<IEnumerable<TradeItemDto>> GetTradeItemsAsync(bool sold)
-        {
-            var tradeItems = await _tradeItemRepo.GetTradeItemsAsync(sold);
-            return await MapTradeItems(tradeItems);
-        }
-
         private async Task<List<TradeItemDto>> MapTradeItems(IEnumerable<TradeItem> tradeItems)
         {
             //To Do: replace this method with a automapper function
@@ -50,7 +44,6 @@ namespace VeggieSwapServer.Business.Services
                     ResourceName = tradeItem.Resource.Name,
                     ResourceImageUrl = tradeItem.Resource.ImageUrl,
                     UserId = tradeItem.UserId,
-                    Sold = tradeItem.Sold
                 };
                 result.Add(item);
             }

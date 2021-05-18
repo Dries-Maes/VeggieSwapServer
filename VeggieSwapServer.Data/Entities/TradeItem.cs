@@ -19,9 +19,6 @@ namespace VeggieSwapServer.Data.Entities
         [Required]
         public int Amount { get; set; }
 
-        [ForeignKey("Trade")]
         public virtual ICollection<TradeItemProposal> TradeItemProposals { get; set; }
-
-        public bool Sold { get; set; }
     }
 }

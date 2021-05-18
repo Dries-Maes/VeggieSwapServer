@@ -18,13 +18,6 @@ namespace VeggieSwapServer.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<TradeItemDto>> GetSelectedTradeItemsAsync(bool sold)
-        {
-            return await _tradeItemService.GetTradeItemsAsync(sold);
-        }
-
-        [Route("/api/TradeItem/All")]
-        [HttpGet]
         public async Task<IEnumerable<TradeItemDto>> GetAllTradeItemsAsync()
         {
             return await _tradeItemService.GetAllEntitiesAsync();

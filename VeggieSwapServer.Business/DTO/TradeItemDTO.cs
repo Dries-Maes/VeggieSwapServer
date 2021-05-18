@@ -14,6 +14,5 @@ namespace VeggieSwapServer.Business.DTO
         public string ResourceName { get; set; }
         public string ResourceImageUrl { get; set; }
         public int Amount { get; set; }
-        public bool Sold { get; set; }
     }
 }
