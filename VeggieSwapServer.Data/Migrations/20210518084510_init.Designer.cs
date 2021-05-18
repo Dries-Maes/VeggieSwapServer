@@ -10,7 +10,7 @@ using VeggieSwapServer.Data;
 namespace VeggieSwapServer.Data.Migrations
 {
     [DbContext(typeof(VeggieSwapServerContext))]
-    [Migration("20210517204645_init")]
+    [Migration("20210518084510_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,21 +20,6 @@ namespace VeggieSwapServer.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.6")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("TradeWallet", b =>
-                {
-                    b.Property<int>("TradesId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WalletsId")
-                        .HasColumnType("int");
-
-                    b.HasKey("TradesId", "WalletsId");
-
-                    b.HasIndex("WalletsId");
-
-                    b.ToTable("TradeWallet");
-                });
 
             modelBuilder.Entity("VeggieSwapServer.Data.Entities.Address", b =>
                 {
@@ -164,7 +149,7 @@ namespace VeggieSwapServer.Data.Migrations
                     b.Property<int>("ResourceId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("TradeId")
+                    b.Property<int>("TradeId")
                         .HasColumnType("int");
 
                     b.Property<int>("UserId")
@@ -252,21 +237,6 @@ namespace VeggieSwapServer.Data.Migrations
                     b.ToTable("Wallets");
                 });
 
-            modelBuilder.Entity("TradeWallet", b =>
-                {
-                    b.HasOne("VeggieSwapServer.Data.Entities.Trade", null)
-                        .WithMany()
-                        .HasForeignKey("TradesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("VeggieSwapServer.Data.Entities.Wallet", null)
-                        .WithMany()
-                        .HasForeignKey("WalletsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("VeggieSwapServer.Data.Entities.Address", b =>
                 {
                     b.HasOne("VeggieSwapServer.Data.Entities.User", "User")
@@ -297,9 +267,11 @@ namespace VeggieSwapServer.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("VeggieSwapServer.Data.Entities.Trade", null)
+                    b.HasOne("VeggieSwapServer.Data.Entities.Trade", "Trade")
                         .WithMany("TradeItems")
-                        .HasForeignKey("TradeId");
+                        .HasForeignKey("TradeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("VeggieSwapServer.Data.Entities.User", "User")
                         .WithMany("TradeItems")
@@ -308,6 +280,8 @@ namespace VeggieSwapServer.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Resource");
+
+                    b.Navigation("Trade");
 
                     b.Navigation("User");
                 });

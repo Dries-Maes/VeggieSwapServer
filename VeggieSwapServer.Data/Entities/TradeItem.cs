@@ -18,5 +18,10 @@ namespace VeggieSwapServer.Data.Entities
 
         [Required]
         public int Amount { get; set; }
+
+        [ForeignKey("Trade")]
+        public int TradeId { get; set; }
+
+        public Trade Trade { get; set; }
     }
 }

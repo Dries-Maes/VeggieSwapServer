@@ -91,7 +91,7 @@ namespace VeggieSwapServer.Data.Migrations
                     UserId = table.Column<int>(type: "int", nullable: false),
                     ResourceId = table.Column<int>(type: "int", nullable: false),
                     Amount = table.Column<int>(type: "int", nullable: false),
-                    TradeId = table.Column<int>(type: "int", nullable: true),
+                    TradeId = table.Column<int>(type: "int", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
@@ -109,7 +109,7 @@ namespace VeggieSwapServer.Data.Migrations
                         column: x => x.TradeId,
                         principalTable: "Trades",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_TradeItems_Users_UserId",
                         column: x => x.UserId,
@@ -163,30 +163,6 @@ namespace VeggieSwapServer.Data.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "TradeWallet",
-                columns: table => new
-                {
-                    TradesId = table.Column<int>(type: "int", nullable: false),
-                    WalletsId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TradeWallet", x => new { x.TradesId, x.WalletsId });
-                    table.ForeignKey(
-                        name: "FK_TradeWallet_Trades_TradesId",
-                        column: x => x.TradesId,
-                        principalTable: "Trades",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_TradeWallet_Wallets_WalletsId",
-                        column: x => x.WalletsId,
-                        principalTable: "Wallets",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_Addresses_UserId",
                 table: "Addresses",
@@ -214,11 +190,6 @@ namespace VeggieSwapServer.Data.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TradeWallet_WalletsId",
-                table: "TradeWallet",
-                column: "WalletsId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Wallets_UserId",
                 table: "Wallets",
                 column: "UserId",
@@ -237,16 +208,13 @@ namespace VeggieSwapServer.Data.Migrations
                 name: "TradeItems");
 
             migrationBuilder.DropTable(
-                name: "TradeWallet");
+                name: "Wallets");
 
             migrationBuilder.DropTable(
                 name: "Resources");
 
             migrationBuilder.DropTable(
                 name: "Trades");
-
-            migrationBuilder.DropTable(
-                name: "Wallets");
 
             migrationBuilder.DropTable(
                 name: "Users");

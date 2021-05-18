@@ -11,7 +11,6 @@ namespace VeggieSwapServer.Data.Entities
 
         public User User { get; set; }
         public virtual ICollection<Purchase> Purchases { get; set; }
-        public virtual ICollection<Trade> Trades { get; set; }
         public decimal VAmount { get; set; }
     }
 }
