@@ -14,7 +14,7 @@ namespace VeggieSwapServer.Data.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ImageUrl = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
@@ -48,7 +48,7 @@ namespace VeggieSwapServer.Data.Migrations
                     Email = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     PasswordHash = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
                     PasswordSalt = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
-                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ImageUrl = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
                     IsAdmin = table.Column<bool>(type: "bit", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
@@ -162,6 +162,41 @@ namespace VeggieSwapServer.Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.InsertData(
+                table: "Resources",
+                columns: new[] { "Id", "CreatedAt", "ImageUrl", "ModifiedAt", "Name" },
+                values: new object[] { 1, new DateTime(2021, 5, 18, 12, 32, 49, 702, DateTimeKind.Local).AddTicks(864), "artichokes.svg", new DateTime(2021, 5, 18, 12, 32, 49, 702, DateTimeKind.Local).AddTicks(864), "Artichokes" });
+
+            migrationBuilder.InsertData(
+                table: "Trades",
+                columns: new[] { "Id", "CreatedAt", "ModifiedAt" },
+                values: new object[] { 1, new DateTime(2021, 5, 18, 12, 32, 49, 702, DateTimeKind.Local).AddTicks(6314), new DateTime(2021, 5, 18, 12, 32, 49, 702, DateTimeKind.Local).AddTicks(6314) });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "Id", "CreatedAt", "Email", "FirstName", "ImageUrl", "IsAdmin", "LastName", "ModifiedAt", "PasswordHash", "PasswordSalt" },
+                values: new object[] { 1, new DateTime(2021, 5, 18, 12, 32, 49, 694, DateTimeKind.Local).AddTicks(9785), null, "Kobe", "https://robohash.org/Kobe", true, "Delo", new DateTime(2021, 5, 18, 12, 32, 49, 694, DateTimeKind.Local).AddTicks(9785), null, null });
+
+            migrationBuilder.InsertData(
+                table: "Addresses",
+                columns: new[] { "Id", "CreatedAt", "ModifiedAt", "PostalCode", "StreetName", "StreetNumber", "UserId" },
+                values: new object[] { 1, new DateTime(2021, 5, 18, 12, 32, 49, 700, DateTimeKind.Local).AddTicks(3455), new DateTime(2021, 5, 18, 12, 32, 49, 700, DateTimeKind.Local).AddTicks(3455), 9000, "Anti-Veggiestraat", 89, 1 });
+
+            migrationBuilder.InsertData(
+                table: "TradeItems",
+                columns: new[] { "Id", "Amount", "CreatedAt", "ModifiedAt", "ResourceId", "TradeId", "UserId" },
+                values: new object[] { 1, 25, new DateTime(2021, 5, 18, 12, 32, 49, 702, DateTimeKind.Local).AddTicks(9914), new DateTime(2021, 5, 18, 12, 32, 49, 702, DateTimeKind.Local).AddTicks(9914), 1, 1, 1 });
+
+            migrationBuilder.InsertData(
+                table: "Wallets",
+                columns: new[] { "Id", "CreatedAt", "ModifiedAt", "UserId", "VAmount" },
+                values: new object[] { 1, new DateTime(2021, 5, 18, 12, 32, 49, 701, DateTimeKind.Local).AddTicks(5949), new DateTime(2021, 5, 18, 12, 32, 49, 701, DateTimeKind.Local).AddTicks(5949), 1, 200m });
+
+            migrationBuilder.InsertData(
+                table: "Purchases",
+                columns: new[] { "Id", "CreatedAt", "EuroAmount", "ModifiedAt", "VAmount", "WalletId" },
+                values: new object[] { 1, new DateTime(2021, 5, 18, 12, 32, 49, 704, DateTimeKind.Local).AddTicks(987), 6.9m, new DateTime(2021, 5, 18, 12, 32, 49, 704, DateTimeKind.Local).AddTicks(987), 69m, 1 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Addresses_UserId",
