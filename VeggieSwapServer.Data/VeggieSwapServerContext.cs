@@ -26,9 +26,7 @@ namespace VeggieSwapServer.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>()
-                .HasOne(s => s.Address)
-                .WithOne(ad => ad.User);
+            modelBuilder.Seed();
         }
     }
 }

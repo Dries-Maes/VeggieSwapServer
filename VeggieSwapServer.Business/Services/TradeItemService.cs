@@ -30,7 +30,7 @@ namespace VeggieSwapServer.Business.Services
             var result = new List<TradeItemDto>();
             foreach (var tradeItem in tradeItems)
             {
-                User user = Users.FirstOrDefault(x => x.Id == tradeItem.Id);
+                User user = Users.FirstOrDefault(x => x.Id == tradeItem.UserId);
                 var item = new TradeItemDto
                 {
                     UserFirstName = user.FirstName,

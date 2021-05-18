@@ -52,6 +52,18 @@ namespace VeggieSwapServer.Data.Migrations
                         .IsUnique();
 
                     b.ToTable("Addresses");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2021, 5, 18, 12, 32, 49, 700, DateTimeKind.Local).AddTicks(3455),
+                            ModifiedAt = new DateTime(2021, 5, 18, 12, 32, 49, 700, DateTimeKind.Local).AddTicks(3455),
+                            PostalCode = 9000,
+                            StreetName = "Anti-Veggiestraat",
+                            StreetNumber = 89,
+                            UserId = 1
+                        });
                 });
 
             modelBuilder.Entity("VeggieSwapServer.Data.Entities.Purchase", b =>
@@ -81,6 +93,17 @@ namespace VeggieSwapServer.Data.Migrations
                     b.HasIndex("WalletId");
 
                     b.ToTable("Purchases");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2021, 5, 18, 12, 32, 49, 704, DateTimeKind.Local).AddTicks(987),
+                            EuroAmount = 6.9m,
+                            ModifiedAt = new DateTime(2021, 5, 18, 12, 32, 49, 704, DateTimeKind.Local).AddTicks(987),
+                            VAmount = 69m,
+                            WalletId = 1
+                        });
                 });
 
             modelBuilder.Entity("VeggieSwapServer.Data.Entities.Resource", b =>
@@ -95,7 +118,8 @@ namespace VeggieSwapServer.Data.Migrations
 
                     b.Property<string>("ImageUrl")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<DateTime>("ModifiedAt")
                         .HasColumnType("datetime2");
@@ -108,6 +132,16 @@ namespace VeggieSwapServer.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Resources");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2021, 5, 18, 12, 32, 49, 702, DateTimeKind.Local).AddTicks(864),
+                            ImageUrl = "artichokes.svg",
+                            ModifiedAt = new DateTime(2021, 5, 18, 12, 32, 49, 702, DateTimeKind.Local).AddTicks(864),
+                            Name = "Artichokes"
+                        });
                 });
 
             modelBuilder.Entity("VeggieSwapServer.Data.Entities.Trade", b =>
@@ -126,6 +160,14 @@ namespace VeggieSwapServer.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Trades");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2021, 5, 18, 12, 32, 49, 702, DateTimeKind.Local).AddTicks(6314),
+                            ModifiedAt = new DateTime(2021, 5, 18, 12, 32, 49, 702, DateTimeKind.Local).AddTicks(6314)
+                        });
                 });
 
             modelBuilder.Entity("VeggieSwapServer.Data.Entities.TradeItem", b =>
@@ -162,6 +204,18 @@ namespace VeggieSwapServer.Data.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("TradeItems");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Amount = 25,
+                            CreatedAt = new DateTime(2021, 5, 18, 12, 32, 49, 702, DateTimeKind.Local).AddTicks(9914),
+                            ModifiedAt = new DateTime(2021, 5, 18, 12, 32, 49, 702, DateTimeKind.Local).AddTicks(9914),
+                            ResourceId = 1,
+                            TradeId = 1,
+                            UserId = 1
+                        });
                 });
 
             modelBuilder.Entity("VeggieSwapServer.Data.Entities.User", b =>
@@ -184,7 +238,8 @@ namespace VeggieSwapServer.Data.Migrations
                         .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("ImageUrl")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<bool>("IsAdmin")
                         .HasColumnType("bit");
@@ -206,6 +261,18 @@ namespace VeggieSwapServer.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2021, 5, 18, 12, 32, 49, 694, DateTimeKind.Local).AddTicks(9785),
+                            FirstName = "Kobe",
+                            ImageUrl = "https://robohash.org/Kobe",
+                            IsAdmin = true,
+                            LastName = "Delo",
+                            ModifiedAt = new DateTime(2021, 5, 18, 12, 32, 49, 694, DateTimeKind.Local).AddTicks(9785)
+                        });
                 });
 
             modelBuilder.Entity("VeggieSwapServer.Data.Entities.Wallet", b =>
@@ -233,6 +300,16 @@ namespace VeggieSwapServer.Data.Migrations
                         .IsUnique();
 
                     b.ToTable("Wallets");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2021, 5, 18, 12, 32, 49, 701, DateTimeKind.Local).AddTicks(5949),
+                            ModifiedAt = new DateTime(2021, 5, 18, 12, 32, 49, 701, DateTimeKind.Local).AddTicks(5949),
+                            UserId = 1,
+                            VAmount = 200m
+                        });
                 });
 
             modelBuilder.Entity("VeggieSwapServer.Data.Entities.Address", b =>
