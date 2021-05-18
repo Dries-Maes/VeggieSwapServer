@@ -9,19 +9,21 @@ namespace VeggieSwapServer.Data.Entities
         [ForeignKey("User")]
         public int UserId { get; set; }
 
-        public User User { get; set; }
+        public virtual User User { get; set; }
 
         [ForeignKey("Resource")]
         public int ResourceId { get; set; }
 
-        public Resource Resource { get; set; }
+        public virtual Resource Resource { get; set; }
 
         [Required]
         public int Amount { get; set; }
 
-        [ForeignKey("Trade")]
-        public int TradeId { get; set; }
+        //[ForeignKey("Trade")]
+        //public int TradeId { get; set; }
 
-        public Trade Trade { get; set; }
+        //public virtual Trade Trade { get; set; }
+
+        public bool Sold { get; set; }
     }
 }
