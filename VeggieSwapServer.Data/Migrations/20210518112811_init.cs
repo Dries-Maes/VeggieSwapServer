@@ -166,37 +166,37 @@ namespace VeggieSwapServer.Data.Migrations
             migrationBuilder.InsertData(
                 table: "Resources",
                 columns: new[] { "Id", "CreatedAt", "ImageUrl", "ModifiedAt", "Name" },
-                values: new object[] { 1, new DateTime(2021, 5, 18, 12, 32, 49, 702, DateTimeKind.Local).AddTicks(864), "artichokes.svg", new DateTime(2021, 5, 18, 12, 32, 49, 702, DateTimeKind.Local).AddTicks(864), "Artichokes" });
+                values: new object[] { 1, new DateTime(2021, 5, 18, 13, 28, 10, 889, DateTimeKind.Local).AddTicks(3041), "artichokes.svg", new DateTime(2021, 5, 18, 13, 28, 10, 889, DateTimeKind.Local).AddTicks(3041), "Artichokes" });
 
             migrationBuilder.InsertData(
                 table: "Trades",
                 columns: new[] { "Id", "CreatedAt", "ModifiedAt" },
-                values: new object[] { 1, new DateTime(2021, 5, 18, 12, 32, 49, 702, DateTimeKind.Local).AddTicks(6314), new DateTime(2021, 5, 18, 12, 32, 49, 702, DateTimeKind.Local).AddTicks(6314) });
+                values: new object[] { 1, new DateTime(2021, 5, 18, 13, 28, 10, 889, DateTimeKind.Local).AddTicks(6687), new DateTime(2021, 5, 18, 13, 28, 10, 889, DateTimeKind.Local).AddTicks(6687) });
 
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "CreatedAt", "Email", "FirstName", "ImageUrl", "IsAdmin", "LastName", "ModifiedAt", "PasswordHash", "PasswordSalt" },
-                values: new object[] { 1, new DateTime(2021, 5, 18, 12, 32, 49, 694, DateTimeKind.Local).AddTicks(9785), null, "Kobe", "https://robohash.org/Kobe", true, "Delo", new DateTime(2021, 5, 18, 12, 32, 49, 694, DateTimeKind.Local).AddTicks(9785), null, null });
+                values: new object[] { 1, new DateTime(2021, 5, 18, 13, 28, 10, 882, DateTimeKind.Local).AddTicks(6137), "kobe@mail.com", "Kobe", "https://robohash.org/Kobe", true, "Delo", new DateTime(2021, 5, 18, 13, 28, 10, 882, DateTimeKind.Local).AddTicks(6137), new byte[] { 10, 133, 53, 120, 120, 216, 41, 232, 174, 152, 236, 213, 22, 73, 242, 123, 168, 218, 228, 237, 43, 140, 129, 142, 162, 247, 97, 150, 120, 142, 205, 72, 30, 219, 167, 80, 235, 196, 153, 236, 159, 43, 113, 34, 96, 192, 173, 153, 209, 91, 122, 218, 205, 213, 114, 35, 82, 58, 87, 61, 73, 192, 63, 179 }, new byte[] { 46, 27, 175, 50, 250, 135, 27, 29, 226, 26, 174, 219, 42, 124, 113, 46, 0, 51, 234, 102, 6, 97, 17, 72, 99, 142, 109, 56, 246, 171, 76, 2, 100, 171, 115, 190, 139, 106, 60, 130, 151, 188, 9, 244, 176, 176, 175, 172, 20, 98, 73, 249, 26, 52, 180, 215, 247, 90, 104, 116, 215, 110, 126, 245, 107, 62, 135, 121, 237, 227, 133, 172, 89, 149, 80, 24, 43, 132, 137, 156, 155, 38, 112, 213, 90, 59, 190, 48, 144, 58, 158, 84, 109, 63, 38, 254, 42, 172, 65, 157, 204, 251, 37, 110, 166, 27, 215, 6, 191, 60, 252, 203, 241, 168, 77, 127, 229, 251, 17, 30, 46, 54, 250, 1, 159, 71, 84, 11 } });
 
             migrationBuilder.InsertData(
                 table: "Addresses",
                 columns: new[] { "Id", "CreatedAt", "ModifiedAt", "PostalCode", "StreetName", "StreetNumber", "UserId" },
-                values: new object[] { 1, new DateTime(2021, 5, 18, 12, 32, 49, 700, DateTimeKind.Local).AddTicks(3455), new DateTime(2021, 5, 18, 12, 32, 49, 700, DateTimeKind.Local).AddTicks(3455), 9000, "Anti-Veggiestraat", 89, 1 });
+                values: new object[] { 1, new DateTime(2021, 5, 18, 13, 28, 10, 888, DateTimeKind.Local).AddTicks(3975), new DateTime(2021, 5, 18, 13, 28, 10, 888, DateTimeKind.Local).AddTicks(3975), 9000, "Anti-Veggiestraat", 89, 1 });
 
             migrationBuilder.InsertData(
                 table: "TradeItems",
                 columns: new[] { "Id", "Amount", "CreatedAt", "ModifiedAt", "ResourceId", "TradeId", "UserId" },
-                values: new object[] { 1, 25, new DateTime(2021, 5, 18, 12, 32, 49, 702, DateTimeKind.Local).AddTicks(9914), new DateTime(2021, 5, 18, 12, 32, 49, 702, DateTimeKind.Local).AddTicks(9914), 1, 1, 1 });
+                values: new object[] { 1, 25, new DateTime(2021, 5, 18, 13, 28, 10, 889, DateTimeKind.Local).AddTicks(9687), new DateTime(2021, 5, 18, 13, 28, 10, 889, DateTimeKind.Local).AddTicks(9687), 1, 1, 1 });
 
             migrationBuilder.InsertData(
                 table: "Wallets",
                 columns: new[] { "Id", "CreatedAt", "ModifiedAt", "UserId", "VAmount" },
-                values: new object[] { 1, new DateTime(2021, 5, 18, 12, 32, 49, 701, DateTimeKind.Local).AddTicks(5949), new DateTime(2021, 5, 18, 12, 32, 49, 701, DateTimeKind.Local).AddTicks(5949), 1, 200m });
+                values: new object[] { 1, new DateTime(2021, 5, 18, 13, 28, 10, 888, DateTimeKind.Local).AddTicks(9106), new DateTime(2021, 5, 18, 13, 28, 10, 888, DateTimeKind.Local).AddTicks(9106), 1, 200m });
 
             migrationBuilder.InsertData(
                 table: "Purchases",
                 columns: new[] { "Id", "CreatedAt", "EuroAmount", "ModifiedAt", "VAmount", "WalletId" },
-                values: new object[] { 1, new DateTime(2021, 5, 18, 12, 32, 49, 704, DateTimeKind.Local).AddTicks(987), 6.9m, new DateTime(2021, 5, 18, 12, 32, 49, 704, DateTimeKind.Local).AddTicks(987), 69m, 1 });
+                values: new object[] { 1, new DateTime(2021, 5, 18, 13, 28, 10, 890, DateTimeKind.Local).AddTicks(4769), 6.9m, new DateTime(2021, 5, 18, 13, 28, 10, 890, DateTimeKind.Local).AddTicks(4769), 69m, 1 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Addresses_UserId",

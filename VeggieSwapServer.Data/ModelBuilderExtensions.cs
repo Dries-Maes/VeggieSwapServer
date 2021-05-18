@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using VeggieSwapServer.Data.Entities;
@@ -25,6 +26,7 @@ namespace VeggieSwapServer.Data
         {
             modelBuilder.Entity<User>(x =>
             {
+                using var hmac = new HMACSHA512();
                 x.HasData(new User
                 {
                     Id = 1,
@@ -32,6 +34,8 @@ namespace VeggieSwapServer.Data
                     LastName = "Delo",
                     IsAdmin = true,
                     Email = "kobe@mail.com",
+                    PasswordSalt = hmac.Key,
+                    PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes("1234")),
                     ImageUrl = "https://robohash.org/Kobe"
                 });
             });
@@ -74,7 +78,7 @@ namespace VeggieSwapServer.Data
                 x.HasData(new Resource
                 {
                     Id = 1,
-                    Name = "Artichokes",
+                    Name = "artichokes",
                     ImageUrl = "artichokes.svg"
                 });
             }
