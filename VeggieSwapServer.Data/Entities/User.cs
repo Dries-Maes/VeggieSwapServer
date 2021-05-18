@@ -25,6 +25,8 @@ namespace VeggieSwapServer.Data.Entities
         public virtual Wallet Wallet { get; set; }
 
         public virtual ICollection<TradeItem> TradeItems { get; set; }
+        public virtual ICollection<Trade> TradeProposers { get; set; }
+        public virtual ICollection<Trade> TradeReceivers { get; set; }
 
         [StringLength(255)]
         public string ImageUrl { get; set; }

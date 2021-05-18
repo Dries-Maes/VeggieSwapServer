@@ -11,21 +11,24 @@ namespace VeggieSwapServer.Business.Services
     public class TradeItemService
     {
         private UserRepo _userRepo;
-        private IGenericRepo<TradeItem> _genericRepo;
-        private IMapper _mapper;
+        private TradeItemRepo _tradeItemRepo;
 
-        public TradeItemService(IGenericRepo<TradeItem> genericRepo, UserRepo userRepo, IMapper mapper)
+        public TradeItemService(TradeItemRepo genericRepo, UserRepo userRepo)
 
         {
             _userRepo = userRepo;
-            _genericRepo = genericRepo;
-            _mapper = mapper;
+            _tradeItemRepo = genericRepo;
         }
 
         public async Task<IEnumerable<TradeItemDto>> GetAllEntitiesAsync()
         {
+            IEnumerable<TradeItem> tradeItems = await _tradeItemRepo.GetAllEntitiesAsync();
+            return await MapTradeItems(tradeItems);
+        }
+
+        private async Task<List<TradeItemDto>> MapTradeItems(IEnumerable<TradeItem> tradeItems)
+        {
             //To Do: replace this method with a automapper function
-            IEnumerable<TradeItem> tradeItems = await _genericRepo.GetAllEntitiesAsync();
             IEnumerable<User> Users = await _userRepo.GetAllEntitiesAsync();
             var result = new List<TradeItemDto>();
             foreach (var tradeItem in tradeItems)
@@ -40,10 +43,11 @@ namespace VeggieSwapServer.Business.Services
                     ResourceId = tradeItem.Resource.Id,
                     ResourceName = tradeItem.Resource.Name,
                     ResourceImageUrl = tradeItem.Resource.ImageUrl,
-                    UserId = tradeItem.UserId
+                    UserId = tradeItem.UserId,
                 };
                 result.Add(item);
             }
+
             return result;
         }
     }

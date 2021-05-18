@@ -8,7 +8,7 @@ namespace VeggieSwapServer.Data.Entities
         [ForeignKey("User")]
         public int UserId { get; set; }
 
-        public User User { get; set; }
+        public virtual User User { get; set; }
 
         [Required]
         [StringLength(50)]
