@@ -315,12 +315,12 @@ namespace VeggieSwapServer.Data
             modelBuilder.Entity<Trade>(x =>
             {
                 x.HasData(
-                new Trade { Id = 1, ReceiverId = 1, ProposerId = 2, Completed = true },
-                new Trade { Id = 2, ReceiverId = 1, ProposerId = 3, Completed = false },
-                new Trade { Id = 3, ReceiverId = 2, ProposerId = 4, Completed = false },
-                new Trade { Id = 4, ReceiverId = 2, ProposerId = 5, Completed = false },
-                new Trade { Id = 5, ReceiverId = 5, ProposerId = 1, Completed = false },
-                new Trade { Id = 6, ReceiverId = 1, ProposerId = 3, Completed = false }
+                new Trade { Id = 1, ReceiverId = 1, ProposerId = 2, Completed = true, ActiveUserId = 1 },
+                new Trade { Id = 2, ReceiverId = 1, ProposerId = 3, Completed = false, ActiveUserId = 3 },
+                new Trade { Id = 3, ReceiverId = 2, ProposerId = 4, Completed = false, ActiveUserId = 4 },
+                new Trade { Id = 4, ReceiverId = 2, ProposerId = 5, Completed = false, ActiveUserId = 5 },
+                new Trade { Id = 5, ReceiverId = 5, ProposerId = 1, Completed = false, ActiveUserId = 5 },
+                new Trade { Id = 6, ReceiverId = 1, ProposerId = 3, Completed = false, ActiveUserId = 1 }
                 );
             }
             );
@@ -410,7 +410,6 @@ namespace VeggieSwapServer.Data
                 new TradeItemProposal { Id = 21, TradeItemId = 21, ProposedAmount = 25, TradeId = 1 },
                 new TradeItemProposal { Id = 22, TradeItemId = 22, ProposedAmount = 26, TradeId = 2 },
                 new TradeItemProposal { Id = 23, TradeItemId = 23, ProposedAmount = 27, TradeId = 3 }
-
                 );
             }
             );

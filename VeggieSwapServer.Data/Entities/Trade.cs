@@ -18,5 +18,7 @@ namespace VeggieSwapServer.Data.Entities
         public virtual User Receiver { get; set; }
 
         public bool Completed { get; set; }
+
+        public int ActiveUserId { get; set; }
     }
 }
