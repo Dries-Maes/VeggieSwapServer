@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using VeggieSwapServer.Data.Entities;
 
@@ -28,7 +29,7 @@ namespace VeggieSwapServer.Data.Repositories
             {
                 return await _context.Set<User>()
                     .Include(x => x.Address)
-                    .Include(x => x.TradeItems)                    
+                    .Include(x => x.TradeItems)
                     .ThenInclude(x => x.Resource)
                     .ToListAsync();
             }
@@ -36,6 +37,11 @@ namespace VeggieSwapServer.Data.Repositories
             {
                 return await base.GetAllEntitiesAsync();
             }
+        }
+
+        public async override Task<User> GetEntityAsync(int id)
+        {
+            return await _context.Users.Include(y => y.Address).FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public override Task<bool> AddEntityAsync(User entity)
