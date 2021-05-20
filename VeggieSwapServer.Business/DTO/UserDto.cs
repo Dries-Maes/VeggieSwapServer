@@ -13,8 +13,9 @@ namespace VeggieSwapServer.Business.Models
         public string LastName { get; set; }
         public string Email { get; set; }
         public int AddressID { get; set; }
-        public string AddressStreetName { get; set; }
         public int AddressPostalCode { get; set; }
+        public string AddressStreetName { get; set; }
+        public int AddressStreetNumber { get; set; }
         public int WalletID { get; set; }
         public string ImageUrl { get; set; }
         public bool IsAdmin { get; set; }
