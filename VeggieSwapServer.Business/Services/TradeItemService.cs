@@ -24,36 +24,25 @@ namespace VeggieSwapServer.Business.Services
 
         public async Task<IEnumerable<TradeItemOverviewDto>> GetAllEntitiesAsync()
         {
-            IEnumerable<TradeItem> tradeItems = await _tradeItemRepo.GetAllEntitiesAsync();
-            return await MapTradeItems(tradeItems);
+            return await MapTradeItems(await _tradeItemRepo.GetAllEntitiesAsync());
         }
 
-        public async Task<IEnumerable<TradeItemDetailDto>> GetTradeItemDetailListDtoAsync(int Id)
+        public async Task<IEnumerable<TradeItemOverviewDto>> GetTradeItemDetailListDtoAsync(int Id)
         {
-            return _mapper.Map<IEnumerable<TradeItemDetailDto>>(await _tradeItemRepo.GetAllEntitiesAsync(Id));
+            return await MapTradeItems(await _tradeItemRepo.GetAllEntitiesAsync(Id));
         }
 
         private async Task<List<TradeItemOverviewDto>> MapTradeItems(IEnumerable<TradeItem> tradeItems)
         {
-            //To Do: replace this method with a automapper function
             IEnumerable<User> Users = await _userRepo.GetAllEntitiesAsync();
+
             var result = new List<TradeItemOverviewDto>();
             foreach (var tradeItem in tradeItems)
             {
                 User user = Users.FirstOrDefault(x => x.Id == tradeItem.UserId);
-                var item = new TradeItemOverviewDto
-                {
-                    UserFirstName = user.FirstName,
-                    UserLastName = user.LastName,
-                    Id = tradeItem.Id,
-                    Amount = tradeItem.Amount,
-                    ResourceId = tradeItem.Resource.Id,
-                    ResourceName = tradeItem.Resource.Name,
-                    ResourceImageUrl = tradeItem.Resource.ImageUrl,
-                    UserId = tradeItem.UserId,
-
-                    // Grootste deel kan gewoon gemapped worden (to do)
-                };
+                var item = _mapper.Map<TradeItemOverviewDto>(tradeItem);
+                item.UserFirstName = user.FirstName;
+                item.UserLastName = user.LastName;
                 result.Add(item);
             }
 

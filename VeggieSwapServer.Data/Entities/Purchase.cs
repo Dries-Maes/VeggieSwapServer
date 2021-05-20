@@ -7,7 +7,6 @@ namespace VeggieSwapServer.Data.Entities
     {
         [ForeignKey("Wallet")]
         public int WalletId { get; set; }
-
         public virtual Wallet Wallet { get; set; }
         public decimal VAmount { get; set; }
         public decimal EuroAmount { get; set; }

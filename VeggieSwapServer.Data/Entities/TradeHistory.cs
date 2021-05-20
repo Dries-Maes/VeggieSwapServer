@@ -10,8 +10,6 @@ namespace VeggieSwapServer.Data.Entities
     {
         public string TradeItemsJSon { get; set; }
 
-        //public virtual ICollection<TradeItemProposal> TradeItemProposals { get; set; }
-
         public int ProposerId { get; set; }
 
         public int ReceiverId { get; set; }

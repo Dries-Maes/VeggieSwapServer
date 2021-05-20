@@ -19,12 +19,6 @@ namespace VeggieSwapServer.Controllers
             _userService = userService;
         }
 
-        //[HttpGet]
-        //public async Task<IEnumerable<object>> GetMembersAsync()
-        //{
-        //    return await _userService.GetAllEntitiesAsync();
-        //}
-
         [HttpGet]
         [AllowAnonymous]
         public async Task<IEnumerable<object>> GetMembersAsyncIncludeAddress(bool includeAddress)

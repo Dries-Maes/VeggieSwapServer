@@ -26,12 +26,6 @@ namespace VeggieSwapServer.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder
-            //    .Entity<User>()
-            //    .HasMany(e => e.TradeItems)
-            //    .WithOne(e => e.User)
-            //    .OnDelete(DeleteBehavior.Restrict);
-
             modelBuilder
                .Entity<Trade>()
                .HasOne(e => e.Proposer)

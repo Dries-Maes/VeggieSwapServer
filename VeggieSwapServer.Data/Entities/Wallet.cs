@@ -8,7 +8,6 @@ namespace VeggieSwapServer.Data.Entities
     {
         [ForeignKey("User")]
         public int UserId { get; set; }
-
         public virtual User User { get; set; }
         public virtual ICollection<Purchase> Purchases { get; set; }
         public decimal VAmount { get; set; }
