@@ -22,6 +22,7 @@ namespace VeggieSwapServer.Business.Configuration
                 .ForMember(d => d.AddressStreetName, x => x.MapFrom(y => y.Address.StreetName))
                 .ForMember(d => d.AddressStreetNumber, x => x.MapFrom(y => y.Address.StreetNumber))
                 .ForMember(d => d.WalletID, x => x.MapFrom(y => y.Wallet.Id));
+            CreateMap<UserDTO, User>();
             CreateMap<Resource, ResourceDto>().ReverseMap();
         }
     }
