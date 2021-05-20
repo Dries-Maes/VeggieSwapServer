@@ -39,7 +39,7 @@ namespace VeggieSwapServer.Data.Repositories
             }
         }
 
-        public async override Task<User> GetEntityAsync(int id)
+        public async Task<User> GetUserAsync(int id)
         {
             return await _context.Users.Include(y => y.Address).FirstOrDefaultAsync(x => x.Id == id);
         }

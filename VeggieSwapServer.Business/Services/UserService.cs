@@ -28,5 +28,10 @@ namespace VeggieSwapServer.Business.Services
                 return await base.GetAllEntitiesAsync();
             }
         }
+
+        public async Task<UserDTO> GetUserAsync(int id)
+        {
+            return _mapper.Map<UserDTO>(await _userRepo.GetUserAsync(id));
+        }
     }
 }

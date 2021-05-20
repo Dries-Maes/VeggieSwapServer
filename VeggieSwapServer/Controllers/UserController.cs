@@ -28,9 +28,10 @@ namespace VeggieSwapServer.Controllers
         }
 
         [HttpGet("{id}")]
+        [AllowAnonymous]
         public async Task<ActionResult<UserDTO>> GetMemberAsync(int id)
         {
-            return Ok(await _userService.GetEntityAsync(id));
+            return Ok(await _userService.GetUserAsync(id));
         }
 
         [HttpDelete("{id}")]

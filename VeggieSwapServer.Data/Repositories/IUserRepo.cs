@@ -13,5 +13,7 @@ namespace VeggieSwapServer.Data.Repositories
         Task<bool> UserExistsAsync(string eMail);
 
         Task<bool> AddEntityAsync(User entity);
+
+        Task<User> GetUserAsync(int id);
     }
 }
