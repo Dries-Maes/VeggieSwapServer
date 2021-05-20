@@ -4,7 +4,7 @@ using VeggieSwapServer.Data.Entities;
 
 namespace VeggieSwapServer.Business.DTO
 {
-    public class TradeItemOverviewDto
+    public class TradeItemDto
     {
         public int Id { get; set; }
         public int UserId { get; set; }
@@ -15,5 +15,6 @@ namespace VeggieSwapServer.Business.DTO
         public string ResourceImageUrl { get; set; }
         public int Amount { get; set; }
         public int ProposedAmount { get; set; }
+        public int ActiveUserId { get; set; }
     }
 }

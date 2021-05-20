@@ -11,7 +11,7 @@ namespace VeggieSwapServer.Business.Configuration
     {
         public AutoMapperProfile()
         {
-            CreateMap<TradeItem, TradeItemOverviewDto>()
+            CreateMap<TradeItem, TradeItemDto>()
                 .ForMember(d => d.ResourceId, x => x.MapFrom(y => y.Resource.Id))
                 .ForMember(d => d.ResourceName, x => x.MapFrom(y => y.Resource.Name))
                 .ForMember(d => d.ResourceImageUrl, x => x.MapFrom(y => y.Resource.ImageUrl));
@@ -22,6 +22,7 @@ namespace VeggieSwapServer.Business.Configuration
                 .ForMember(d => d.AddressStreetName, x => x.MapFrom(y => y.Address.StreetName))
                 .ForMember(d => d.AddressStreetNumber, x => x.MapFrom(y => y.Address.StreetNumber))
                 .ForMember(d => d.WalletID, x => x.MapFrom(y => y.Wallet.Id));
+
             CreateMap<Resource, ResourceDto>().ReverseMap();
         }
     }

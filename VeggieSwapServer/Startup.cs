@@ -61,7 +61,9 @@ namespace VeggieSwapServer
             services.AddScoped<IGenericRepo<Resource>, GenericRepo<Resource>>();
             services.AddScoped<IGenericRepo<Trade>, GenericRepo<Trade>>();
             services.AddScoped<IGenericRepo<User>, UserRepo>();
+            services.AddScoped<IGenericRepo<TradeItemProposal>, GenericRepo<TradeItemProposal>>();
             services.AddScoped<IGenericRepo<Wallet>, GenericRepo<Wallet>>();
+            services.AddScoped<ITradeFactoryService, TradeFactoryService>();
 
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IUserRepo, UserRepo>();
@@ -69,6 +71,7 @@ namespace VeggieSwapServer
             services.AddScoped<TradeItemRepo, TradeItemRepo>();
             services.AddScoped<TradeItemService, TradeItemService>();
             services.AddScoped<UserService, UserService>();
+            services.AddScoped<TradeRepo, TradeRepo>();
             services.AddScoped<ITokenService, TokenService>();
         }
 
