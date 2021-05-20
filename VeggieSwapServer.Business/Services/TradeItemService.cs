@@ -41,19 +41,9 @@ namespace VeggieSwapServer.Business.Services
             foreach (var tradeItem in tradeItems)
             {
                 User user = Users.FirstOrDefault(x => x.Id == tradeItem.UserId);
-                var item = new TradeItemOverviewDto
-                {
-                    UserFirstName = user.FirstName,
-                    UserLastName = user.LastName,
-                    Id = tradeItem.Id,
-                    Amount = tradeItem.Amount,
-                    ResourceId = tradeItem.Resource.Id,
-                    ResourceName = tradeItem.Resource.Name,
-                    ResourceImageUrl = tradeItem.Resource.ImageUrl,
-                    UserId = tradeItem.UserId,
-
-                    // Grootste deel kan gewoon gemapped worden (to do)
-                };
+                var item = _mapper.Map<TradeItemOverviewDto>(tradeItem);
+                item.UserFirstName = user.FirstName;
+                item.UserLastName = user.LastName;
                 result.Add(item);
             }
 
