@@ -1,8 +1,5 @@
-﻿using AutoMapper;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using VeggieSwapServer.Business.DTO;
 using VeggieSwapServer.Data;
@@ -86,7 +83,7 @@ namespace VeggieSwapServer.Business.Services
 
             if (_trade != null)
             {
-                await GetTradeItemProposalsAsync(); // Trek proposed ammounts af van tradeitems!!!! 
+                await GetTradeItemProposalsAsync(); // Trek proposed ammounts af van tradeitems!!!!
                 _trade.Completed = true;
                 await _tradeRepo.UpdateEntityAsync(_trade);
                 return true;

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using VeggieSwapServer.Data.Entities;
-
-namespace VeggieSwapServer.Business.DTO
+﻿namespace VeggieSwapServer.Business.DTO
 {
     public class TradeItemDto
     {

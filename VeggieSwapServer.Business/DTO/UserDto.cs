@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using VeggieSwapServer.Business.DTO;
-using VeggieSwapServer.Data.Entities;
 
 namespace VeggieSwapServer.Business.Models
 {

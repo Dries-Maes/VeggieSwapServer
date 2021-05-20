@@ -1,10 +1,8 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using VeggieSwapServer.Data.Entities;
-using Microsoft.EntityFrameworkCore;
 
 namespace VeggieSwapServer.Data.Repositories
 {

@@ -8,7 +8,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
-using VeggieSwapServer.Business;
 using VeggieSwapServer.Business.Configuration;
 using VeggieSwapServer.Business.Services;
 using VeggieSwapServer.Data;

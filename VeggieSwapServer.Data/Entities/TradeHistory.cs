@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace VeggieSwapServer.Data.Entities
+﻿namespace VeggieSwapServer.Data.Entities
 {
     internal class TradeHistory : EntityBase
     {
