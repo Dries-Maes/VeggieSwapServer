@@ -11,22 +11,36 @@ namespace VeggieSwapServer.Controllers
     public class TradeItemController : ControllerBase
     {
         private TradeItemService _tradeItemService;
+        private ITradeFactoryService _tradeFactoryService;
 
-        public TradeItemController(TradeItemService tradeItemService)
+        public TradeItemController(TradeItemService tradeItemService, ITradeFactoryService tradeFactoryService)
         {
+            _tradeFactoryService = tradeFactoryService;
             _tradeItemService = tradeItemService;
         }
 
         [HttpGet]
-        public async Task<IEnumerable<TradeItemOverviewDto>> GetAllTradeItemsAsync()
+        public async Task<IEnumerable<TradeItemDto>> GetAllTradeItemsAsync()
         {
             return await _tradeItemService.GetAllEntitiesAsync();
         }
 
-        [HttpGet("detail-list/{id}")]
-        public async Task<IEnumerable<TradeItemOverviewDto>> GetTradeItemDetailList(int id)
+        [HttpGet("{id1}/{id2}")]
+        public async Task<IEnumerable<TradeItemDto>> GetTradeItemDetailList(int id1, int id2)
         {
-            return await _tradeItemService.GetTradeItemDetailListDtoAsync(id);
+            return await _tradeFactoryService.ControllerGetsList(id1, id2);
+        }
+
+        [HttpGet("{id1}")]
+        public async Task<IEnumerable<TradeItemDto>> GetTradeItemDetailList(int id1)
+        {
+            return await _tradeItemService.GetTradeItemDetailListDtoAsync(id1);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> PostMemberAsync(IEnumerable<TradeItemDto> tradeList)
+        {
+            return Ok(await _tradeFactoryService.ControllerPushListAsync(tradeList));
         }
     }
 }

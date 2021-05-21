@@ -1,10 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
+
 using VeggieSwapServer.Data.Entities;
 
 namespace VeggieSwapServer.Data
@@ -315,12 +312,13 @@ namespace VeggieSwapServer.Data
             modelBuilder.Entity<Trade>(x =>
             {
                 x.HasData(
-                new Trade { Id = 1, ReceiverId = 1, ProposerId = 2, Completed = true, ActiveUserId = 1 },
-                new Trade { Id = 2, ReceiverId = 1, ProposerId = 3, Completed = false, ActiveUserId = 3 },
-                new Trade { Id = 3, ReceiverId = 2, ProposerId = 4, Completed = false, ActiveUserId = 4 },
-                new Trade { Id = 4, ReceiverId = 2, ProposerId = 5, Completed = false, ActiveUserId = 5 },
-                new Trade { Id = 5, ReceiverId = 5, ProposerId = 1, Completed = false, ActiveUserId = 5 },
-                new Trade { Id = 6, ReceiverId = 1, ProposerId = 3, Completed = false, ActiveUserId = 1 }
+                new Trade { Id = 1, ReceiverId = 1, ProposerId = 2, Completed = false, ActiveUserId = 1 },
+                new Trade { Id = 2, ReceiverId = 2, ProposerId = 3, Completed = false, ActiveUserId = 3 },
+                new Trade { Id = 3, ReceiverId = 8, ProposerId = 6, Completed = false, ActiveUserId = 6 },
+                new Trade { Id = 4, ReceiverId = 8, ProposerId = 1, Completed = false, ActiveUserId = 1 },
+                new Trade { Id = 5, ReceiverId = 7, ProposerId = 4, Completed = false, ActiveUserId = 7 },
+                new Trade { Id = 6, ReceiverId = 2, ProposerId = 7, Completed = false, ActiveUserId = 7 }
+
                 );
             }
             );
@@ -331,32 +329,85 @@ namespace VeggieSwapServer.Data
             modelBuilder.Entity<TradeItem>(x =>
             {
                 x.HasData(
-                new TradeItem { Id = 1, UserId = 10, ResourceId = 51, Amount = 2 },
-                new TradeItem { Id = 2, UserId = 8, ResourceId = 11, Amount = 10 },
-                new TradeItem { Id = 3, UserId = 13, ResourceId = 32, Amount = 50 },
-                new TradeItem { Id = 4, UserId = 4, ResourceId = 24, Amount = 69 },
-                new TradeItem { Id = 5, UserId = 5, ResourceId = 45, Amount = 45 },
-                new TradeItem { Id = 6, UserId = 6, ResourceId = 6, Amount = 30 },
-                new TradeItem { Id = 7, UserId = 7, ResourceId = 17, Amount = 42 },
-                new TradeItem { Id = 8, UserId = 8, ResourceId = 8, Amount = 75 },
-                new TradeItem { Id = 9, UserId = 9, ResourceId = 9, Amount = 201 },
-                new TradeItem { Id = 10, UserId = 9, ResourceId = 10, Amount = 634 },
-                new TradeItem { Id = 11, UserId = 11, ResourceId = 17, Amount = 20 },
-                new TradeItem { Id = 12, UserId = 13, ResourceId = 26, Amount = 75 },
-                new TradeItem { Id = 13, UserId = 10, ResourceId = 19, Amount = 69 },
-                new TradeItem { Id = 14, UserId = 3, ResourceId = 49, Amount = 25 },
-                new TradeItem { Id = 15, UserId = 4, ResourceId = 50, Amount = 35 },
-                new TradeItem { Id = 16, UserId = 5, ResourceId = 7, Amount = 75 },
-                new TradeItem { Id = 17, UserId = 3, ResourceId = 1, Amount = 10 },
-                new TradeItem { Id = 18, UserId = 1, ResourceId = 6, Amount = 9 },
-                new TradeItem { Id = 19, UserId = 12, ResourceId = 7, Amount = 17 },
-                new TradeItem { Id = 20, UserId = 7, ResourceId = 36, Amount = 30 },
-                new TradeItem { Id = 21, UserId = 6, ResourceId = 23, Amount = 78 },
-                new TradeItem { Id = 22, UserId = 9, ResourceId = 27, Amount = 69 },
-                new TradeItem { Id = 23, UserId = 1, ResourceId = 37, Amount = 180 },
-                new TradeItem { Id = 24, UserId = 2, ResourceId = 47, Amount = 47 },
-                new TradeItem { Id = 25, UserId = 6, ResourceId = 48, Amount = 20 },
-                new TradeItem { Id = 26, UserId = 7, ResourceId = 39, Amount = 10 }
+                new TradeItem { Id = 1, UserId = 1, ResourceId = 1, Amount = 50 },
+                new TradeItem { Id = 2, UserId = 1, ResourceId = 3, Amount = 50 },
+                new TradeItem { Id = 3, UserId = 1, ResourceId = 5, Amount = 50 },
+                new TradeItem { Id = 4, UserId = 1, ResourceId = 7, Amount = 50 },
+
+                new TradeItem { Id = 5, UserId = 2, ResourceId = 51, Amount = 50 },
+                new TradeItem { Id = 6, UserId = 2, ResourceId = 34, Amount = 50 },
+                new TradeItem { Id = 7, UserId = 2, ResourceId = 46, Amount = 50 },
+                new TradeItem { Id = 8, UserId = 2, ResourceId = 32, Amount = 50 },
+                new TradeItem { Id = 9, UserId = 2, ResourceId = 39, Amount = 50 },
+                new TradeItem { Id = 10, UserId = 2, ResourceId = 15, Amount = 50 },
+
+                new TradeItem { Id = 11, UserId = 3, ResourceId = 51, Amount = 50 },
+                new TradeItem { Id = 12, UserId = 3, ResourceId = 4, Amount = 50 },
+                new TradeItem { Id = 13, UserId = 3, ResourceId = 8, Amount = 50 },
+                new TradeItem { Id = 14, UserId = 3, ResourceId = 13, Amount = 50 },
+                new TradeItem { Id = 15, UserId = 3, ResourceId = 6, Amount = 50 },
+                new TradeItem { Id = 16, UserId = 3, ResourceId = 31, Amount = 50 },
+
+                new TradeItem { Id = 17, UserId = 4, ResourceId = 21, Amount = 50 },
+                new TradeItem { Id = 18, UserId = 4, ResourceId = 44, Amount = 50 },
+                new TradeItem { Id = 19, UserId = 4, ResourceId = 51, Amount = 50 },
+
+                new TradeItem { Id = 20, UserId = 5, ResourceId = 7, Amount = 50 },
+                new TradeItem { Id = 21, UserId = 5, ResourceId = 51, Amount = 50 },
+                new TradeItem { Id = 22, UserId = 5, ResourceId = 51, Amount = 50 },
+                new TradeItem { Id = 23, UserId = 5, ResourceId = 46, Amount = 50 },
+                new TradeItem { Id = 24, UserId = 5, ResourceId = 32, Amount = 50 },
+
+                new TradeItem { Id = 25, UserId = 6, ResourceId = 39, Amount = 50 },
+                new TradeItem { Id = 26, UserId = 6, ResourceId = 15, Amount = 50 },
+                new TradeItem { Id = 27, UserId = 6, ResourceId = 51, Amount = 50 },
+                new TradeItem { Id = 28, UserId = 6, ResourceId = 4, Amount = 50 },
+
+
+                new TradeItem { Id = 29, UserId = 7, ResourceId = 8, Amount = 50 },
+                new TradeItem { Id = 30, UserId = 7, ResourceId = 13, Amount = 50 },
+                new TradeItem { Id = 31, UserId = 7, ResourceId = 6, Amount = 50 },
+                new TradeItem { Id = 32, UserId = 7, ResourceId = 51, Amount = 50 },
+
+                new TradeItem { Id = 33, UserId = 8, ResourceId = 6, Amount = 50 },
+                new TradeItem { Id = 34, UserId = 8, ResourceId = 51, Amount = 50 }
+
+                );
+            }
+            );
+        }
+
+
+        private static void SeedTradeItemProposals(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<TradeItemProposal>(x =>
+            {
+                x.HasData(
+                new TradeItemProposal { Id = 1, TradeItemId = 1, ProposedAmount = 5, TradeId = 1 },
+                new TradeItemProposal { Id = 2, TradeItemId = 2, ProposedAmount = 15, TradeId = 1 },
+                new TradeItemProposal { Id = 3, TradeItemId = 3, ProposedAmount = 5, TradeId = 1 },
+                new TradeItemProposal { Id = 4, TradeItemId = 5, ProposedAmount = 5, TradeId = 1 },
+
+                new TradeItemProposal { Id = 5, TradeItemId = 6, ProposedAmount = 5, TradeId = 2 },
+                new TradeItemProposal { Id = 6, TradeItemId = 7, ProposedAmount = 15, TradeId = 2 },
+                new TradeItemProposal { Id = 7, TradeItemId = 13, ProposedAmount = 5, TradeId = 2 },
+                new TradeItemProposal { Id = 8, TradeItemId = 14, ProposedAmount = 15, TradeId = 2 },
+
+                new TradeItemProposal { Id = 9, TradeItemId = 33, ProposedAmount = 5, TradeId = 3 },
+                new TradeItemProposal { Id = 10, TradeItemId = 28, ProposedAmount = 15, TradeId = 3 },
+
+                new TradeItemProposal { Id = 11, TradeItemId = 34, ProposedAmount = 5, TradeId = 4 },
+                new TradeItemProposal { Id = 12, TradeItemId = 1, ProposedAmount = 15, TradeId = 4 },
+                new TradeItemProposal { Id = 13, TradeItemId = 2, ProposedAmount = 5, TradeId = 4 },
+                new TradeItemProposal { Id = 14, TradeItemId = 3, ProposedAmount = 15, TradeId = 4 },
+                new TradeItemProposal { Id = 15, TradeItemId = 4, ProposedAmount = 5, TradeId = 4 },
+
+                new TradeItemProposal { Id = 16, TradeItemId = 32, ProposedAmount = 3, TradeId = 5 },
+                new TradeItemProposal { Id = 17, TradeItemId = 17, ProposedAmount = 5, TradeId = 5 },
+                new TradeItemProposal { Id = 18, TradeItemId = 18, ProposedAmount = 15, TradeId = 5 },
+
+                new TradeItemProposal { Id = 19, TradeItemId = 5, ProposedAmount = 1, TradeId = 6 },
+                new TradeItemProposal { Id = 20, TradeItemId = 30, ProposedAmount = 15, TradeId = 6 }
                 );
             }
             );
@@ -377,39 +428,6 @@ namespace VeggieSwapServer.Data
                 new Purchase { Id = 8, WalletId = 7, VAmount = 50, EuroAmount = 5m },
                 new Purchase { Id = 9, WalletId = 3, VAmount = 130, EuroAmount = 13m },
                 new Purchase { Id = 10, WalletId = 4, VAmount = 20, EuroAmount = 2m }
-                );
-            }
-            );
-        }
-
-        private static void SeedTradeItemProposals(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<TradeItemProposal>(x =>
-            {
-                x.HasData(
-                new TradeItemProposal { Id = 1, TradeItemId = 1, ProposedAmount = 5, TradeId = 1 },
-                new TradeItemProposal { Id = 2, TradeItemId = 2, ProposedAmount = 6, TradeId = 2 },
-                new TradeItemProposal { Id = 3, TradeItemId = 3, ProposedAmount = 7, TradeId = 3 },
-                new TradeItemProposal { Id = 4, TradeItemId = 4, ProposedAmount = 8, TradeId = 4 },
-                new TradeItemProposal { Id = 5, TradeItemId = 5, ProposedAmount = 9, TradeId = 5 },
-                new TradeItemProposal { Id = 6, TradeItemId = 6, ProposedAmount = 10, TradeId = 1 },
-                new TradeItemProposal { Id = 7, TradeItemId = 7, ProposedAmount = 11, TradeId = 2 },
-                new TradeItemProposal { Id = 8, TradeItemId = 8, ProposedAmount = 12, TradeId = 3 },
-                new TradeItemProposal { Id = 9, TradeItemId = 9, ProposedAmount = 13, TradeId = 4 },
-                new TradeItemProposal { Id = 10, TradeItemId = 10, ProposedAmount = 14, TradeId = 5 },
-                new TradeItemProposal { Id = 11, TradeItemId = 11, ProposedAmount = 15, TradeId = 1 },
-                new TradeItemProposal { Id = 12, TradeItemId = 12, ProposedAmount = 16, TradeId = 2 },
-                new TradeItemProposal { Id = 13, TradeItemId = 13, ProposedAmount = 17, TradeId = 3 },
-                new TradeItemProposal { Id = 14, TradeItemId = 14, ProposedAmount = 18, TradeId = 4 },
-                new TradeItemProposal { Id = 15, TradeItemId = 15, ProposedAmount = 19, TradeId = 5 },
-                new TradeItemProposal { Id = 16, TradeItemId = 16, ProposedAmount = 20, TradeId = 1 },
-                new TradeItemProposal { Id = 17, TradeItemId = 17, ProposedAmount = 21, TradeId = 2 },
-                new TradeItemProposal { Id = 18, TradeItemId = 18, ProposedAmount = 22, TradeId = 3 },
-                new TradeItemProposal { Id = 19, TradeItemId = 19, ProposedAmount = 23, TradeId = 4 },
-                new TradeItemProposal { Id = 20, TradeItemId = 20, ProposedAmount = 24, TradeId = 5 },
-                new TradeItemProposal { Id = 21, TradeItemId = 21, ProposedAmount = 25, TradeId = 1 },
-                new TradeItemProposal { Id = 22, TradeItemId = 22, ProposedAmount = 26, TradeId = 2 },
-                new TradeItemProposal { Id = 23, TradeItemId = 23, ProposedAmount = 27, TradeId = 3 }
                 );
             }
             );

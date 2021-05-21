@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace VeggieSwapServer.Business.DTO
+﻿namespace VeggieSwapServer.Business.DTO
 {
-    class UserDetailDto
+    internal class UserDetailDto
     {
     }
 }
