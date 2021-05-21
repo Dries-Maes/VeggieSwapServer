@@ -22,25 +22,25 @@ namespace VeggieSwapServer.Business.Services
             _tradeItemRepo = genericRepo;
         }
 
-        public async Task<IEnumerable<TradeItemOverviewDto>> GetAllEntitiesAsync()
+        public async Task<IEnumerable<TradeItemDto>> GetAllEntitiesAsync()
         {
             return await MapTradeItems(await _tradeItemRepo.GetAllEntitiesAsync());
         }
 
-        public async Task<IEnumerable<TradeItemOverviewDto>> GetTradeItemDetailListDtoAsync(int Id)
+        public async Task<IEnumerable<TradeItemDto>> GetTradeItemDetailListDtoAsync(int Id)
         {
             return await MapTradeItems(await _tradeItemRepo.GetAllEntitiesAsync(Id));
         }
 
-        private async Task<List<TradeItemOverviewDto>> MapTradeItems(IEnumerable<TradeItem> tradeItems)
+        private async Task<List<TradeItemDto>> MapTradeItems(IEnumerable<TradeItem> tradeItems)
         {
             IEnumerable<User> Users = await _userRepo.GetAllEntitiesAsync();
 
-            var result = new List<TradeItemOverviewDto>();
+            var result = new List<TradeItemDto>();
             foreach (var tradeItem in tradeItems)
             {
                 User user = Users.FirstOrDefault(x => x.Id == tradeItem.UserId);
-                var item = _mapper.Map<TradeItemOverviewDto>(tradeItem);
+                var item = _mapper.Map<TradeItemDto>(tradeItem);
                 item.UserFirstName = user.FirstName;
                 item.UserLastName = user.LastName;
                 result.Add(item);
