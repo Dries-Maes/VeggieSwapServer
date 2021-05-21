@@ -35,18 +35,21 @@ namespace VeggieSwapServer.Controllers
         }
 
         [HttpDelete("{id}")]
+        [AllowAnonymous]
         public async Task<ActionResult<UserDTO>> DeleteMemberAsync(int id)
         {
             return Ok(await _userService.DeleteEntityAsync(id));
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<ActionResult> PostMemberAsync(UserDTO model)
         {
             return Ok(await _userService.AddEntityAsync(model));
         }
 
         [HttpPut]
+        [AllowAnonymous]
         public async Task<ActionResult> PutMemberAsync(UserDTO model)
         {
             return Ok(await _userService.UpdateEntityAsync(model));
