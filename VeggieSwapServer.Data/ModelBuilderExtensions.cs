@@ -312,12 +312,12 @@ namespace VeggieSwapServer.Data
             modelBuilder.Entity<Trade>(x =>
             {
                 x.HasData(
-                new Trade { Id = 1, ReceiverId = 1, ProposerId = 2, Completed = true, ActiveUserId = 1 },
-                new Trade { Id = 2, ReceiverId = 2, ProposerId = 3, Completed = true, ActiveUserId = 3 },
-                new Trade { Id = 3, ReceiverId = 8, ProposerId = 6, Completed = true, ActiveUserId = 6 },
-                new Trade { Id = 4, ReceiverId = 8, ProposerId = 1, Completed = true, ActiveUserId = 1 },
-                new Trade { Id = 5, ReceiverId = 7, ProposerId = 4, Completed = true, ActiveUserId = 7 },
-                new Trade { Id = 6, ReceiverId = 2, ProposerId = 7, Completed = true, ActiveUserId = 7 }
+                new Trade { Id = 1, ReceiverId = 1, ProposerId = 2, Completed = false, ActiveUserId = 1 },
+                new Trade { Id = 2, ReceiverId = 2, ProposerId = 3, Completed = false, ActiveUserId = 3 },
+                new Trade { Id = 3, ReceiverId = 8, ProposerId = 6, Completed = false, ActiveUserId = 6 },
+                new Trade { Id = 4, ReceiverId = 8, ProposerId = 1, Completed = false, ActiveUserId = 1 },
+                new Trade { Id = 5, ReceiverId = 7, ProposerId = 4, Completed = false, ActiveUserId = 7 },
+                new Trade { Id = 6, ReceiverId = 2, ProposerId = 7, Completed = false, ActiveUserId = 7 }
 
                 );
             }
