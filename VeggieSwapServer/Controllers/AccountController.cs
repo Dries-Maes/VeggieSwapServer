@@ -25,7 +25,18 @@ namespace VeggieSwapServer.Controllers
         [HttpPost("Login")]
         public async Task<ActionResult<UserTokenDto>> LoginAsync(LoginDto dto)
         {
-            return Ok(await _service.LoginAsync(dto.Email, dto.Password));
+            try
+            {
+                return Ok(await _service.LoginAsync(dto.Email, dto.Password));
+            }
+            catch (System.UnauthorizedAccessException e)
+            {
+                return Unauthorized(e.Message);
+            }
+            catch (System.Exception)
+            {
+                throw;
+            }
         }
     }
 }
