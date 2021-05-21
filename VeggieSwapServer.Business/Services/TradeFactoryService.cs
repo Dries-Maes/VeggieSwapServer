@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using VeggieSwapServer.Business.DTO;
@@ -19,7 +20,6 @@ namespace VeggieSwapServer.Business.Services
         private Trade _trade;
         private List<TradeItemDto> _TradeItemDTOList;
         private IGenericRepo<TradeItemProposal> _tradeItemProposalRepo;
-        private VeggieSwapServerContext _context;
 
         public TradeFactoryService(TradeRepo tradeRepo, TradeItemService tradeItemService, IGenericRepo<TradeItemProposal> tradeItemProposalRepo, VeggieSwapServerContext context)
         {
@@ -27,7 +27,6 @@ namespace VeggieSwapServer.Business.Services
             _TradeItemDTOList = new List<TradeItemDto>();
             _tradeItemService = tradeItemService;
             _tradeRepo = tradeRepo;
-            _context = context;
         }
 
         public async Task<bool> ControllerPushListAsync(IEnumerable<TradeItemDto> tradeList)
@@ -48,7 +47,7 @@ namespace VeggieSwapServer.Business.Services
                 ToggleActiveUser();
                 UpdateTradeItems();
                 await _tradeRepo.UpdateEntityAsync(_trade);
-                await UpdateTradeItemProposals();
+                await UpdateTradeItemProposals(); // Remove tradeItems that are no longer present!!!
             }
             return true;
         }
@@ -83,11 +82,16 @@ namespace VeggieSwapServer.Business.Services
 
             if (_trade != null)
             {
-                await GetTradeItemProposalsAsync(); // Trek proposed ammounts af van tradeitems!!!!
+                await GetTradeItemProposalsAsync();
+                throw new ArgumentOutOfRangeException("Insufficiant resources");
+
+                // Trek proposed ammounts af van tradeitems!!!!
+
                 _trade.Completed = true;
                 await _tradeRepo.UpdateEntityAsync(_trade);
                 return true;
             }
+
             return false;
         }
 
@@ -148,15 +152,14 @@ namespace VeggieSwapServer.Business.Services
 
         public async Task GetTradeItemProposalsAsync()
         {
-            var values = _context.Set<TradeItemProposal>();
-            //var values = await _tradeItemProposalRepo.GetAllEntitiesAsync();
+            var values = await _tradeItemProposalRepo.GetAllEntitiesAsync();
             _tradeItemProposals = values.Where(x => x.TradeId == _trade.Id).ToList();
         }
 
         public async Task UpdateTradeItemProposals()
         {
-            _context.UpdateRange(_tradeItemProposals);
-            await _context.SaveChangesAsync();
+            await _tradeItemProposalRepo.UpdateEntitiesAsync(_tradeItemProposals);
+
         }
 
         public async Task UpdateTradeItems()
