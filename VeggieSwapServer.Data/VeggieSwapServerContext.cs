@@ -19,6 +19,8 @@ namespace VeggieSwapServer.Data
 
         public DbSet<Wallet> Wallets { get; set; }
 
+        public DbSet<TradeItemProposal> TradeItemProposals { get; set; }
+
         public VeggieSwapServerContext(DbContextOptions options)
             : base(options)
         {
