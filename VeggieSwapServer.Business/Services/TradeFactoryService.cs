@@ -38,16 +38,17 @@ namespace VeggieSwapServer.Business.Services
             if (_trade == null)
             {
                 CreateNewTrade();
-                UpdateTradeItems();
                 await _tradeRepo.AddEntityAsync(_trade);
+                CreateTradeItemProposals();
                 await UpdateTradeItemProposals();
             }
             else
             {
+                await RemoveExistingTradeItemProposals();
+                CreateTradeItemProposals();
+                await UpdateTradeItemProposals();
                 ToggleActiveUser();
-                UpdateTradeItems();
                 await _tradeRepo.UpdateEntityAsync(_trade);
-                await UpdateTradeItemProposals(); // Remove tradeItems that are no longer present!!!
             }
             return true;
         }
@@ -83,7 +84,7 @@ namespace VeggieSwapServer.Business.Services
             if (_trade != null)
             {
                 await GetTradeItemProposalsAsync();
-                throw new ArgumentOutOfRangeException("Insufficiant resources");
+                // throw new ArgumentOutOfRangeException("Insufficiant resources");
 
                 // Trek proposed ammounts af van tradeitems!!!!
 
@@ -114,8 +115,6 @@ namespace VeggieSwapServer.Business.Services
             {
                 item.ActiveUserId = _trade.ActiveUserId;
             }
-
-            var test = "hallo";
         }
 
         private void ToggleActiveUser()
@@ -159,27 +158,27 @@ namespace VeggieSwapServer.Business.Services
         public async Task UpdateTradeItemProposals()
         {
             await _tradeItemProposalRepo.UpdateEntitiesAsync(_tradeItemProposals);
-
         }
 
-        public async Task UpdateTradeItems()
+        public async Task RemoveExistingTradeItemProposals()
         {
             await GetTradeItemProposalsAsync();
-            if (_tradeItemProposals == null)
-            {
-                _tradeItemProposals = new List<TradeItemProposal>();
-            }
+            await _tradeItemProposalRepo.DeleteEntitiesAsync(_tradeItemProposals);
+        }
+
+        public void CreateTradeItemProposals()
+        {
+            _tradeItemProposals = new List<TradeItemProposal>();
 
             foreach (TradeItemDto TradeItemDto in _TradeItemDTOList)
             {
-                if (_tradeItemProposals.FirstOrDefault(x => x.TradeItemId == TradeItemDto.Id) != null)
-                {
-                    _tradeItemProposals.FirstOrDefault(x => x.TradeItemId == TradeItemDto.Id).ProposedAmount = TradeItemDto.ProposedAmount;
-                }
-                else
-                {
-                    _tradeItemProposals.Add(new TradeItemProposal { TradeItemId = TradeItemDto.Id, ProposedAmount = TradeItemDto.ProposedAmount, TradeId = _trade.Id });
-                }
+                _tradeItemProposals.Add(
+                    new TradeItemProposal
+                    {
+                        TradeItemId = TradeItemDto.Id,
+                        ProposedAmount = TradeItemDto.ProposedAmount,
+                        TradeId = _trade.Id
+                    });
             }
         }
     }

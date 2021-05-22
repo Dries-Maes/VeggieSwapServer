@@ -45,6 +45,13 @@ namespace VeggieSwapServer.Data.Repositories
             return true;
         }
 
+        public virtual async Task<bool> DeleteEntitiesAsync(IEnumerable<T> entities)
+        {
+            _context.RemoveRange(entities);
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
         public virtual async Task<bool> DeleteEntityAsync(int id)
         {
             _context.Remove(await _context.FindAsync<T>(id));

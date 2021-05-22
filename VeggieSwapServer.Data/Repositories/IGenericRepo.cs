@@ -11,6 +11,8 @@ namespace VeggieSwapServer.Data.Repositories
 
         Task<bool> DeleteEntityAsync(int id);
 
+        Task<bool> DeleteEntitiesAsync(IEnumerable<T> entities);
+
         Task<IEnumerable<T>> GetAllEntitiesAsync();
 
         Task<T> GetEntityAsync(int id);
