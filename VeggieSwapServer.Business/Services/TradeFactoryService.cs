@@ -83,11 +83,25 @@ namespace VeggieSwapServer.Business.Services
 
             if (_trade != null)
             {
+                await FetchTradeItemDtoList();
                 await GetTradeItemProposalsAsync();
-                // throw new ArgumentOutOfRangeException("Insufficiant resources");
 
-                // Trek proposed ammounts af van tradeitems!!!!
-
+                foreach (var proposal in _tradeItemProposals)
+                {
+                    try
+                    {
+                        _TradeItemDTOList.FirstOrDefault(x => x.Id == proposal.TradeItemId).Amount -= proposal.ProposedAmount;
+                    }
+                    catch (ArgumentOutOfRangeException)
+                    {
+                        throw new ArgumentOutOfRangeException("Insufficiant resources");
+                    }
+                    catch (Exception)
+                    {
+                        throw new Exception();
+                    }
+                }
+                await _tradeItemService.UpdateTradeItems(_TradeItemDTOList);
                 _trade.Completed = true;
                 await _tradeRepo.UpdateEntityAsync(_trade);
                 return true;

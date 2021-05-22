@@ -27,6 +27,11 @@ namespace VeggieSwapServer.Business.Services
             return await MapTradeItems(await _tradeItemRepo.GetAllEntitiesAsync());
         }
 
+        public async Task UpdateTradeItems(IEnumerable<TradeItemDto> tradeItems)
+        {
+            await _tradeItemRepo.UpdateEntitiesAsync(_mapper.Map<IEnumerable<TradeItem>>(tradeItems));
+        }
+
         public async Task<IEnumerable<TradeItemDto>> GetTradeItemDetailListDtoAsync(int Id)
         {
             return await MapTradeItems(await _tradeItemRepo.GetAllEntitiesAsync(Id));
