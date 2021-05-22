@@ -11,15 +11,14 @@ namespace VeggieSwapServer.Business.Services
 {
     public class TradeFactoryService : ITradeFactoryService
     {
-        private TradeRepo _tradeRepo;
-
-        private TradeItemService _tradeItemService;
-        private int _trader1Id;
         private int _trader2Id;
-        private List<TradeItemProposal> _tradeItemProposals;
+        private int _trader1Id;
         private Trade _trade;
+        private List<TradeItemProposal> _tradeItemProposals;
         private List<TradeItemDto> _TradeItemDTOList;
+        private TradeItemService _tradeItemService;
         private IGenericRepo<TradeItemProposal> _tradeItemProposalRepo;
+        private TradeRepo _tradeRepo;
 
         public TradeFactoryService(TradeRepo tradeRepo, TradeItemService tradeItemService, IGenericRepo<TradeItemProposal> tradeItemProposalRepo, VeggieSwapServerContext context)
         {
