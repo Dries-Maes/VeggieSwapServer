@@ -11,7 +11,7 @@ namespace VeggieSwapServer.Business.Services
     public class TradeItemService
     {
         private UserRepo _userRepo;
-        private TradeItemRepo _tradeItemRepo;
+        public TradeItemRepo TradeItemRepo;
         private IMapper _mapper;
 
         public TradeItemService(TradeItemRepo genericRepo, UserRepo userRepo, IMapper mapper)
@@ -19,22 +19,22 @@ namespace VeggieSwapServer.Business.Services
         {
             _mapper = mapper;
             _userRepo = userRepo;
-            _tradeItemRepo = genericRepo;
+            TradeItemRepo = genericRepo;
         }
 
         public async Task<IEnumerable<TradeItemDto>> GetAllEntitiesAsync()
         {
-            return await MapTradeItems(await _tradeItemRepo.GetAllEntitiesAsync());
+            return await MapTradeItems(await TradeItemRepo.GetAllEntitiesAsync());
         }
 
         public async Task UpdateTradeItems(IEnumerable<TradeItemDto> tradeItems)
         {
-            await _tradeItemRepo.UpdateEntitiesAsync(_mapper.Map<IEnumerable<TradeItem>>(tradeItems));
+            await TradeItemRepo.UpdateEntitiesAsync(_mapper.Map<IEnumerable<TradeItem>>(tradeItems));
         }
 
         public async Task<IEnumerable<TradeItemDto>> GetTradeItemDetailListDtoAsync(int Id)
         {
-            return await MapTradeItems(await _tradeItemRepo.GetAllEntitiesAsync(Id));
+            return await MapTradeItems(await TradeItemRepo.GetAllTradeItemsByUserIdAsync(Id));
         }
 
         private async Task<List<TradeItemDto>> MapTradeItems(IEnumerable<TradeItem> tradeItems)

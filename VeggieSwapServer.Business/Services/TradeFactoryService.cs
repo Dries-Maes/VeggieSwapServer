@@ -15,7 +15,8 @@ namespace VeggieSwapServer.Business.Services
         private int _trader1Id;
         private Trade _trade;
         private List<TradeItemProposal> _tradeItemProposals;
-        private List<TradeItemDto> _TradeItemDTOList;
+        private List<TradeItemDto> _tradeItemDTOList;
+        private List<TradeItem> _tradeItemList;
         private TradeItemService _tradeItemService;
         private IGenericRepo<TradeItemProposal> _tradeItemProposalRepo;
         private TradeRepo _tradeRepo;
@@ -23,14 +24,15 @@ namespace VeggieSwapServer.Business.Services
         public TradeFactoryService(TradeRepo tradeRepo, TradeItemService tradeItemService, IGenericRepo<TradeItemProposal> tradeItemProposalRepo, VeggieSwapServerContext context)
         {
             _tradeItemProposalRepo = tradeItemProposalRepo;
-            _TradeItemDTOList = new List<TradeItemDto>();
+            _tradeItemDTOList = new List<TradeItemDto>();
             _tradeItemService = tradeItemService;
             _tradeRepo = tradeRepo;
+            _tradeItemList = new List<TradeItem>();
         }
 
         public async Task<bool> ControllerPushListAsync(IEnumerable<TradeItemDto> tradeList)
         {
-            _TradeItemDTOList = tradeList.ToList();
+            _tradeItemDTOList = tradeList.ToList();
             GetUsersId();
             await GetTradeAsync();
 
@@ -51,7 +53,7 @@ namespace VeggieSwapServer.Business.Services
             }
             return true;
         }
-
+               
         public async Task<IEnumerable<TradeItemDto>> ControllerGetsList(int userId, int receiverId)
         {
             _trader1Id = userId;
@@ -62,7 +64,7 @@ namespace VeggieSwapServer.Business.Services
 
             if (_trade == null)
             {
-                return _TradeItemDTOList;
+                return _tradeItemDTOList;
             }
             else
             {
@@ -70,9 +72,11 @@ namespace VeggieSwapServer.Business.Services
                 SetProposedAmounts();
                 SetActiveUserId();
 
-                return _TradeItemDTOList;
+                return _tradeItemDTOList;
             }
         }
+
+
 
         public async Task<bool> ControllerAcceptTradeAsync(int userId, int receiverId)
         {
@@ -82,7 +86,7 @@ namespace VeggieSwapServer.Business.Services
 
             if (_trade != null)
             {
-                await FetchTradeItemDtoList();
+                await FetchTradeItemList();
 
                 await GetTradeItemProposalsAsync();
 
@@ -90,7 +94,7 @@ namespace VeggieSwapServer.Business.Services
                 {
                     try
                     {
-                        _TradeItemDTOList.FirstOrDefault(x => x.Id == proposal.TradeItemId).Amount -= proposal.ProposedAmount;
+                        _tradeItemList.FirstOrDefault(x => x.Id == proposal.TradeItemId).Amount -= proposal.ProposedAmount;
                     }
                     catch (ArgumentOutOfRangeException)
                     {
@@ -101,8 +105,8 @@ namespace VeggieSwapServer.Business.Services
                         throw new Exception();
                     }
                 }
-                //volgende methode heeft een rare erro.. ToDO !
-                await _tradeItemService.UpdateTradeItems(_TradeItemDTOList);
+                              
+                await _tradeItemService.TradeItemRepo.UpdateEntitiesAsync(_tradeItemList);
                 _trade.Completed = true;
                 await _tradeRepo.UpdateEntityAsync(_trade);
                 return true;
@@ -110,6 +114,15 @@ namespace VeggieSwapServer.Business.Services
 
             return false;
         }
+
+        private async Task FetchTradeItemList()
+        {
+            _tradeItemList.AddRange(await _tradeItemService.TradeItemRepo.GetAllTradeItemsByUserIdAsync(_trader1Id));
+            _tradeItemList.AddRange(await _tradeItemService.TradeItemRepo.GetAllTradeItemsByUserIdAsync(_trader2Id));
+
+        }
+
+
 
         public async Task<bool> ControllerCancelTradeAsync(int userId, int receiverId)
         {
@@ -133,7 +146,7 @@ namespace VeggieSwapServer.Business.Services
         {
             foreach (var proposal in _tradeItemProposals)
             {
-                var item = _TradeItemDTOList.FirstOrDefault(x => x.Id == proposal.TradeItemId);
+                var item = _tradeItemDTOList.FirstOrDefault(x => x.Id == proposal.TradeItemId);
 
                 if (item != null)
                 {
@@ -144,7 +157,7 @@ namespace VeggieSwapServer.Business.Services
 
         private void SetActiveUserId()
         {
-            foreach (var item in _TradeItemDTOList)
+            foreach (var item in _tradeItemDTOList)
             {
                 item.ActiveUserId = _trade.ActiveUserId;
             }
@@ -159,22 +172,22 @@ namespace VeggieSwapServer.Business.Services
         {
             _trade = new Trade
             {
-                ActiveUserId = _TradeItemDTOList[0].ActiveUserId,
-                ReceiverId = _TradeItemDTOList[0].ActiveUserId,
-                ProposerId = _TradeItemDTOList[0].ActiveUserId == _trader1Id ? _trader2Id : _trader1Id,
+                ActiveUserId = _tradeItemDTOList[0].ActiveUserId,
+                ReceiverId = _tradeItemDTOList[0].ActiveUserId,
+                ProposerId = _tradeItemDTOList[0].ActiveUserId == _trader1Id ? _trader2Id : _trader1Id,
             };
         }
 
         private async Task FetchTradeItemDtoList()
         {
-            _TradeItemDTOList.AddRange(await _tradeItemService.GetTradeItemDetailListDtoAsync(_trader1Id));
-            _TradeItemDTOList.AddRange(await _tradeItemService.GetTradeItemDetailListDtoAsync(_trader2Id));
+            _tradeItemDTOList.AddRange(await _tradeItemService.GetTradeItemDetailListDtoAsync(_trader1Id));
+            _tradeItemDTOList.AddRange(await _tradeItemService.GetTradeItemDetailListDtoAsync(_trader2Id));
         }
 
         public void GetUsersId()
         {
-            _trader1Id = _TradeItemDTOList[0].UserId;
-            _trader2Id = _TradeItemDTOList.FirstOrDefault(x => x.UserId != _trader1Id).UserId;
+            _trader1Id = _tradeItemDTOList[0].UserId;
+            _trader2Id = _tradeItemDTOList.FirstOrDefault(x => x.UserId != _trader1Id).UserId;
         }
 
         public async Task GetTradeAsync()
@@ -203,7 +216,7 @@ namespace VeggieSwapServer.Business.Services
         {
             _tradeItemProposals = new List<TradeItemProposal>();
 
-            foreach (TradeItemDto TradeItemDto in _TradeItemDTOList)
+            foreach (TradeItemDto TradeItemDto in _tradeItemDTOList)
             {
                 _tradeItemProposals.Add(
                     new TradeItemProposal
