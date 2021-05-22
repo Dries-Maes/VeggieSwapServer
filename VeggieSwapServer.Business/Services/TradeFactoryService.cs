@@ -83,6 +83,7 @@ namespace VeggieSwapServer.Business.Services
             if (_trade != null)
             {
                 await FetchTradeItemDtoList();
+
                 await GetTradeItemProposalsAsync();
 
                 foreach (var proposal in _tradeItemProposals)
@@ -100,9 +101,28 @@ namespace VeggieSwapServer.Business.Services
                         throw new Exception();
                     }
                 }
+                //volgende methode heeft een rare erro.. ToDO !
                 await _tradeItemService.UpdateTradeItems(_TradeItemDTOList);
                 _trade.Completed = true;
                 await _tradeRepo.UpdateEntityAsync(_trade);
+                return true;
+            }
+
+            return false;
+        }
+
+        public async Task<bool> ControllerCancelTradeAsync(int userId, int receiverId)
+        {
+            _trader1Id = userId;
+            _trader2Id = receiverId;
+            await GetTradeAsync();
+
+            if (_trade != null)
+            {
+                await GetTradeItemProposalsAsync();
+                await _tradeItemProposalRepo.DeleteEntitiesAsync(_tradeItemProposals);
+                await _tradeRepo.DeleteEntityAsync(_trade.Id);
+
                 return true;
             }
 
@@ -140,8 +160,8 @@ namespace VeggieSwapServer.Business.Services
             _trade = new Trade
             {
                 ActiveUserId = _TradeItemDTOList[0].ActiveUserId,
-                ProposerId = _TradeItemDTOList[0].ActiveUserId,
-                ReceiverId = _TradeItemDTOList[0].ActiveUserId == _trader1Id ? _trader2Id : _trader1Id,
+                ReceiverId = _TradeItemDTOList[0].ActiveUserId,
+                ProposerId = _TradeItemDTOList[0].ActiveUserId == _trader1Id ? _trader2Id : _trader1Id,
             };
         }
 

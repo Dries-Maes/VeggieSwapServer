@@ -31,6 +31,18 @@ namespace VeggieSwapServer.Controllers
             return await _tradeFactoryService.ControllerGetsList(id1, id2);
         }
 
+        [HttpGet("accept/{id1}/{id2}")]
+        public async Task<bool> AcceptTrade(int id1, int id2)
+        {
+            return await _tradeFactoryService.ControllerAcceptTradeAsync(id1, id2);
+        }
+
+        [HttpGet("cancel/{id1}/{id2}")]
+        public async Task<bool> CancelTrade(int id1, int id2)
+        {
+            return await _tradeFactoryService.ControllerCancelTradeAsync(id1, id2);
+        }
+
         [HttpGet("{id1}")]
         public async Task<IEnumerable<TradeItemDto>> GetTradeItemDetailList(int id1)
         {
