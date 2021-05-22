@@ -12,8 +12,12 @@ namespace VeggieSwapServer.Business.Configuration
             CreateMap<TradeItem, TradeItemDto>()
                 .ForMember(d => d.ResourceId, x => x.MapFrom(y => y.Resource.Id))
                 .ForMember(d => d.ResourceName, x => x.MapFrom(y => y.Resource.Name))
-                .ForMember(d => d.ResourceImageUrl, x => x.MapFrom(y => y.Resource.ImageUrl)).ReverseMap();
-
+                .ForMember(d => d.ResourceImageUrl, x => x.MapFrom(y => y.Resource.ImageUrl));
+            CreateMap<TradeItemDto, TradeItem>()
+                .ForMember(d => d.Id, x => x.MapFrom(y => y.Id))
+                .ForMember(d => d.Amount, x => x.MapFrom(y => y.Amount))
+                .ForMember(d => d.ResourceId, x => x.MapFrom(y => y.ResourceId))
+                .ForMember(d => d.UserId, x => x.MapFrom(y => y.UserId));
             CreateMap<User, UserDTO>()
                 .ForMember(d => d.AddressID, x => x.MapFrom(y => y.Address.Id))
                 .ForMember(d => d.AddressPostalCode, x => x.MapFrom(y => y.Address.PostalCode))
