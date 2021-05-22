@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using VeggieSwapServer.Data.Entities;
@@ -46,6 +47,17 @@ namespace VeggieSwapServer.Data.Repositories
         public override Task<bool> AddEntityAsync(User entity)
         {
             return base.AddEntityAsync(entity);
+        }
+
+        public override async Task<bool> UpdateEntityAsync(User entity)
+        {
+            entity.ModifiedAt = DateTime.Now;
+            _context.Update(entity);            
+            _context.Entry(entity).Property(p => p.PasswordHash).IsModified = false;
+            _context.Entry(entity).Property(p => p.PasswordSalt).IsModified = false;
+            await _context.SaveChangesAsync();
+
+            return true;
         }
     }
 }
