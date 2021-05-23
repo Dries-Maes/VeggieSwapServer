@@ -17,5 +17,9 @@ namespace VeggieSwapServer.Business.DTO
         [MinLength(4)]
         [MaxLength(8)]
         public string Password { get; set; }
+
+        [Required]
+        [MinLength(1)]
+        public string ImageUrl { get; set; }
     }
 }
