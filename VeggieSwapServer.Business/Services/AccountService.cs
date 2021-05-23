@@ -56,6 +56,7 @@ namespace VeggieSwapServer.Business.Services
                 Email = dto.Email.ToLower(),
                 PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(dto.Password)),
                 PasswordSalt = hmac.Key,
+                ImageUrl = dto.ImageUrl,
             };
 
             await _userRepo.AddEntityAsync(user);
@@ -70,6 +71,7 @@ namespace VeggieSwapServer.Business.Services
                 Id = user.Id,
                 FirstName = user.FirstName,
                 Token = _tokenService.CreateToken(user),
+                ImageUrl = user.ImageUrl
             };
         }
     }
