@@ -26,9 +26,9 @@ namespace VeggieSwapServer.Controllers
         }
 
         [HttpPost("Resources/{id}")]
-        public async Task<ActionResult> PostMemberAsync(IEnumerable<ResourceDto> addedTradeItems, int id)
+        public async Task<ActionResult> PostMemberAsync(ResourceDto addedTradeItem, int id)
         {
-            return Ok(await _tradeItemService.AddTradeItemsAsync(addedTradeItems, id));
+            return Ok(await _tradeItemService.AddTradeItemsAsync(addedTradeItem, id));
         }
 
         [HttpGet]

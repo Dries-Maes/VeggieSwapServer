@@ -29,36 +29,32 @@ namespace VeggieSwapServer.Business.Services
         {
             return _mapper.Map<IEnumerable<ResourceDto>>(await _resourceRepo.GetAllEntitiesAsync());
         }
-       
 
         public async Task<IEnumerable<TradeItemDto>> GetAllEntitiesAsync()
         {
             return await MapTradeItems(await _tradeItemRepo.GetAllEntitiesAsync());
         }
 
-        public async Task<object> AddTradeItemsAsync(IEnumerable<ResourceDto> addedTradeItems, int id)
+        public async Task<object> AddTradeItemsAsync(ResourceDto addedTradeItem, int id)
         {
             var tradeItems = await _tradeItemRepo.GetAllEntitiesAsync();
 
-            foreach (var item in addedTradeItems)
+            TradeItem ExistingItem = tradeItems.FirstOrDefault(x => x.Id == id && x.ResourceId == addedTradeItem.Id);
+            if (ExistingItem == null)
             {
-                TradeItem ExistingItem = tradeItems.FirstOrDefault(x => x.Id == id && x.ResourceId == item.Id);
-                if (ExistingItem == null)
-                {
-                    await _tradeItemRepo.AddEntityAsync(
+                await _tradeItemRepo.AddEntityAsync(
 
-                         new TradeItem
-                         {
-                             Amount = item.Amount,
-                             ResourceId = item.Id,
-                             UserId = id,
-                         });
-                }
-                else
-                {
-                    ExistingItem.Amount = item.Amount;
-                    await _tradeItemRepo.UpdateEntityAsync(ExistingItem);
-                }
+                     new TradeItem
+                     {
+                         Amount = addedTradeItem.Amount,
+                         ResourceId = addedTradeItem.Id,
+                         UserId = id,
+                     });
+            }
+            else
+            {
+                ExistingItem.Amount = addedTradeItem.Amount;
+                await _tradeItemRepo.UpdateEntityAsync(ExistingItem);
             }
 
             return true;
