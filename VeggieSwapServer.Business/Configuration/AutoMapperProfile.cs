@@ -26,7 +26,6 @@ namespace VeggieSwapServer.Business.Configuration
                 .ForMember(d => d.Amount, x => x.MapFrom(y => y.Amount))
                 .ForMember(d => d.ResourceId, x => x.MapFrom(y => y.ResourceId))
                 .ForMember(d => d.UserId, x => x.MapFrom(y => y.UserId));
-
             CreateMap<User, UserDto>()
                 .ForMember(d => d.AddressID, x => x.MapFrom(y => y.Address.Id))
                 .ForMember(d => d.AddressPostalCode, x => x.MapFrom(y => y.Address.PostalCode))
