@@ -26,19 +26,29 @@ namespace VeggieSwapServer.Data
             {
                 using var hmac = new HMACSHA512();
                 x.HasData(
-                    new User { Id = 1, FirstName = "Pieter", LastName = "Corp", IsAdmin = true, Email = "Pieter@mail.com", PasswordSalt = hmac.Key, PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes("1234")), ImageUrl = "https://robohash.org/Pieter" },
-                    new User { Id = 2, FirstName = "Nick", LastName = "Vr", IsAdmin = true, Email = "Nick@mail.com", PasswordSalt = hmac.Key, PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes("1234")), ImageUrl = "https://robohash.org/Nick" },
-                    new User { Id = 3, FirstName = "Kobe", LastName = "Delo", IsAdmin = true, Email = "Kobe@mail.com", PasswordSalt = hmac.Key, PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes("1234")), ImageUrl = "https://robohash.org/Kobe" },
-                    new User { Id = 4, FirstName = "Dries", LastName = "Maes", IsAdmin = true, Email = "Dries@mail.com", PasswordSalt = hmac.Key, PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes("1234")), ImageUrl = "https://robohash.org/Dries" },
-                    new User { Id = 5, FirstName = "BartjeWevertje", LastName = "Wevertje", IsAdmin = false, Email = "BartjeWevertje@mail.com", PasswordSalt = hmac.Key, PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes("1234")), ImageUrl = "https://robohash.org/BartjeWevertje" },
-                    new User { Id = 6, FirstName = "Stofzuiger", LastName = "Zuiger", IsAdmin = false, Email = "Stofzuiger@mail.com", PasswordSalt = hmac.Key, PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes("1234")), ImageUrl = "https://robohash.org/Stofzuiger" },
-                    new User { Id = 7, FirstName = "Dirk", LastName = "Visser", IsAdmin = false, Email = "Dirk@mail.com", PasswordSalt = hmac.Key, PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes("1234")), ImageUrl = "https://robohash.org/Dirk" },
-                    new User { Id = 8, FirstName = "Andreas", LastName = "VanGrieken", IsAdmin = false, Email = "Andreas@mail.com", PasswordSalt = hmac.Key, PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes("1234")), ImageUrl = "https://robohash.org/Andreas" },
-                    new User { Id = 9, FirstName = "Mihiel", LastName = "Mihoen", IsAdmin = false, Email = "Mihiel@mail.com", PasswordSalt = hmac.Key, PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes("1234")), ImageUrl = "https://robohash.org/Mihiel" },
-                    new User { Id = 10, FirstName = "Luc", LastName = "DeHaantje", IsAdmin = false, Email = "Luc@mail.com", PasswordSalt = hmac.Key, PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes("1234")), ImageUrl = "https://robohash.org/Luc" },
-                    new User { Id = 11, FirstName = "Verhofstad", LastName = "Zeemlap", IsAdmin = false, Email = "VerhofstadDeZeemlap@europeesemailadres.com", PasswordSalt = hmac.Key, PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes("1234")), ImageUrl = "https://robohash.org/Zeemlap" },
-                    new User { Id = 12, FirstName = "Dries", LastName = "VanKorteNekke", IsAdmin = false, Email = "Driesdentweedenmaarnidezelfden@mail.com", PasswordSalt = hmac.Key, PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes("1234")), ImageUrl = "https://robohash.org/Dries2" },
-                    new User { Id = 13, FirstName = "Joyce", LastName = "Tomatenplukker", IsAdmin = false, Email = "Joyce@mail.com", PasswordSalt = hmac.Key, PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes("1234")), ImageUrl = "https://robohash.org/Tomatenplukker" }
+                    new User { Id = 1, FirstName = "Pieter", LastName = "Slaapkop", IsAdmin = true, Email = "Pieter@mail.com", PasswordSalt = hmac.Key, PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes("1234")), ImageUrl = "Pieter" },
+                    new User { Id = 2, FirstName = "Nick", LastName = "Angularlover", IsAdmin = true, Email = "Nick@mail.com", PasswordSalt = hmac.Key, PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes("1234")), ImageUrl = "Nick" },
+                    new User { Id = 3, FirstName = "Kobe", LastName = "Neut", IsAdmin = true, Email = "Kobe@mail.com", PasswordSalt = hmac.Key, PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes("1234")), ImageUrl = "Kobe" },
+                    new User { Id = 4, FirstName = "Dries", LastName = "Maileniseenkunst", IsAdmin = true, Email = "DriesHeeftNietGraagEenLangEmailAdres@kortmailadres.mail", PasswordSalt = hmac.Key, PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes("1234")), ImageUrl = "Dries" },
+                    new User { Id = 5, FirstName = "Seba", LastName = "Ergertzichnooit", IsAdmin = false, Email = "Seba@mail.com", PasswordSalt = hmac.Key, PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes("1234")), ImageUrl = "BartjeWevertje" },
+                    new User { Id = 6, FirstName = "Emma", LastName = "Kipdorp", IsAdmin = false, Email = "Emma@mail.com", PasswordSalt = hmac.Key, PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes("1234")), ImageUrl = "Stofzuiger" },
+                    new User { Id = 7, FirstName = "Ward", LastName = "Zetdieplaataf", IsAdmin = false, Email = "Ward@mail.com", PasswordSalt = hmac.Key, PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes("1234")), ImageUrl = "Dirk" },
+                    new User { Id = 8, FirstName = "Andreas", LastName = "VanGrieken", IsAdmin = false, Email = "Andreas@mail.com", PasswordSalt = hmac.Key, PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes("1234")), ImageUrl = "Andreas" },
+                    new User { Id = 9, FirstName = "Michiel", LastName = "Demogod", IsAdmin = false, Email = "Michiel@mail.com", PasswordSalt = hmac.Key, PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes("1234")), ImageUrl = "Mihiel" },
+                    new User { Id = 10, FirstName = "Diederik", LastName = "Van Lievegem", IsAdmin = false, Email = "Diederik@mail.com", PasswordSalt = hmac.Key, PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes("1234")), ImageUrl = "Luc" },
+                    new User { Id = 11, FirstName = "Jens", LastName = "Spinningbutnotondrugs", IsAdmin = false, Email = "Jens@mail.com", PasswordSalt = hmac.Key, PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes("1234")), ImageUrl = "Zeemlap" },
+                    new User { Id = 12, FirstName = "Simon", LastName = "Lidllover", IsAdmin = false, Email = "Simon@mail.com", PasswordSalt = hmac.Key, PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes("1234")), ImageUrl = "Dries2" },
+                    new User { Id = 13, FirstName = "Joyce", LastName = "Recruiter", IsAdmin = false, Email = "Joyce@mail.com", PasswordSalt = hmac.Key, PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes("1234")), ImageUrl = "75" },
+                    new User { Id = 14, FirstName = "Marieke", LastName = "Van Leren Broeke", IsAdmin = false, Email = "Marieke@mail.com", PasswordSalt = hmac.Key, PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes("1234")), ImageUrl = "T1" },
+                    new User { Id = 15, FirstName = "Anke", LastName = "Van Kleurenkennere", IsAdmin = false, Email = "Anke@mail.com", PasswordSalt = hmac.Key, PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes("1234")), ImageUrl = "27" },
+                    new User { Id = 16, FirstName = "Emma", LastName = "Schoonkind", IsAdmin = false, Email = "Emma@mail.com", PasswordSalt = hmac.Key, PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes("1234")), ImageUrl = "45" },
+                    new User { Id = 17, FirstName = "Sien", LastName = "Rommeltje", IsAdmin = false, Email = "Sien@mail.com", PasswordSalt = hmac.Key, PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes("1234")), ImageUrl = "57" },
+                    new User { Id = 18, FirstName = "Joke", LastName = "LidlAnnoying", IsAdmin = false, Email = "Joke@mail.com", PasswordSalt = hmac.Key, PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes("1234")), ImageUrl = "24" },
+                    new User { Id = 19, FirstName = "Karolien", LastName = "Vdabpolitie", IsAdmin = false, Email = "Karolien@mail.com", PasswordSalt = hmac.Key, PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes("1234")), ImageUrl = "78" },
+                    new User { Id = 20, FirstName = "Hoon", LastName = "Tomatenplukker", IsAdmin = false, Email = "Hoon@mail.com", PasswordSalt = hmac.Key, PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes("1234")), ImageUrl = "99" },
+                    new User { Id = 21, FirstName = "Michaël", LastName = "Wanderer", IsAdmin = false, Email = "Michaël@mail.com", PasswordSalt = hmac.Key, PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes("1234")), ImageUrl = "25" },
+                    new User { Id = 22, FirstName = "Brent", LastName = "Tomatentrucker", IsAdmin = false, Email = "Brent@mail.com", PasswordSalt = hmac.Key, PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes("1234")), ImageUrl = "29" }
+
                     );
             });
         }
@@ -59,23 +69,23 @@ namespace VeggieSwapServer.Data
                 new Address
                 {
                     Id = 2,
-                    StreetName = "Pieterstreaat",
+                    StreetName = "Vrbaan",
                     StreetNumber = 45,
-                    PostalCode = 9000,
+                    PostalCode = 3000,
                     UserId = 2
                 },
                 new Address
                 {
                     Id = 3,
-                    StreetName = "Nickstraat",
+                    StreetName = "Balletjesintomatensausstraat",
                     StreetNumber = 74,
-                    PostalCode = 9000,
+                    PostalCode = 4000,
                     UserId = 3
                 },
                 new Address
                 {
                     Id = 4,
-                    StreetName = "Driesstraat",
+                    StreetName = "Vleesbroodstraat",
                     StreetNumber = 66,
                     PostalCode = 1000,
                     UserId = 4
@@ -83,15 +93,15 @@ namespace VeggieSwapServer.Data
                 new Address
                 {
                     Id = 5,
-                    StreetName = "Kobestraat",
+                    StreetName = "Boerenworststraat",
                     StreetNumber = 85,
-                    PostalCode = 2000,
+                    PostalCode = 9000,
                     UserId = 5
                 },
                 new Address
                 {
                     Id = 6,
-                    StreetName = "Lookbroodjesstraat",
+                    StreetName = "Spekmeteierenstraat",
                     StreetNumber = 43,
                     PostalCode = 1000,
                     UserId = 6
@@ -107,7 +117,7 @@ namespace VeggieSwapServer.Data
                 new Address
                 {
                     Id = 8,
-                    StreetName = "Kotsvisstraat",
+                    StreetName = "Kotsvisplein",
                     StreetNumber = 96,
                     PostalCode = 1000,
                     UserId = 8
@@ -115,7 +125,7 @@ namespace VeggieSwapServer.Data
                 new Address
                 {
                     Id = 9,
-                    StreetName = "Greenlivesmattertoostraat",
+                    StreetName = "Greenlivesmattertooweg",
                     StreetNumber = 420,
                     PostalCode = 2000,
                     UserId = 9
@@ -149,8 +159,80 @@ namespace VeggieSwapServer.Data
                     Id = 13,
                     StreetName = "Worstenbroodjesstraat",
                     StreetNumber = 4,
-                    PostalCode = 9020,
+                    PostalCode = 7000,
                     UserId = 13
+                },
+                new Address
+                {
+                    Id = 14,
+                    StreetName = "Jurgenzitverstoptachterhetlamgodsstraat",
+                    StreetNumber = 24,
+                    PostalCode = 9000,
+                    UserId = 14
+                },
+                new Address
+                {
+                    Id = 15,
+                    StreetName = "Bloedworststraat",
+                    StreetNumber = 78,
+                    PostalCode = 1081,
+                    UserId = 15
+                },
+                new Address
+                {
+                    Id = 16,
+                    StreetName = "Gemarineerderunderlendedreef",
+                    StreetNumber = 36,
+                    PostalCode = 1180,
+                    UserId = 16
+                },
+                new Address
+                {
+                    Id = 17,
+                    StreetName = "Ribbetjesstraat",
+                    StreetNumber = 14,
+                    PostalCode = 1500,
+                    UserId = 17
+                },
+                new Address
+                {
+                    Id = 18,
+                    StreetName = "Bickyburgerstraat",
+                    StreetNumber = 15,
+                    PostalCode = 2070,
+                    UserId = 18
+                },
+                new Address
+                {
+                    Id = 19,
+                    StreetName = "Lookbroodjesstraat",
+                    StreetNumber = 11,
+                    PostalCode = 2323,
+                    UserId = 19
+                },
+                new Address
+                {
+                    Id = 20,
+                    StreetName = "Worstenbroodjesstraat",
+                    StreetNumber = 79,
+                    PostalCode = 2890,
+                    UserId = 20
+                },
+                new Address
+                {
+                    Id = 21,
+                    StreetName = "Huisgemaaktekalfsbitterballetjesstraat",
+                    StreetNumber = 100,
+                    PostalCode = 3020,
+                    UserId = 21
+                },
+                new Address
+                {
+                    Id = 22,
+                    StreetName = "Kalfsrib-eyelaan",
+                    StreetNumber = 107,
+                    PostalCode = 3110,
+                    UserId = 22
                 }
 
                 );
@@ -240,6 +322,60 @@ namespace VeggieSwapServer.Data
                     VAmount = 204,
                     Id = 13,
                     UserId = 13
+                },
+                new Wallet
+                {
+                    VAmount = 20,
+                    Id = 14,
+                    UserId = 14
+                },
+                new Wallet
+                {
+                    VAmount = 47,
+                    Id = 15,
+                    UserId = 15
+                },
+                new Wallet
+                {
+                    VAmount = 28,
+                    Id = 16,
+                    UserId = 16
+                },
+                new Wallet
+                {
+                    VAmount = 104,
+                    Id = 17,
+                    UserId = 17
+                },
+                new Wallet
+                {
+                    VAmount = 65,
+                    Id = 18,
+                    UserId = 18
+                },
+                new Wallet
+                {
+                    VAmount = 78,
+                    Id = 19,
+                    UserId = 19
+                },
+                new Wallet
+                {
+                    VAmount = 56,
+                    Id = 20,
+                    UserId = 20
+                },
+                new Wallet
+                {
+                    VAmount = 78,
+                    Id = 21,
+                    UserId = 21
+                },
+                new Wallet
+                {
+                    VAmount = 9,
+                    Id = 22,
+                    UserId = 22
                 }
                 );
             }
@@ -329,54 +465,113 @@ namespace VeggieSwapServer.Data
             modelBuilder.Entity<TradeItem>(x =>
             {
                 x.HasData(
-                new TradeItem { Id = 1, UserId = 1, ResourceId = 1, Amount = 50 },
-                new TradeItem { Id = 2, UserId = 1, ResourceId = 3, Amount = 50 },
-                new TradeItem { Id = 3, UserId = 1, ResourceId = 5, Amount = 50 },
-                new TradeItem { Id = 4, UserId = 1, ResourceId = 7, Amount = 50 },
+                new TradeItem { Id = 1, UserId = 1, ResourceId = 1, Amount = 47 },
+                new TradeItem { Id = 2, UserId = 1, ResourceId = 3, Amount = 36 },
+                new TradeItem { Id = 3, UserId = 1, ResourceId = 5, Amount = 12 },
+                new TradeItem { Id = 4, UserId = 1, ResourceId = 7, Amount = 99 },
 
-                new TradeItem { Id = 5, UserId = 2, ResourceId = 51, Amount = 50 },
-                new TradeItem { Id = 6, UserId = 2, ResourceId = 34, Amount = 50 },
-                new TradeItem { Id = 7, UserId = 2, ResourceId = 46, Amount = 50 },
-                new TradeItem { Id = 8, UserId = 2, ResourceId = 32, Amount = 50 },
-                new TradeItem { Id = 9, UserId = 2, ResourceId = 39, Amount = 50 },
-                new TradeItem { Id = 10, UserId = 2, ResourceId = 15, Amount = 50 },
+                new TradeItem { Id = 5, UserId = 2, ResourceId = 51, Amount = 41 },
+                new TradeItem { Id = 6, UserId = 2, ResourceId = 34, Amount = 30 },
+                new TradeItem { Id = 7, UserId = 2, ResourceId = 46, Amount = 40 },
+                new TradeItem { Id = 8, UserId = 2, ResourceId = 32, Amount = 5 },
+                new TradeItem { Id = 9, UserId = 2, ResourceId = 39, Amount = 25 },
+                new TradeItem { Id = 10, UserId = 2, ResourceId = 15, Amount = 32 },
 
-                new TradeItem { Id = 11, UserId = 3, ResourceId = 51, Amount = 50 },
-                new TradeItem { Id = 12, UserId = 3, ResourceId = 4, Amount = 50 },
-                new TradeItem { Id = 13, UserId = 3, ResourceId = 8, Amount = 50 },
-                new TradeItem { Id = 14, UserId = 3, ResourceId = 13, Amount = 50 },
-                new TradeItem { Id = 15, UserId = 3, ResourceId = 6, Amount = 50 },
-                new TradeItem { Id = 16, UserId = 3, ResourceId = 31, Amount = 50 },
+                new TradeItem { Id = 11, UserId = 3, ResourceId = 51, Amount = 47 },
+                new TradeItem { Id = 12, UserId = 3, ResourceId = 4, Amount = 20 },
+                new TradeItem { Id = 13, UserId = 3, ResourceId = 8, Amount = 17 },
+                new TradeItem { Id = 14, UserId = 3, ResourceId = 13, Amount = 49 },
+                new TradeItem { Id = 15, UserId = 3, ResourceId = 6, Amount = 30 },
+                new TradeItem { Id = 16, UserId = 3, ResourceId = 31, Amount = 17 },
 
-                new TradeItem { Id = 17, UserId = 4, ResourceId = 21, Amount = 50 },
-                new TradeItem { Id = 18, UserId = 4, ResourceId = 44, Amount = 50 },
+                new TradeItem { Id = 17, UserId = 4, ResourceId = 21, Amount = 89 },
+                new TradeItem { Id = 18, UserId = 4, ResourceId = 44, Amount = 36 },
                 new TradeItem { Id = 19, UserId = 4, ResourceId = 51, Amount = 50 },
 
-                new TradeItem { Id = 20, UserId = 5, ResourceId = 7, Amount = 50 },
-                new TradeItem { Id = 21, UserId = 5, ResourceId = 51, Amount = 50 },
-                new TradeItem { Id = 22, UserId = 5, ResourceId = 51, Amount = 50 },
-                new TradeItem { Id = 23, UserId = 5, ResourceId = 46, Amount = 50 },
-                new TradeItem { Id = 24, UserId = 5, ResourceId = 32, Amount = 50 },
+                new TradeItem { Id = 20, UserId = 5, ResourceId = 7, Amount = 47 },
+                new TradeItem { Id = 21, UserId = 5, ResourceId = 51, Amount = 63 },
+                new TradeItem { Id = 22, UserId = 5, ResourceId = 17, Amount = 39 },
+                new TradeItem { Id = 23, UserId = 5, ResourceId = 46, Amount = 38 },
+                new TradeItem { Id = 24, UserId = 5, ResourceId = 32, Amount = 78 },
 
-                new TradeItem { Id = 25, UserId = 6, ResourceId = 39, Amount = 50 },
-                new TradeItem { Id = 26, UserId = 6, ResourceId = 15, Amount = 50 },
-                new TradeItem { Id = 27, UserId = 6, ResourceId = 51, Amount = 50 },
-                new TradeItem { Id = 28, UserId = 6, ResourceId = 4, Amount = 50 },
+                new TradeItem { Id = 25, UserId = 6, ResourceId = 39, Amount = 5 },
+                new TradeItem { Id = 26, UserId = 6, ResourceId = 15, Amount = 10 },
+                new TradeItem { Id = 27, UserId = 6, ResourceId = 51, Amount = 12 },
+                new TradeItem { Id = 28, UserId = 6, ResourceId = 4, Amount = 10 },
 
+                new TradeItem { Id = 29, UserId = 7, ResourceId = 8, Amount = 19 },
+                new TradeItem { Id = 30, UserId = 7, ResourceId = 13, Amount = 23 },
+                new TradeItem { Id = 31, UserId = 7, ResourceId = 6, Amount = 36 },
+                new TradeItem { Id = 32, UserId = 7, ResourceId = 51, Amount = 38 },
 
-                new TradeItem { Id = 29, UserId = 7, ResourceId = 8, Amount = 50 },
-                new TradeItem { Id = 30, UserId = 7, ResourceId = 13, Amount = 50 },
-                new TradeItem { Id = 31, UserId = 7, ResourceId = 6, Amount = 50 },
-                new TradeItem { Id = 32, UserId = 7, ResourceId = 51, Amount = 50 },
+                new TradeItem { Id = 33, UserId = 8, ResourceId = 6, Amount = 78 },
+                new TradeItem { Id = 34, UserId = 8, ResourceId = 51, Amount = 53 },
 
-                new TradeItem { Id = 33, UserId = 8, ResourceId = 6, Amount = 50 },
-                new TradeItem { Id = 34, UserId = 8, ResourceId = 51, Amount = 50 }
+                new TradeItem { Id = 35, UserId = 9, ResourceId = 51, Amount = 26 },
+                new TradeItem { Id = 36, UserId = 9, ResourceId = 14, Amount = 17 },
+                new TradeItem { Id = 37, UserId = 9, ResourceId = 36, Amount = 69 },
 
+                new TradeItem { Id = 38, UserId = 10, ResourceId = 17, Amount = 34 },
+                new TradeItem { Id = 39, UserId = 10, ResourceId = 19, Amount = 53 },
+
+                new TradeItem { Id = 40, UserId = 11, ResourceId = 51, Amount = 33 },
+                new TradeItem { Id = 41, UserId = 11, ResourceId = 1, Amount = 17 },
+                new TradeItem { Id = 42, UserId = 11, ResourceId = 3, Amount = 3 },
+                new TradeItem { Id = 43, UserId = 11, ResourceId = 7, Amount = 28 },
+
+                new TradeItem { Id = 44, UserId = 12, ResourceId = 18, Amount = 78 },
+                new TradeItem { Id = 45, UserId = 12, ResourceId = 29, Amount = 12 },
+                new TradeItem { Id = 46, UserId = 12, ResourceId = 47, Amount = 25 },
+                new TradeItem { Id = 47, UserId = 12, ResourceId = 8, Amount = 34 },
+                new TradeItem { Id = 48, UserId = 12, ResourceId = 9, Amount = 17 },
+                new TradeItem { Id = 49, UserId = 12, ResourceId = 12, Amount = 21 },
+
+                new TradeItem { Id = 50, UserId = 13, ResourceId = 51, Amount = 17 },
+                new TradeItem { Id = 51, UserId = 13, ResourceId = 47, Amount = 17 },
+                new TradeItem { Id = 52, UserId = 13, ResourceId = 48, Amount = 22 },
+                new TradeItem { Id = 53, UserId = 13, ResourceId = 35, Amount = 33 },
+                new TradeItem { Id = 54, UserId = 13, ResourceId = 12, Amount = 19 },
+                new TradeItem { Id = 55, UserId = 13, ResourceId = 7, Amount = 9 },
+                new TradeItem { Id = 56, UserId = 13, ResourceId = 8, Amount = 35 },
+                new TradeItem { Id = 57, UserId = 13, ResourceId = 29, Amount = 13 },
+                new TradeItem { Id = 58, UserId = 13, ResourceId = 38, Amount = 8 },
+                new TradeItem { Id = 59, UserId = 13, ResourceId = 41, Amount = 17 },
+
+                new TradeItem { Id = 60, UserId = 14, ResourceId = 1, Amount = 19 },
+                new TradeItem { Id = 61, UserId = 14, ResourceId = 8, Amount = 47 },
+                new TradeItem { Id = 62, UserId = 14, ResourceId = 11, Amount = 39 },
+                new TradeItem { Id = 63, UserId = 14, ResourceId = 9, Amount = 77 },
+                new TradeItem { Id = 64, UserId = 14, ResourceId = 12, Amount = 88 },
+                new TradeItem { Id = 65, UserId = 14, ResourceId = 17, Amount = 24 },
+
+                new TradeItem { Id = 66, UserId = 15, ResourceId = 18, Amount = 78 },
+                new TradeItem { Id = 67, UserId = 15, ResourceId = 21, Amount = 19 },
+                new TradeItem { Id = 68, UserId = 15, ResourceId = 22, Amount = 157 },
+                new TradeItem { Id = 69, UserId = 15, ResourceId = 29, Amount = 153 },
+                new TradeItem { Id = 70, UserId = 15, ResourceId = 51, Amount = 8 },
+                new TradeItem { Id = 71, UserId = 15, ResourceId = 3, Amount = 1 },
+
+                new TradeItem { Id = 72, UserId = 16, ResourceId = 39, Amount = 24 },
+                new TradeItem { Id = 73, UserId = 16, ResourceId = 38, Amount = 35 },
+                new TradeItem { Id = 74, UserId = 16, ResourceId = 36, Amount = 78 },
+
+                new TradeItem { Id = 75, UserId = 17, ResourceId = 3, Amount = 113 },
+                new TradeItem { Id = 76, UserId = 17, ResourceId = 5, Amount = 80 },
+                new TradeItem { Id = 77, UserId = 17, ResourceId = 6, Amount = 17 },
+
+                new TradeItem { Id = 78, UserId = 19, ResourceId = 51, Amount = 99 },
+                new TradeItem { Id = 79, UserId = 19, ResourceId = 44, Amount = 90 },
+
+                new TradeItem { Id = 80, UserId = 20, ResourceId = 17, Amount = 7 },
+                new TradeItem { Id = 81, UserId = 20, ResourceId = 18, Amount = 13 },
+
+                new TradeItem { Id = 82, UserId = 21, ResourceId = 23, Amount = 52 },
+
+                new TradeItem { Id = 83, UserId = 22, ResourceId = 26, Amount = 8 }
                 );
             }
             );
         }
-
 
         private static void SeedTradeItemProposals(ModelBuilder modelBuilder)
         {

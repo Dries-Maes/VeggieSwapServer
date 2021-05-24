@@ -53,7 +53,7 @@ namespace VeggieSwapServer.Business.Services
             }
             return true;
         }
-               
+
         public async Task<IEnumerable<TradeItemDto>> ControllerGetsList(int userId, int receiverId)
         {
             _trader1Id = userId;
@@ -64,7 +64,7 @@ namespace VeggieSwapServer.Business.Services
 
             if (_trade == null)
             {
-                return _tradeItemDTOList;
+                return _tradeItemDTOList.Where(x => x.Amount != 0 || x.ProposedAmount > 0);
             }
             else
             {
@@ -72,11 +72,9 @@ namespace VeggieSwapServer.Business.Services
                 SetProposedAmounts();
                 SetActiveUserId();
 
-                return _tradeItemDTOList;
+                return _tradeItemDTOList.Where(x => x.Amount != 0 || x.ProposedAmount > 0);
             }
         }
-
-
 
         public async Task<bool> ControllerAcceptTradeAsync(int userId, int receiverId)
         {
@@ -105,7 +103,7 @@ namespace VeggieSwapServer.Business.Services
                         throw new Exception();
                     }
                 }
-                              
+
                 await _tradeItemService.TradeItemRepo.UpdateEntitiesAsync(_tradeItemList);
                 _trade.Completed = true;
                 await _tradeRepo.UpdateEntityAsync(_trade);
@@ -119,10 +117,7 @@ namespace VeggieSwapServer.Business.Services
         {
             _tradeItemList.AddRange(await _tradeItemService.TradeItemRepo.GetAllTradeItemsByUserIdAsync(_trader1Id));
             _tradeItemList.AddRange(await _tradeItemService.TradeItemRepo.GetAllTradeItemsByUserIdAsync(_trader2Id));
-
         }
-
-
 
         public async Task<bool> ControllerCancelTradeAsync(int userId, int receiverId)
         {
