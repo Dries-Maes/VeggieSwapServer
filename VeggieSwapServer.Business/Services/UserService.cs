@@ -7,7 +7,7 @@ using VeggieSwapServer.Data.Repositories;
 
 namespace VeggieSwapServer.Business.Services
 {
-    public class UserService : GenericService<User, UserDTO>
+    public class UserService : GenericService<User, UserDto>
     {
         internal IUserRepo _userRepo;
         internal IGenericRepo<Address> _addressRepo;
@@ -19,11 +19,11 @@ namespace VeggieSwapServer.Business.Services
             _addressRepo = addressRepo;
         }
 
-        public virtual async Task<IEnumerable<UserDTO>> GetAllEntitiesAsync(bool includeAddress)
+        public virtual async Task<IEnumerable<UserDto>> GetAllEntitiesAsync(bool includeAddress)
         {
             if (includeAddress)
             {
-                return _mapper.Map<IEnumerable<UserDTO>>(await _userRepo.GetAllEntitiesAsync(true));
+                return _mapper.Map<IEnumerable<UserDto>>(await _userRepo.GetAllEntitiesAsync(true));
             }
             else
             {
@@ -31,12 +31,12 @@ namespace VeggieSwapServer.Business.Services
             }
         }
 
-        public async Task<UserDTO> GetUserAsync(int id)
+        public async Task<UserDto> GetUserAsync(int id)
         {
-            return _mapper.Map<UserDTO>(await _userRepo.GetUserAsync(id));
+            return _mapper.Map<UserDto>(await _userRepo.GetUserAsync(id));
         }
 
-        public async override Task<bool> UpdateEntityAsync(UserDTO model)
+        public async override Task<bool> UpdateEntityAsync(UserDto model)
         {
             User user = _mapper.Map<User>(model);
             user.Address = new Address

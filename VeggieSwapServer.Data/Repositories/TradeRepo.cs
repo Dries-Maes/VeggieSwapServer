@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using VeggieSwapServer.Data.Entities;
 
@@ -11,9 +13,17 @@ namespace VeggieSwapServer.Data.Repositories
         {
         }
 
-        public async Task<Trade> GetTradeListFromUserAsync(int userID)
+        public async Task<IEnumerable<Trade>> GetTradeListFromUserAsync(int userID)
         {
-            return null;
+            return _context.Set<Trade>()
+                 .Where(x => x.ProposerId == userID | x.ReceiverId == userID)
+                 .Include(x => x.TradeItemProposals)
+                 .ThenInclude(x => x.TradeItem)
+                 .ThenInclude(x => x.Resource)
+                 .Include(x => x.Proposer)
+                 .ThenInclude(x => x.Address)
+                 .Include(x => x.Receiver)
+                 .ThenInclude(x => x.Address);
         }
 
         public async Task<Trade> GetTradeAsync(int trader1, int trader2)

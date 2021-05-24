@@ -6,6 +6,6 @@ namespace VeggieSwapServer.Business.Services
 {
     public interface IUserService
     {
-        Task<IEnumerable<UserDTO>> GetAllEntitiesAsync(bool includeAddress);
+        Task<IEnumerable<UserDto>> GetAllEntitiesAsync(bool includeAddress);
     }
 }
