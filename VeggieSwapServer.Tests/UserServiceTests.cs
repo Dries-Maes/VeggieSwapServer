@@ -47,12 +47,12 @@ namespace VeggieSwapServer.Tests
         public async Task GetUserByIdReturnsMappedDto(int id)
         {
             _userRepo.Setup(repo => repo.GetUserAsync(1)).ReturnsAsync(_user);
-            var testconfig = new MapperConfiguration(x => x.AddProfile<AutoMapperProfile>());
-            var testService = new UserService(_genericRepoUser.Object, testconfig.CreateMapper(), _userRepo.Object, _addresRepo.Object);
+            var config = new MapperConfiguration(x => x.AddProfile<AutoMapperProfile>());
+            UserService userService = new UserService(_genericRepoUser.Object, config.CreateMapper(), _userRepo.Object, _addresRepo.Object);
 
-            UserDto result = await testService.GetUserAsync(1);   
+            UserDto result = await userService.GetUserAsync(1);   
             Assert.AreEqual(result.FirstName, _user.FirstName);
-            Assert.AreEqual(result.FirstName, _user.FirstName);
+            Assert.AreEqual(result.LastName, _user.LastName);
             Assert.AreEqual(result.Email, _user.Email);
             Assert.AreEqual(result.ImageUrl, _user.ImageUrl);
         }
@@ -61,12 +61,13 @@ namespace VeggieSwapServer.Tests
         public async Task GetUsersReturnsListOfUsers()
         {
             _genericRepoUser.Setup(repo => repo.GetAllEntitiesAsync()).ReturnsAsync(_userList);
-            var testconfig = new MapperConfiguration(x => x.AddProfile<AutoMapperProfile>());
-            var testService = new UserService(_genericRepoUser.Object, testconfig.CreateMapper(), _userRepo.Object, _addresRepo.Object);
+            var config = new MapperConfiguration(x => x.AddProfile<AutoMapperProfile>());
+            UserService userService = new UserService(_genericRepoUser.Object, config.CreateMapper(), _userRepo.Object, _addresRepo.Object);
 
-            List<UserDto> result = (List<UserDto>)await testService.GetAllEntitiesAsync(false);
+            List<UserDto> result = (List<UserDto>)await userService.GetAllEntitiesAsync(false);
             Assert.AreEqual(_userList.Count, result.Count);
 
         }
+
     }
 }
