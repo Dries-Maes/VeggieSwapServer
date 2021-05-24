@@ -18,7 +18,9 @@ namespace VeggieSwapServer.Business.Configuration
                 .ForMember(d => d.ResourceId, x => x.MapFrom(y => y.TradeItem.Resource.Id))
                 .ForMember(d => d.ResourceName, x => x.MapFrom(y => y.TradeItem.Resource.Name))
                 .ForMember(d => d.ResourceImageUrl, x => x.MapFrom(y => y.TradeItem.Resource.ImageUrl))
-                .ForMember(d => d.UserId, x => x.MapFrom(y => y.TradeItem.UserId));
+                .ForMember(d => d.Amount, x => x.MapFrom(y => y.TradeItem.Amount))
+                .ForMember(d => d.UserId, x => x.MapFrom(y => y.TradeItem.UserId))
+                .ForMember(d => d.UserFirstName, x => x.MapFrom(y => y.TradeItem.User.FirstName));
             CreateMap<TradeItemDto, TradeItem>()
                 .ForMember(d => d.Id, x => x.MapFrom(y => y.Id))
                 .ForMember(d => d.Amount, x => x.MapFrom(y => y.Amount))
@@ -39,9 +41,7 @@ namespace VeggieSwapServer.Business.Configuration
                 .ForMember(d => d.ModifiedAt, x => x.MapFrom(y => y.ModifiedAt))
                 .ForMember(d => d.Completed, x => x.MapFrom(y => y.Completed))
                 .ForMember(d => d.ActiveUserId, x => x.MapFrom(y => y.ActiveUserId))
-                .ForMember(d => d.TradeItemProposals, x => x.MapFrom(y => y.TradeItemProposals))
-                .ForMember(d => d.Proposer, x => x.MapFrom(y => y.Proposer))
-                .ForMember(d => d.Receiver, x => x.MapFrom(y => y.Receiver));
+                .ForMember(d => d.TradeItemProposals, x => x.MapFrom(y => y.TradeItemProposals));
         }
     }
 }
