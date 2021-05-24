@@ -104,7 +104,7 @@ namespace VeggieSwapServer.Business.Services
                     }
                 }
 
-                await _tradeItemService.TradeItemRepo.UpdateEntitiesAsync(_tradeItemList);
+                await _tradeItemService._tradeItemRepo.UpdateEntitiesAsync(_tradeItemList);
                 _trade.Completed = true;
                 await _tradeRepo.UpdateEntityAsync(_trade);
                 return true;
@@ -115,8 +115,8 @@ namespace VeggieSwapServer.Business.Services
 
         private async Task FetchTradeItemList()
         {
-            _tradeItemList.AddRange(await _tradeItemService.TradeItemRepo.GetAllTradeItemsByUserIdAsync(_trader1Id));
-            _tradeItemList.AddRange(await _tradeItemService.TradeItemRepo.GetAllTradeItemsByUserIdAsync(_trader2Id));
+            _tradeItemList.AddRange(await _tradeItemService._tradeItemRepo.GetAllTradeItemsByUserIdAsync(_trader1Id));
+            _tradeItemList.AddRange(await _tradeItemService._tradeItemRepo.GetAllTradeItemsByUserIdAsync(_trader2Id));
         }
 
         public async Task<bool> ControllerCancelTradeAsync(int userId, int receiverId)

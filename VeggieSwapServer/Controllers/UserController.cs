@@ -23,7 +23,6 @@ namespace VeggieSwapServer.Controllers
         [AllowAnonymous]
         public async Task<IEnumerable<object>> GetMembersAsyncIncludeAddress(bool includeAddress)
         {
-            //include adress in frontend / set bool to true => URL : https://localhost:44360/api/User?includeAddress=true
             return await _userService.GetAllEntitiesAsync(includeAddress);
         }
 
