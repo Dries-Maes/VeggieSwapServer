@@ -64,7 +64,7 @@ namespace VeggieSwapServer.Business.Services
 
             if (_trade == null)
             {
-                return _tradeItemDTOList;
+                return _tradeItemDTOList.Where(x => x.Amount != 0 || x.ProposedAmount > 0);
             }
             else
             {
@@ -72,7 +72,7 @@ namespace VeggieSwapServer.Business.Services
                 SetProposedAmounts();
                 SetActiveUserId();
 
-                return _tradeItemDTOList;
+                return _tradeItemDTOList.Where(x => x.Amount != 0 || x.ProposedAmount > 0);
             }
         }
 
