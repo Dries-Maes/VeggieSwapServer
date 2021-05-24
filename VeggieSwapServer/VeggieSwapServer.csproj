@@ -17,6 +17,7 @@
   <ItemGroup>
     <ProjectReference Include="..\VeggieSwapServer.Business\VeggieSwapServer.Business.csproj" />
     <ProjectReference Include="..\VeggieSwapServer.Data\VeggieSwapServer.Data.csproj" />
+    <ProjectReference Include="..\VeggieSwapServer.Tests\VeggieSwapServer.Tests.csproj" />
   </ItemGroup>
 
 </Project>
