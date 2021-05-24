@@ -11,10 +11,9 @@ using VeggieSwapServer.Data.Repositories;
 
 namespace VeggieSwapServer.Tests
 {
-    public class Tests
+    public class UserServiceTests
     {
         private User _user;
-
         private Mock<IUserRepo> _userRepo;
         private Mock<IGenericRepo<User>> _genericRepoUser;
         private Mock<IGenericRepo<Address>> _addresRepo;     
@@ -30,20 +29,22 @@ namespace VeggieSwapServer.Tests
 
             _user = new User
             {
-                FirstName = "Testje",
+                FirstName = "testje",
                 LastName = "metZijnGeelVestje", 
-                Email = "Testje@mail.com",
+                Email = "testje@mail.com",
                 ImageUrl = "tesje.jpeg",
                 IsAdmin = false
             };
 
-            for (var i = 0; i < 10; i++)
+            for (var i = 0; i < 5; i++)
             {
                 _userList.Add(_user);
             }
         }
 
         [TestCase(1)]
+        [TestCase(2)]
+        [TestCase(3)]
         public async Task GetUserByIdReturnsMappedDto(int id)
         {
             _userRepo.Setup(repo => repo.GetUserAsync(1)).ReturnsAsync(_user);
@@ -58,7 +59,7 @@ namespace VeggieSwapServer.Tests
         }
 
         [Test]
-        public async Task GetUsersReturnsListOfUsers()
+        public async Task GetUsersReturnsValidListOfUsers()
         {
             _genericRepoUser.Setup(repo => repo.GetAllEntitiesAsync()).ReturnsAsync(_userList);
             var config = new MapperConfiguration(x => x.AddProfile<AutoMapperProfile>());
@@ -66,6 +67,12 @@ namespace VeggieSwapServer.Tests
 
             List<UserDto> result = (List<UserDto>)await userService.GetAllEntitiesAsync(false);
             Assert.AreEqual(_userList.Count, result.Count);
+            Assert.AreEqual(_userList[0].Id, result[0].Id);
+
+            foreach (var item in result)
+            {
+                Assert.IsNotNull(item);
+            }
 
         }
 

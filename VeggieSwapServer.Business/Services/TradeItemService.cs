@@ -21,6 +21,7 @@ namespace VeggieSwapServer.Business.Services
             _userRepo = userRepo;
             TradeItemRepo = genericRepo;
         }
+       
 
         public async Task<IEnumerable<TradeItemDto>> GetAllEntitiesAsync()
         {
