@@ -2,7 +2,7 @@
 
 namespace VeggieSwapServer.Business.Models
 {
-    public class UserDTO
+    public class UserDto
     {
         public int Id { get; set; }
         public DateTime CreatedAt { get; set; }

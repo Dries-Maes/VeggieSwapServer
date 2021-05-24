@@ -29,28 +29,28 @@ namespace VeggieSwapServer.Controllers
 
         [HttpGet("{id}")]
         [AllowAnonymous]
-        public async Task<ActionResult<UserDTO>> GetMemberAsync(int id)
+        public async Task<ActionResult<UserDto>> GetMemberAsync(int id)
         {
             return Ok(await _userService.GetUserAsync(id));
         }
 
         [HttpDelete("{id}")]
         [AllowAnonymous]
-        public async Task<ActionResult<UserDTO>> DeleteMemberAsync(int id)
+        public async Task<ActionResult<UserDto>> DeleteMemberAsync(int id)
         {
             return Ok(await _userService.DeleteEntityAsync(id));
         }
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<ActionResult> PostMemberAsync(UserDTO model)
+        public async Task<ActionResult> PostMemberAsync(UserDto model)
         {
             return Ok(await _userService.AddEntityAsync(model));
         }
 
         [HttpPut]
         [AllowAnonymous]
-        public async Task<ActionResult> PutMemberAsync(UserDTO model)
+        public async Task<ActionResult> PutMemberAsync(UserDto model)
         {
             return Ok(await _userService.UpdateEntityAsync(model));
         }

@@ -21,7 +21,7 @@ namespace VeggieSwapServer.Business.Services
         private IGenericRepo<TradeItemProposal> _tradeItemProposalRepo;
         private TradeRepo _tradeRepo;
 
-        public TradeFactoryService(TradeRepo tradeRepo, TradeItemService tradeItemService, IGenericRepo<TradeItemProposal> tradeItemProposalRepo, VeggieSwapServerContext context)
+        public TradeFactoryService(TradeRepo tradeRepo, TradeItemService tradeItemService, IGenericRepo<TradeItemProposal> tradeItemProposalRepo)
         {
             _tradeItemProposalRepo = tradeItemProposalRepo;
             _tradeItemDTOList = new List<TradeItemDto>();
@@ -53,7 +53,7 @@ namespace VeggieSwapServer.Business.Services
             }
             return true;
         }
-               
+
         public async Task<IEnumerable<TradeItemDto>> ControllerGetsList(int userId, int receiverId)
         {
             _trader1Id = userId;
@@ -75,8 +75,6 @@ namespace VeggieSwapServer.Business.Services
                 return _tradeItemDTOList;
             }
         }
-
-
 
         public async Task<bool> ControllerAcceptTradeAsync(int userId, int receiverId)
         {
@@ -105,7 +103,7 @@ namespace VeggieSwapServer.Business.Services
                         throw new Exception();
                     }
                 }
-                              
+
                 await _tradeItemService.TradeItemRepo.UpdateEntitiesAsync(_tradeItemList);
                 _trade.Completed = true;
                 await _tradeRepo.UpdateEntityAsync(_trade);
@@ -119,10 +117,7 @@ namespace VeggieSwapServer.Business.Services
         {
             _tradeItemList.AddRange(await _tradeItemService.TradeItemRepo.GetAllTradeItemsByUserIdAsync(_trader1Id));
             _tradeItemList.AddRange(await _tradeItemService.TradeItemRepo.GetAllTradeItemsByUserIdAsync(_trader2Id));
-
         }
-
-
 
         public async Task<bool> ControllerCancelTradeAsync(int userId, int receiverId)
         {
