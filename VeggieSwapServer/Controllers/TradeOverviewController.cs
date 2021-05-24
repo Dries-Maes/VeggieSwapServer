@@ -10,7 +10,7 @@ namespace VeggieSwapServer.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    [Authorize]
+
     public class TradeOverviewController : ControllerBase
     {
         private ITradeOverviewService _tradeOverviewService;
@@ -20,8 +20,7 @@ namespace VeggieSwapServer.Controllers
             _tradeOverviewService = tradeOverviewService;
         }
 
-        [HttpGet]
-        [AllowAnonymous]
+        [HttpGet("{id}")]
         public async Task<IEnumerable<TradeDto>> GetTradeOverview(int id)
         {
             return await _tradeOverviewService.ControllerGetsList(id);

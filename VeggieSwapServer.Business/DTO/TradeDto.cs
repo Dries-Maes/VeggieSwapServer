@@ -10,8 +10,8 @@ namespace VeggieSwapServer.Business.DTO
     public class TradeDto
     {
         public int Id { get; set; }
-        public UserDto Proposer { get; set; }
-        public UserDto Receiver { get; set; }
+
+        public UserDto User { get; set; }
 
         public ICollection<TradeItemDto> TradeItemProposals { get; set; }
         public bool Completed { get; set; }
