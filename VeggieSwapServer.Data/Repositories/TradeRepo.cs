@@ -13,7 +13,7 @@ namespace VeggieSwapServer.Data.Repositories
         {
         }
 
-        public async Task<IEnumerable<Trade>> GetTradeListFromUserAsync(int userID)
+        public IEnumerable<Trade> GetTradeListFromUserAsync(int userID)
         {
             return _context.Set<Trade>()
                  .Where(x => x.ProposerId == userID | x.ReceiverId == userID)

@@ -21,9 +21,9 @@ namespace VeggieSwapServer.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IEnumerable<TradeDto>> GetTradeOverview(int id)
+        public IEnumerable<TradeDto> GetTradeOverview(int id)
         {
-            return await _tradeOverviewService.ControllerGetsList(id);
+            return _tradeOverviewService.ControllerGetsList(id);
         }
     }
 }

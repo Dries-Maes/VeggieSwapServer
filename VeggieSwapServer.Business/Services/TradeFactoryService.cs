@@ -115,12 +115,6 @@ namespace VeggieSwapServer.Business.Services
             return false;
         }
 
-        private async Task FetchTradeItemList()
-        {
-            _tradeItemList.AddRange(await _tradeItemRepo.GetAllTradeItemsByUserIdAsync(_trader1Id));
-            _tradeItemList.AddRange(await _tradeItemRepo.GetAllTradeItemsByUserIdAsync(_trader2Id));
-        }
-
         public async Task<bool> ControllerCancelTradeAsync(int userId, int receiverId)
         {
             _trader1Id = userId;
@@ -137,6 +131,12 @@ namespace VeggieSwapServer.Business.Services
             }
 
             return false;
+        }
+
+        private async Task FetchTradeItemList()
+        {
+            _tradeItemList.AddRange(await _tradeItemRepo.GetAllTradeItemsByUserIdAsync(_trader1Id));
+            _tradeItemList.AddRange(await _tradeItemRepo.GetAllTradeItemsByUserIdAsync(_trader2Id));
         }
 
         private void SetProposedAmounts()
@@ -181,35 +181,35 @@ namespace VeggieSwapServer.Business.Services
             _tradeItemDTOList.AddRange(await _tradeItemService.GetTradeItemDetailListDtoAsync(_trader2Id));
         }
 
-        public void GetUsersId()
+        private void GetUsersId()
         {
             _trader1Id = _tradeItemDTOList[0].UserId;
             _trader2Id = _tradeItemDTOList.FirstOrDefault(x => x.UserId != _trader1Id).UserId;
         }
 
-        public async Task GetTradeAsync()
+        private async Task GetTradeAsync()
         {
             _trade = await _tradeRepo.GetTradeAsync(_trader1Id, _trader2Id);
         }
 
-        public async Task GetTradeItemProposalsAsync()
+        private async Task GetTradeItemProposalsAsync()
         {
             var values = await _tradeItemProposalRepo.GetAllEntitiesAsync();
             _tradeItemProposals = values.Where(x => x.TradeId == _trade.Id).ToList();
         }
 
-        public async Task UpdateTradeItemProposals()
+        private async Task UpdateTradeItemProposals()
         {
             await _tradeItemProposalRepo.UpdateEntitiesAsync(_tradeItemProposals);
         }
 
-        public async Task RemoveExistingTradeItemProposals()
+        private async Task RemoveExistingTradeItemProposals()
         {
             await GetTradeItemProposalsAsync();
             await _tradeItemProposalRepo.DeleteEntitiesAsync(_tradeItemProposals);
         }
 
-        public void CreateTradeItemProposals()
+        private void CreateTradeItemProposals()
         {
             _tradeItemProposals = new List<TradeItemProposal>();
 

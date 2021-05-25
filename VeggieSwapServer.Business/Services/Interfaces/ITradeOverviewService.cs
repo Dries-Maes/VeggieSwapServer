@@ -6,6 +6,6 @@ namespace VeggieSwapServer.Business.Services
 {
     public interface ITradeOverviewService
     {
-        Task<IEnumerable<TradeDto>> ControllerGetsList(int userId);
+        IEnumerable<TradeDto> ControllerGetsList(int userId);
     }
 }

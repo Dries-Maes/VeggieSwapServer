@@ -10,11 +10,5 @@ namespace VeggieSwapServer.Business.Services
         Task<bool> ControllerCancelTradeAsync(int userId, int receiverId);
         Task<IEnumerable<TradeItemDto>> ControllerGetsList(int userId, int receiverId);
         Task<bool> ControllerPushListAsync(IEnumerable<TradeItemDto> tradeList);
-        void CreateTradeItemProposals();
-        Task GetTradeAsync();
-        Task GetTradeItemProposalsAsync();
-        void GetUsersId();
-        Task RemoveExistingTradeItemProposals();
-        Task UpdateTradeItemProposals();
     }
 }
