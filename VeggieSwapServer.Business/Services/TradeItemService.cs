@@ -9,18 +9,16 @@ using VeggieSwapServer.Data.Repositories;
 
 namespace VeggieSwapServer.Business.Services
 {
-    public class TradeItemService
+    public class TradeItemService : GenericService<TradeItem, TradeItemDto>, ITradeItemService
     {
-        private UserRepo _userRepo;
-        public TradeItemRepo _tradeItemRepo;
-        private IMapper _mapper;
+        private IUserRepo _userRepo;
+        public ITradeItemRepo _tradeItemRepo;
         private IGenericRepo<Resource> _resourceRepo;
 
-        public TradeItemService(TradeItemRepo genericRepo, UserRepo userRepo, IMapper mapper, IGenericRepo<Resource> resourceRepo)
-
+        public TradeItemService(ITradeItemRepo genericRepo, IUserRepo userRepo, IMapper mapper, IGenericRepo<Resource> resourceRepo, ITradeItemRepo tradeItemRepo)
+            : base(tradeItemRepo, mapper)
         {
             _resourceRepo = resourceRepo;
-            _mapper = mapper;
             _userRepo = userRepo;
             _tradeItemRepo = genericRepo;
         }
@@ -30,7 +28,7 @@ namespace VeggieSwapServer.Business.Services
             return _mapper.Map<IEnumerable<ResourceDto>>(await _resourceRepo.GetAllEntitiesAsync());
         }
 
-        public async Task<IEnumerable<TradeItemDto>> GetAllEntitiesAsync()
+        public override async Task<IEnumerable<TradeItemDto>> GetAllEntitiesAsync()
         {
             return await MapTradeItems(await _tradeItemRepo.GetAllEntitiesAsync());
         }

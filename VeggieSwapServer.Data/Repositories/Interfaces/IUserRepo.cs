@@ -4,15 +4,13 @@ using VeggieSwapServer.Data.Entities;
 
 namespace VeggieSwapServer.Data.Repositories
 {
-    public interface IUserRepo
+    public interface IUserRepo : IGenericRepo<User>
     {
         Task<IEnumerable<User>> GetAllEntitiesAsync(bool includeAddress);
 
         Task<User> GetEntityAsync(string email);
 
         Task<bool> UserExistsAsync(string eMail);
-
-        Task<bool> AddEntityAsync(User entity);
 
         Task<User> GetUserAsync(int id);
     }

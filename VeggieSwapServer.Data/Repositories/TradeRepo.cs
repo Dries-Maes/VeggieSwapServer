@@ -6,7 +6,7 @@ using VeggieSwapServer.Data.Entities;
 
 namespace VeggieSwapServer.Data.Repositories
 {
-    public class TradeRepo : GenericRepo<Trade>
+    public class TradeRepo : GenericRepo<Trade>, ITradeRepo
     {
         public TradeRepo(VeggieSwapServerContext context)
             : base(context)

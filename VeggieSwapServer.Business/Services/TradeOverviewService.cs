@@ -11,16 +11,15 @@ using VeggieSwapServer.Data.Repositories;
 
 namespace VeggieSwapServer.Business.Services
 {
-    public class TradeOverviewService : ITradeOverviewService
+    public class TradeOverviewService : GenericService<Trade, TradeDto>, ITradeOverviewService
     {
         private IEnumerable<Trade> _tradeList;
-        private TradeRepo _tradeRepo;
-        private IMapper _mapper;
+        private ITradeRepo _tradeRepo;
 
-        public TradeOverviewService(TradeRepo tradeRepo, IMapper mapper)
+        public TradeOverviewService(ITradeRepo tradeRepo, IMapper mapper)
+            : base(tradeRepo, mapper)
         {
             _tradeRepo = tradeRepo;
-            _mapper = mapper;
         }
 
         public async Task<IEnumerable<TradeDto>> ControllerGetsList(int userId)

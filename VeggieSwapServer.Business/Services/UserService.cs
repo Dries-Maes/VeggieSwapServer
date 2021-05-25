@@ -7,12 +7,12 @@ using VeggieSwapServer.Data.Repositories;
 
 namespace VeggieSwapServer.Business.Services
 {
-    public class UserService : GenericService<User, UserDto>
+    public class UserService : GenericService<User, UserDto>, IUserService
     {
         internal IUserRepo _userRepo;
         internal IGenericRepo<Address> _addressRepo;
 
-        public UserService(IGenericRepo<User> genericRepo, IMapper mapper, IUserRepo userRepo, IGenericRepo<Address> addressRepo)
+        public UserService(IUserRepo genericRepo, IMapper mapper, IUserRepo userRepo, IGenericRepo<Address> addressRepo)
             : base(genericRepo, mapper)
         {
             _userRepo = userRepo;
