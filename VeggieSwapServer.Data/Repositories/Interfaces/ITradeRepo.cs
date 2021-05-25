@@ -8,6 +8,6 @@ namespace VeggieSwapServer.Data.Repositories
     {
         Task<Trade> GetTradeAsync(int trader1, int trader2);
 
-        Task<IEnumerable<Trade>> GetTradeListFromUserAsync(int userID);
+        IEnumerable<Trade> GetTradeListFromUserAsync(int userID);
     }
 }

@@ -1,11 +1,8 @@
 ﻿using AutoMapper;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using VeggieSwapServer.Business.DTO;
 using VeggieSwapServer.Business.Models;
-using VeggieSwapServer.Data;
 using VeggieSwapServer.Data.Entities;
 using VeggieSwapServer.Data.Repositories;
 
@@ -22,9 +19,9 @@ namespace VeggieSwapServer.Business.Services
             _tradeRepo = tradeRepo;
         }
 
-        public async Task<IEnumerable<TradeDto>> ControllerGetsList(int userId)
+        public IEnumerable<TradeDto> ControllerGetsList(int userId)
         {
-            _tradeList = await _tradeRepo.GetTradeListFromUserAsync(userId);
+            _tradeList = _tradeRepo.GetTradeListFromUserAsync(userId);
             var mappedTrade = _mapper.Map<IEnumerable<TradeDto>>(_tradeList);
             foreach (var item in mappedTrade)
             {

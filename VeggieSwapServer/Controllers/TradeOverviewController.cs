@@ -1,9 +1,6 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using VeggieSwapServer.Business.DTO;
-using VeggieSwapServer.Business.Models;
 using VeggieSwapServer.Business.Services;
 
 namespace VeggieSwapServer.Controllers
@@ -21,9 +18,9 @@ namespace VeggieSwapServer.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IEnumerable<TradeDto>> GetTradeOverview(int id)
+        public IEnumerable<TradeDto> GetTradeOverview(int id)
         {
-            return await _tradeOverviewService.ControllerGetsList(id);
+            return _tradeOverviewService.ControllerGetsList(id);
         }
     }
 }
