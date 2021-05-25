@@ -58,20 +58,18 @@ namespace VeggieSwapServer
             services.AddScoped<IGenericRepo<Address>, GenericRepo<Address>>();
             services.AddScoped<IGenericRepo<Purchase>, GenericRepo<Purchase>>();
             services.AddScoped<IGenericRepo<Resource>, GenericRepo<Resource>>();
-            services.AddScoped<IGenericRepo<Trade>, GenericRepo<Trade>>();
-            services.AddScoped<IGenericRepo<User>, UserRepo>();
             services.AddScoped<IGenericRepo<TradeItemProposal>, GenericRepo<TradeItemProposal>>();
             services.AddScoped<IGenericRepo<Wallet>, GenericRepo<Wallet>>();
+
+            services.AddScoped<IUserRepo, UserRepo>();
+            services.AddScoped<ITradeRepo, TradeRepo>();
+            services.AddScoped<ITradeItemRepo, TradeItemRepo>();
+
             services.AddScoped<ITradeFactoryService, TradeFactoryService>();
             services.AddScoped<ITradeOverviewService, TradeOverviewService>();
-
             services.AddScoped<IAccountService, AccountService>();
-            services.AddScoped<IUserRepo, UserRepo>();
-            services.AddScoped<UserRepo, UserRepo>();
-            services.AddScoped<TradeItemRepo, TradeItemRepo>();
-            services.AddScoped<TradeItemService, TradeItemService>();
-            services.AddScoped<UserService, UserService>();
-            services.AddScoped<TradeRepo, TradeRepo>();
+            services.AddScoped<ITradeItemService, TradeItemService>();
+            services.AddScoped<IUserService, UserService>();
             services.AddScoped<ITokenService, TokenService>();
         }
 

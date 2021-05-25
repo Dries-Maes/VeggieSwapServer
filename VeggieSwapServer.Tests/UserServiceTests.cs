@@ -15,22 +15,22 @@ namespace VeggieSwapServer.Tests
     {
         private User _user;
         private Mock<IUserRepo> _userRepo;
-        private Mock<IGenericRepo<User>> _genericRepoUser;
-        private Mock<IGenericRepo<Address>> _addresRepo;     
+        private Mock<IUserRepo> _genericRepoUser;
+        private Mock<IGenericRepo<Address>> _addresRepo;
         private List<User> _userList;
 
         [SetUp]
         public void Setup()
         {
             _userRepo = new Mock<IUserRepo>();
-            _genericRepoUser = new Mock<IGenericRepo<User>>();
+            _genericRepoUser = new Mock<IUserRepo>();
             _addresRepo = new Mock<IGenericRepo<Address>>();
             _userList = new List<User>();
 
             _user = new User
             {
                 FirstName = "testje",
-                LastName = "metZijnGeelVestje", 
+                LastName = "metZijnGeelVestje",
                 Email = "testje@mail.com",
                 ImageUrl = "tesje.jpeg",
                 IsAdmin = false
@@ -51,7 +51,7 @@ namespace VeggieSwapServer.Tests
             var config = new MapperConfiguration(x => x.AddProfile<AutoMapperProfile>());
             UserService userService = new UserService(_genericRepoUser.Object, config.CreateMapper(), _userRepo.Object, _addresRepo.Object);
 
-            UserDto result = await userService.GetUserAsync(1);   
+            UserDto result = await userService.GetUserAsync(1);
             Assert.AreEqual(result.FirstName, _user.FirstName);
             Assert.AreEqual(result.LastName, _user.LastName);
             Assert.AreEqual(result.Email, _user.Email);
@@ -73,8 +73,6 @@ namespace VeggieSwapServer.Tests
             {
                 Assert.IsNotNull(item);
             }
-
         }
-
     }
 }

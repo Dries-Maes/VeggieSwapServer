@@ -14,19 +14,19 @@ namespace VeggieSwapServer.Tests
     public class TradeItemServiceTests
     {
         private TradeItem _tradeItem;
-        private Mock<TradeItemRepo> _tradeItemRepo;
-        private Mock<UserRepo> _userRepo;
-        private Mock<IGenericRepo<TradeItem>> _genericRepoTradeItem;
+        private Mock<ITradeItemRepo> _tradeItemRepo;
+        private Mock<IUserRepo> _userRepo;
+        private Mock<ITradeItemRepo> _genericRepoTradeItem;
         private Mock<IGenericRepo<Resource>> _genericRepoResource;
         private List<TradeItem> _tradeItemList;
 
         [SetUp]
         public void Setup()
         {
-            _tradeItemRepo = new Mock<TradeItemRepo>();
-            _userRepo = new Mock<UserRepo>();
+            _tradeItemRepo = new Mock<ITradeItemRepo>();
+            _userRepo = new Mock<IUserRepo>();
             _tradeItemList = new List<TradeItem>();
-            _genericRepoTradeItem = new Mock<IGenericRepo<TradeItem>>();
+            _genericRepoTradeItem = new Mock<ITradeItemRepo>();
 
             _tradeItem = new TradeItem
             {
@@ -43,7 +43,7 @@ namespace VeggieSwapServer.Tests
         {
             _tradeItemRepo.Setup(repo => repo.GetAllEntitiesAsync()).ReturnsAsync(_tradeItemList);
             var config = new MapperConfiguration(x => x.AddProfile<AutoMapperProfile>());
-            TradeItemService tradeItemService = new TradeItemService(_tradeItemRepo.Object, _userRepo.Object, config.CreateMapper(), _genericRepoResource.Object);
+            ITradeItemService tradeItemService = new TradeItemService(_tradeItemRepo.Object, _userRepo.Object, config.CreateMapper(), _genericRepoResource.Object, _genericRepoTradeItem.Object);
 
             List<TradeItemDto> result = (List<TradeItemDto>)await tradeItemService.GetAllEntitiesAsync();
             Assert.AreEqual(_tradeItemList.Count, result.Count);

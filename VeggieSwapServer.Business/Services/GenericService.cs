@@ -5,7 +5,7 @@ using VeggieSwapServer.Data.Repositories;
 
 namespace VeggieSwapServer.Business
 {
-    public class GenericService<Entity, Model>
+    public class GenericService<Entity, Model> : IGenericService<Entity, Model>
     {
         internal IGenericRepo<Entity> _genericRepo;
         protected IMapper _mapper;

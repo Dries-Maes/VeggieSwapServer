@@ -17,12 +17,14 @@ namespace VeggieSwapServer.Business.Services
         private List<TradeItemProposal> _tradeItemProposals;
         private List<TradeItemDto> _tradeItemDTOList;
         private List<TradeItem> _tradeItemList;
-        private TradeItemService _tradeItemService;
+        private ITradeItemService _tradeItemService;
         private IGenericRepo<TradeItemProposal> _tradeItemProposalRepo;
-        private TradeRepo _tradeRepo;
+        private ITradeRepo _tradeRepo;
+        private ITradeItemRepo _tradeItemRepo;
 
-        public TradeFactoryService(TradeRepo tradeRepo, TradeItemService tradeItemService, IGenericRepo<TradeItemProposal> tradeItemProposalRepo)
+        public TradeFactoryService(ITradeRepo tradeRepo, ITradeItemService tradeItemService, IGenericRepo<TradeItemProposal> tradeItemProposalRepo, ITradeItemRepo tradeItemRepo)
         {
+            _tradeItemRepo = tradeItemRepo;
             _tradeItemProposalRepo = tradeItemProposalRepo;
             _tradeItemDTOList = new List<TradeItemDto>();
             _tradeItemService = tradeItemService;
@@ -94,17 +96,17 @@ namespace VeggieSwapServer.Business.Services
                     {
                         _tradeItemList.FirstOrDefault(x => x.Id == proposal.TradeItemId).Amount -= proposal.ProposedAmount;
                     }
-                    catch (ArgumentOutOfRangeException)
+                    catch (ArgumentOutOfRangeException e)
                     {
-                        throw new ArgumentOutOfRangeException("Insufficiant resources");
+                        throw new ArgumentOutOfRangeException("Insufficiant resources", e); // add 'e' as info
                     }
-                    catch (Exception)
+                    catch (Exception e)
                     {
-                        throw new Exception();
+                        throw;
                     }
                 }
 
-                await _tradeItemService._tradeItemRepo.UpdateEntitiesAsync(_tradeItemList);
+                await _tradeItemRepo.UpdateEntitiesAsync(_tradeItemList);
                 _trade.Completed = true;
                 await _tradeRepo.UpdateEntityAsync(_trade);
                 return true;
@@ -115,8 +117,8 @@ namespace VeggieSwapServer.Business.Services
 
         private async Task FetchTradeItemList()
         {
-            _tradeItemList.AddRange(await _tradeItemService._tradeItemRepo.GetAllTradeItemsByUserIdAsync(_trader1Id));
-            _tradeItemList.AddRange(await _tradeItemService._tradeItemRepo.GetAllTradeItemsByUserIdAsync(_trader2Id));
+            _tradeItemList.AddRange(await _tradeItemRepo.GetAllTradeItemsByUserIdAsync(_trader1Id));
+            _tradeItemList.AddRange(await _tradeItemRepo.GetAllTradeItemsByUserIdAsync(_trader2Id));
         }
 
         public async Task<bool> ControllerCancelTradeAsync(int userId, int receiverId)
