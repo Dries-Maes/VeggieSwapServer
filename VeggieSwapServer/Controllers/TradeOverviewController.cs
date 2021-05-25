@@ -1,9 +1,6 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using VeggieSwapServer.Business.DTO;
-using VeggieSwapServer.Business.Models;
 using VeggieSwapServer.Business.Services;
 
 namespace VeggieSwapServer.Controllers

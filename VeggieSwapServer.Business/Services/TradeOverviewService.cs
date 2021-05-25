@@ -1,11 +1,8 @@
 ﻿using AutoMapper;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using VeggieSwapServer.Business.DTO;
 using VeggieSwapServer.Business.Models;
-using VeggieSwapServer.Data;
 using VeggieSwapServer.Data.Entities;
 using VeggieSwapServer.Data.Repositories;
 
