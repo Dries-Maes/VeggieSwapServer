@@ -12,9 +12,9 @@ namespace VeggieSwapServer.Controllers
     [Authorize]
     public class UserController : ControllerBase
     {
-        private UserService _userService;
+        private IUserService _userService;
 
-        public UserController(UserService userService)
+        public UserController(IUserService userService)
         {
             _userService = userService;
         }
