@@ -33,7 +33,7 @@ namespace VeggieSwapServer.Business.Services
 
         public async Task<UserDto> GetUserAsync(int id)
         {
-            return _mapper.Map<UserDto>(await _userRepo.GetUserAsync(id));
+            return _mapper.Map<UserDto>(await _userRepo.GetEntityAsync(id));
         }
 
         public async override Task<bool> UpdateEntityAsync(UserDto model)

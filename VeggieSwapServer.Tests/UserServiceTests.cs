@@ -47,7 +47,7 @@ namespace VeggieSwapServer.Tests
         [TestCase(3)]
         public async Task GetUserByIdReturnsMappedDto(int id)
         {
-            _userRepo.Setup(repo => repo.GetUserAsync(1)).ReturnsAsync(_user);
+            _userRepo.Setup(repo => repo.GetEntityAsync(1)).ReturnsAsync(_user);
             var config = new MapperConfiguration(x => x.AddProfile<AutoMapperProfile>());
             UserService userService = new UserService(_genericRepoUser.Object, config.CreateMapper(), _userRepo.Object, _addresRepo.Object);
 
