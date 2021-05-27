@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using VeggieSwapServer.Business.DTO;
@@ -6,6 +7,7 @@ using VeggieSwapServer.Business.Services;
 
 namespace VeggieSwapServer.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class TradeItemController : ControllerBase
@@ -32,6 +34,7 @@ namespace VeggieSwapServer.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IEnumerable<TradeItemDto>> GetAllTradeItemsAsync()
         {
             return await _tradeItemService.GetAllEntitiesAsync();
@@ -56,6 +59,7 @@ namespace VeggieSwapServer.Controllers
         }
 
         [HttpGet("{id1}")]
+        [AllowAnonymous]
         public async Task<IEnumerable<TradeItemDto>> GetTradeItemDetailList(int id1)
         {
             return await _tradeItemService.GetTradeItemDetailListDtoAsync(id1);
