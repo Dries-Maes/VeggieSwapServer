@@ -10,10 +10,10 @@ namespace VeggieSwapServer.Controllers
     [Route("api/[controller]")]
     public class TradeItemController : ControllerBase
     {
-        private TradeItemService _tradeItemService;
+        private ITradeItemService _tradeItemService;
         private ITradeFactoryService _tradeFactoryService;
 
-        public TradeItemController(TradeItemService tradeItemService, ITradeFactoryService tradeFactoryService)
+        public TradeItemController(ITradeItemService tradeItemService, ITradeFactoryService tradeFactoryService)
         {
             _tradeFactoryService = tradeFactoryService;
             _tradeItemService = tradeItemService;
