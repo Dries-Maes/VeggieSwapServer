@@ -23,7 +23,7 @@ namespace VeggieSwapServer.Business.Services
         {
             if (includeAddress)
             {
-                return _mapper.Map<IEnumerable<UserDto>>(await _userRepo.GetAllEntitiesAsync(true));
+                return _mapper.Map<IEnumerable<UserDto>>(await _userRepo.GetAllUsersAsync(true));
             }
             else
             {

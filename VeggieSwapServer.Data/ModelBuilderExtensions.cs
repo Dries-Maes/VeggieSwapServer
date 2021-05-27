@@ -77,7 +77,7 @@ namespace VeggieSwapServer.Data
                 new Address
                 {
                     Id = 3,
-                    StreetName = "Balletjesintomatensausstraat",
+                    StreetName = "Balletjesstraat",
                     StreetNumber = 74,
                     PostalCode = 4000,
                     UserId = 3
@@ -125,7 +125,7 @@ namespace VeggieSwapServer.Data
                 new Address
                 {
                     Id = 9,
-                    StreetName = "Greenlivesmattertooweg",
+                    StreetName = "Greenlivesweg",
                     StreetNumber = 420,
                     PostalCode = 2000,
                     UserId = 9
@@ -133,7 +133,7 @@ namespace VeggieSwapServer.Data
                 new Address
                 {
                     Id = 10,
-                    StreetName = "Geenpolitiekinhetprojectstraat",
+                    StreetName = "Geenpolitiekstraat",
                     StreetNumber = 200,
                     PostalCode = 9070,
                     UserId = 10
@@ -165,7 +165,7 @@ namespace VeggieSwapServer.Data
                 new Address
                 {
                     Id = 14,
-                    StreetName = "Jurgenzitverstoptachterhetlamgodsstraat",
+                    StreetName = "Jurgenverstopstraat",
                     StreetNumber = 24,
                     PostalCode = 9000,
                     UserId = 14
@@ -181,7 +181,7 @@ namespace VeggieSwapServer.Data
                 new Address
                 {
                     Id = 16,
-                    StreetName = "Gemarineerderunderlendedreef",
+                    StreetName = "Runderlendedreef",
                     StreetNumber = 36,
                     PostalCode = 1180,
                     UserId = 16
@@ -221,7 +221,7 @@ namespace VeggieSwapServer.Data
                 new Address
                 {
                     Id = 21,
-                    StreetName = "Huisgemaaktekalfsbitterballetjesstraat",
+                    StreetName = "Balletjesstraat",
                     StreetNumber = 100,
                     PostalCode = 3020,
                     UserId = 21
