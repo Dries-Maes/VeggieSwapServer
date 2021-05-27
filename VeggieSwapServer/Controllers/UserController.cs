@@ -20,31 +20,31 @@ namespace VeggieSwapServer.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<object>> GetMembersAsyncIncludeAddress(bool includeAddress)
+        public async Task<IEnumerable<object>> GetAllEntitiesAsync(bool includeAddress)
         {
             return await _userService.GetAllEntitiesAsync(includeAddress);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<UserDto>> GetMemberAsync(int id)
+        public async Task<ActionResult<UserDto>> GetUserAsync(int id)
         {
             return Ok(await _userService.GetUserAsync(id));
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<UserDto>> DeleteMemberAsync(int id)
+        public async Task<ActionResult<UserDto>> DeleteEntityAsync(int id)
         {
             return Ok(await _userService.DeleteEntityAsync(id));
         }
 
         [HttpPost]
-        public async Task<ActionResult> PostMemberAsync(UserDto model)
+        public async Task<ActionResult> AddEntityAsync(UserDto model)
         {
             return Ok(await _userService.AddEntityAsync(model));
         }
 
         [HttpPut]
-        public async Task<ActionResult> PutMemberAsync(UserDto model)
+        public async Task<ActionResult> UpdateEntityAsync(UserDto model)
         {
             return Ok(await _userService.UpdateEntityAsync(model));
         }

@@ -28,45 +28,45 @@ namespace VeggieSwapServer.Controllers
         }
 
         [HttpPost("Resources/{id}")]
-        public async Task<ActionResult> PostMemberAsync(ResourceDto addedTradeItem, int id)
+        public async Task<ActionResult> AddTradeItemsAsync(ResourceDto addedTradeItem, int id)
         {
             return Ok(await _tradeItemService.AddTradeItemsAsync(addedTradeItem, id));
         }
 
         [HttpGet]
         [AllowAnonymous]
-        public async Task<IEnumerable<TradeItemDto>> GetAllTradeItemsAsync()
+        public async Task<IEnumerable<TradeItemDto>> GetAllEntitiesAsync()
         {
             return await _tradeItemService.GetAllEntitiesAsync();
         }
 
         [HttpGet("{id1}/{id2}")]
-        public async Task<IEnumerable<TradeItemDto>> GetTradeItemDetailList(int id1, int id2)
+        public async Task<IEnumerable<TradeItemDto>> ControllerGetsListAsync(int id1, int id2)
         {
-            return await _tradeFactoryService.ControllerGetsList(id1, id2);
+            return await _tradeFactoryService.ControllerGetsListAsync(id1, id2);
         }
 
         [HttpGet("accept/{id1}/{id2}")]
-        public async Task<bool> AcceptTrade(int id1, int id2)
+        public async Task<bool> ControllerAcceptTradeAsync(int id1, int id2)
         {
             return await _tradeFactoryService.ControllerAcceptTradeAsync(id1, id2);
         }
 
         [HttpGet("cancel/{id1}/{id2}")]
-        public async Task<bool> CancelTrade(int id1, int id2)
+        public async Task<bool> ControllerCancelTradeAsync(int id1, int id2)
         {
             return await _tradeFactoryService.ControllerCancelTradeAsync(id1, id2);
         }
 
         [HttpGet("{id1}")]
         [AllowAnonymous]
-        public async Task<IEnumerable<TradeItemDto>> GetTradeItemDetailList(int id1)
+        public async Task<IEnumerable<TradeItemDto>> GetTradeItemDetailListDtoAsync(int id1)
         {
             return await _tradeItemService.GetTradeItemDetailListDtoAsync(id1);
         }
 
         [HttpPost]
-        public async Task<ActionResult> PostMemberAsync(IEnumerable<TradeItemDto> tradeList)
+        public async Task<ActionResult> ControllerPushListAsync(IEnumerable<TradeItemDto> tradeList)
         {
             return Ok(await _tradeFactoryService.ControllerPushListAsync(tradeList));
         }

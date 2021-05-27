@@ -55,7 +55,7 @@ namespace VeggieSwapServer.Business.Services
             return true;
         }
 
-        public async Task<IEnumerable<TradeItemDto>> ControllerGetsList(int userId, int receiverId)
+        public async Task<IEnumerable<TradeItemDto>> ControllerGetsListAsync(int userId, int receiverId)
         {
             _trader1Id = userId;
             _trader2Id = receiverId;

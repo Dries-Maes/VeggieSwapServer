@@ -23,7 +23,7 @@ namespace VeggieSwapServer.Data.Repositories
             return await _context.Users.SingleOrDefaultAsync(x => x.Email == email);
         }
 
-        public async Task<IEnumerable<User>> GetAllEntitiesAsync(bool includeAddress)
+        public async Task<IEnumerable<User>> GetAllUsersAsync(bool includeAddress)
         {
             if (includeAddress)
             {
@@ -39,7 +39,7 @@ namespace VeggieSwapServer.Data.Repositories
             }
         }
 
-        public async Task<User> GetUserAsync(int id)
+        public override async Task<User> GetEntityAsync(int id)
         {
             return await _context.Users.Include(y => y.Address).FirstOrDefaultAsync(x => x.Id == id);
         }
